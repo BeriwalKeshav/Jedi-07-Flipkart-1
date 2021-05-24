@@ -26,6 +26,9 @@ public class User {
 	/**
 	 * @param uId the uId to set
 	 */
+	/**
+	 * @param uId
+	 */
 	public void setuId(UUID uId) {
 		this.uId = uId;
 	}
