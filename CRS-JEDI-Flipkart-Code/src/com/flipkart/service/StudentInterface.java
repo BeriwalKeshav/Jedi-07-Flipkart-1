@@ -9,7 +9,7 @@ import java.util.UUID;
  * @author vibhorkansal
  *
  */
-public interface StudentInterface {
+public interface StudentInterface{
 	
 	
 	
@@ -18,7 +18,7 @@ public interface StudentInterface {
 	 * @param uID
 	 * @param uPwd
 	 * @param sBranch
-	 * @param sRollNo
+	 * @param sRoll
 	 * @return
 	 */
 	public int register(String uname,UUID uID,String uPwd,String sBranch,int sRollNo);
