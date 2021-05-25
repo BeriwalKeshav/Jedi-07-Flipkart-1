@@ -7,7 +7,7 @@ package com.flipkart.exception;
  * @author JEDI-07
  *
  */
-public class StudentNotRegisteredException {
+public class StudentNotRegisteredException extends Exception{
 
 	private String userName;
 	
