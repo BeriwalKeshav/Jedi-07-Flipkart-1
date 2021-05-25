@@ -5,10 +5,7 @@ package com.flipkart.client;
 
 import java.util.Scanner;
 
-/**
- * @author vibhorkansal
- *
- */
+
 public class AdminClientMenu {
 
 	public void renderMenu(String studId) {

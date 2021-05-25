@@ -1,0 +1,13 @@
+/**
+ * 
+ */
+package com.flipkart.exception;
+
+/**
+ * @author ankit
+ *
+ */
+public class CourseNotRemovedException extends Exception{
+	private String cCode;
+	
+}

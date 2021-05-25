@@ -1,0 +1,20 @@
+package com.flipkart.client;
+
+import java.util.*;
+public class StudentClientMenu {
+	public void renderMenu()
+	{
+		System.out.println("       Student Menu");
+		System.out.println("");
+		System.out.println("1. View Catalog");
+		System.out.println("2. Register for Courses ");
+		System.out.println("3. Add Courses");
+		System.out.println("4. Drop Courses");
+		System.out.println("5. ViewReportCard");
+		System.out.println("6. Logout");
+		Scanner sc= new Scanner(System.in); 
+		int a = sc.nextInt();
+		sc.close();
+		
+	}
+}

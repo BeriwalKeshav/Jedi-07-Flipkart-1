@@ -5,10 +5,9 @@ package com.flipkart.service;
 
 import java.util.UUID;
 
-/**
- * @author vibhorkansal
- *
- */
+import com.flipkart.exception.StudentNotRegisteredException;
+
+
 public interface StudentInterface{
 	
 	
@@ -21,7 +20,7 @@ public interface StudentInterface{
 	 * @param sRoll
 	 * @return
 	 */
-	public int register(String uname,UUID uID,String uPwd,String sBranch,int sRollNo);
+	public int register(String uname,UUID uID,String uPwd,String sBranch,int sRollNo) throws StudentNotRegisteredException;
 	
 	/**
 	 * @param uId

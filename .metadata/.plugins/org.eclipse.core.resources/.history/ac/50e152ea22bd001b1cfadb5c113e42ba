@@ -1,0 +1,21 @@
+/**
+ * 
+ */
+package com.flipkart.exception;
+
+/**
+ * @author ankit
+ *
+ */
+public class DemoException {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int a=10,b=0,c;
+		System.out.println(c);
+	}
+
+}

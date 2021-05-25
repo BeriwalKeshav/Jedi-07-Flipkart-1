@@ -1,0 +1,64 @@
+/**
+ * 
+ */
+package com.flipkart.bean;
+
+/**
+ * @author ankit
+ *
+ */
+public class ReportCard {
+	private int studentId;
+	/**
+	 * @return the studentId
+	 */
+	public int getStudentId() {
+		return studentId;
+	}
+	/**
+	 * @param studentId the studentId to set
+	 */
+	public void setStudentId(int studentId) {
+		this.studentId = studentId;
+	}
+	/**
+	 * @return the courses
+	 */
+	public String[] getCourses() {
+		return courses;
+	}
+	/**
+	 * @param courses the courses to set
+	 */
+	public void setCourses(String[] courses) {
+		this.courses = courses;
+	}
+	/**
+	 * @return the grade
+	 */
+	public String[] getGrade() {
+		return grade;
+	}
+	/**
+	 * @param grade the grade to set
+	 */
+	public void setGrade(String[] grade) {
+		this.grade = grade;
+	}
+	/**
+	 * @return the cgpa
+	 */
+	public float getCgpa() {
+		return cgpa;
+	}
+	/**
+	 * @param cgpa the cgpa to set
+	 */
+	public void setCgpa(float cgpa) {
+		this.cgpa = cgpa;
+	}
+	private String[] courses;
+	private String[] grade;
+	private float cgpa;
+	
+}
