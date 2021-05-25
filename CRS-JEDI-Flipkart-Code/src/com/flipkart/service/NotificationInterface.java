@@ -2,8 +2,8 @@ package com.flipkart.service;
 
 import java.util.UUID;
 
-import com.flipkart.constant.ModeOfPayment;
-import com.flipkart.constant.NotificationType;
+//import com.flipkart.constant.ModeOfPayment;
+//import com.flipkart.constant.NotificationType;
 
 
 /*
