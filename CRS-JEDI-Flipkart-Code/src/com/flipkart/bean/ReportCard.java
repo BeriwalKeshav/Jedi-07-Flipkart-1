@@ -9,6 +9,9 @@ package com.flipkart.bean;
  */
 public class ReportCard {
 	private int studentId;
+	private String[] courses;
+	private String[] grade;
+	private float cgpa;
 	/**
 	 * @return the studentId
 	 */
@@ -57,8 +60,6 @@ public class ReportCard {
 	public void setCgpa(float cgpa) {
 		this.cgpa = cgpa;
 	}
-	private String[] courses;
-	private String[] grade;
-	private float cgpa;
+
 	
 }

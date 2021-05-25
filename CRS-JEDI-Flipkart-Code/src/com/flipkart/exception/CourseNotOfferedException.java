@@ -22,5 +22,4 @@ public class CourseNotOfferedException extends Exception{
 		{
 			return "Course with courseCode: " + cCode + " can not be deleted.";
 		}
-
 }
