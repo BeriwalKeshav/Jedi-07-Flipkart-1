@@ -16,7 +16,7 @@ import com.flipkart.service.UserOperation;
 public class CRSMainApplication {
 	
 	UserInterface userInterface = new UserOperation();
-	static boolean loggedin = false;
+	static boolean loggedIn = false;
 	
 
 	/**
@@ -48,7 +48,7 @@ public class CRSMainApplication {
 					app.updatePassword();
 					break;
 				case 4:
-					System.out.println("Exiting...");
+					System.out.println("Exiting Application...");
 					break;
 				default:
 					System.out.println("Invalid Input");
@@ -62,7 +62,7 @@ public class CRSMainApplication {
 	 * Method to display Main Menu
 	 */
 	public static void createMainMenu() {
-		
+		System.out.println("++++++++++++  CMS  +++++++++++++++");
 		System.out.println("Menu for Course Management System:");
 		System.out.println("1. Login");
 		System.out.println("2. Student Registration");
@@ -75,40 +75,50 @@ public class CRSMainApplication {
 	 * Method to login User
 	 * @throws UserNotFoundException 
 	 */
-	public void loginUser() throws UserNotFoundException {
+	public void loginUser() {
+		
+		String userName, password, role = null;
+		
 		Scanner sc = new Scanner(System.in);
-		String userId, password;
 		
 		System.out.println("Enter User Id:");
-		userId = sc.next();
+		userName = sc.next();
 		System.out.println("Enter Password:");
 		password = sc.next();
 		
-		loggedin = userInterface.verifyCredentials(userId, password);
-		System.out.println("Login Status -> " +  loggedin);
+		try {
+			
+			loggedIn = userInterface.verifyCredentials(userName, password);
+			
+			System.out.println("Login Status -> " +  loggedIn);
+			
+			role = userInterface.getUserRole(userName);
+			
+			if(loggedIn == false || role == null) {
+				System.out.println("++ Login Failed Returning to Main Menu");
+				return;
+			}
+			
+			switch(role)
+			{	
+				case "STUDENT":
+					System.out.println("Student logged in!");
+					StudentClientMenu studentMenu=new StudentClientMenu();
+					studentMenu.renderMenu(userName);
+					break;
+				case "PROFESSOR":
+					System.out.println("Professor logged in!");
+					break;	
+				case "ADMIN":
+					System.out.println("Admin logged in!");
+					break;
+				default:
+					System.out.println("Invalid Input");
+			}
 		
-		
-		if(loggedin == false) {
-			loginUser();
+		} catch (UserNotFoundException ex) {
+			System.out.println("++ Login Failed Returning to Main Menu");
 		}
-		
-		switch("STUDENT")
-		{	
-			case "STUDENT":
-				System.out.println("Student logged in!");
-				StudentClientMenu studentMenu=new StudentClientMenu();
-				studentMenu.renderMenu(userId);
-				break;
-			case "PROFESSOR":
-				System.out.println("Professor logged in!");
-				break;	
-			case "ADMIN":
-				System.out.println("Admin logged in!");
-				break;
-			default:
-				System.out.println("Invalid Input");
-		}
-//		sc.close();
 			
 	}
 	
@@ -123,7 +133,27 @@ public class CRSMainApplication {
 	 * Method to update password of the User
 	 */
 	public void updatePassword() {
-		System.out.println("Password has been updated.");
+		String userName, newPassword, role = null;
+		
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter User Id:");
+		userName = sc.next();
+		System.out.println("Enter New Password:");
+		newPassword = sc.next();
+		
+		try {
+			
+			boolean isUpdated = userInterface.updatePassword(userName, newPassword);
+			if( isUpdated == true) {
+				System.out.println("Password changed for User -> " + userName);
+			}else {
+				System.out.println("+++++++ Password Update Failed");
+			}
+		
+		} catch (UserNotFoundException ex) {
+			System.out.println("++ User Not Found");
+		}
 	}
 
 }
