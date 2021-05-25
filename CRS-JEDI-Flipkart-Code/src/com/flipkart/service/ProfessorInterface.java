@@ -9,6 +9,8 @@ import com.flipkart.bean.Course;
 import com.flipkart.bean.Grade;
 import com.flipkart.bean.Professor;
 import com.flipkart.bean.RegisteredCourse;
+import com.flipkart.exception.GradeAddFailedException;
+import com.flipkart.exception.UserNotFoundException;
 
 /**
  * @author prafu
@@ -23,7 +25,7 @@ public interface ProfessorInterface {
 	 * @param grade
 	 * @return boolean
 	 */
-	public boolean addGrade(int sRollNo,String cCode,Grade grade);
+	public boolean addGrade(int sRollNo,String cCode,Grade grade) throws GradeAddFailedException;
 	
 	/**
 	 * @param courseId
@@ -41,7 +43,7 @@ public interface ProfessorInterface {
 	 * @param profId
 	 * @return 
 	 */
-	public Professor getProffProfleById(String profId);
+	public Professor getProffProfleById(String profId) throws UserNotFoundException;
 	
 	
 }
