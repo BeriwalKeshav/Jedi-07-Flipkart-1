@@ -36,8 +36,6 @@ public class UserDAOImpl implements UserDaoInterface{
 				System.out.println("Current user is -> " + resultSet.getString("userName"));
 				throw new UserNotFoundException(userId);
 			}
-			
-			
 		}
 		catch(SQLException ex)
 		{

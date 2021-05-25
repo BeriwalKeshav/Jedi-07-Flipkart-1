@@ -8,11 +8,41 @@ package com.flipkart.bean;
  *
  */
 public class Course {
+	/**
+	 * @param cCode
+	 * @param cname
+	 * @param isOffered
+	 * @param profName
+	 */
+	public Course(String cCode, String cname, String profName,boolean isOffered) {
+		super();
+		this.cCode = cCode;
+		this.cname = cname;
+		this.isOffered = isOffered;
+		ProfName = profName;
+	}
+
 	private String cCode;
 	private String cname;
 	private boolean isOffered;
 	private String ProfName;
 	private int NoOfSeats;
+
+	/**
+	 * @param cCode
+	 * @param cname
+	 * @param isOffered
+	 * @param profName
+	 * @param noOfSeats
+	 */
+	public Course(String cCode, String cname, boolean isOffered, String profName, int noOfSeats) {
+		super();
+		this.cCode = cCode;
+		this.cname = cname;
+		this.isOffered = isOffered;
+		ProfName = profName;
+		NoOfSeats = noOfSeats;
+	}
 
 	/**
 	 * @return the cCode
