@@ -14,12 +14,13 @@ public class StudentClientMenu {
 		System.out.println("6. Logout");
 		Scanner sc= new Scanner(System.in); 
 		int c = sc.nextInt();
-		sc.close();
+		//sc.close();
 		boolean b = true;
 		while(b)
 		{
 			switch(c) {
 				case 1:
+					b = false;
 					viewCatalog(studentId);
 					break;
 				case 2:

@@ -5,16 +5,27 @@ package com.flipkart.client;
 
 import java.util.*;
 
+import com.flipkart.exception.UserNotFoundException;
+import com.flipkart.service.UserInterface;
+import com.flipkart.service.UserOperation;
+
 /**
  * @author adityasuraj
  *
  */
 public class CRSMainApplication {
+	
+	UserInterface userInterface = new UserOperation();
+	static boolean loggedin = false;
+	
 
 	/**
 	 * @param args
+	 * @throws UserNotFoundException 
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws UserNotFoundException {
+		
+		
 		// TODO Auto-generated method stub
 		Scanner sc = new Scanner(System.in);
 		
@@ -62,24 +73,36 @@ public class CRSMainApplication {
 	
 	/**
 	 * Method to login User
+	 * @throws UserNotFoundException 
 	 */
-	public void loginUser() {
-		System.out.println("Enter user number:");
-		System.out.println("1. Student");
-		System.out.println("2. Professor");
-		System.out.println("3. Admin");
+	public void loginUser() throws UserNotFoundException {
 		Scanner sc = new Scanner(System.in);
-		int userInput;
-		userInput = sc.nextInt();
-		switch(userInput)
+		String userId, password;
+		
+		System.out.println("Enter User Id:");
+		userId = sc.next();
+		System.out.println("Enter Password:");
+		password = sc.next();
+		
+		loggedin = userInterface.verifyCredentials(userId, password);
+		System.out.println("Login Status -> " +  loggedin);
+		
+		
+		if(loggedin == false) {
+			loginUser();
+		}
+		
+		switch("STUDENT")
 		{	
-			case 1:
+			case "STUDENT":
 				System.out.println("Student logged in!");
+				StudentClientMenu studentMenu=new StudentClientMenu();
+				studentMenu.renderMenu(userId);
 				break;
-			case 2:
+			case "PROFESSOR":
 				System.out.println("Professor logged in!");
 				break;	
-			case 3:
+			case "ADMIN":
 				System.out.println("Admin logged in!");
 				break;
 			default:

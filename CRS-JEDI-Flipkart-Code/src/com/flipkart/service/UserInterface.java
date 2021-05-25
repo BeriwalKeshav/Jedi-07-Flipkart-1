@@ -14,14 +14,14 @@ public interface UserInterface {
 	 * @param newpwd
 	 * @return
 	 */
-	public boolean resetPassword(UUID uId,String newpwd);
+	public boolean resetPassword(String uId,String newpwd);
 	
 	/**
 	 * @param uId
 	 * @param pwd
 	 * @return
 	 */
-	public boolean verifyCredentials(UUID uId,String pwd) throws UserNotFoundException;
+	public boolean verifyCredentials(String uId,String pwd) throws UserNotFoundException;
 	
 	
 	
