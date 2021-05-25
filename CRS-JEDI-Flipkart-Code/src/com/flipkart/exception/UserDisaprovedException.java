@@ -12,19 +12,17 @@ public class UserDisaprovedException extends Exception {
 	
 
 	/**
-	 * @return the uName
-	 */
-	public String getuName() {
-		return uName;
-	}
-
-
-
-	/**
 	 * @param uName
 	 */
 	public UserDisaprovedException(String uName) {
 		this.uName = uName;
+	}
+	
+	/**
+	 *
+	 */
+	public String getMessage() {
+		return "User with userId: " + uName + " not Aprooved.";
 	}
 	
 	
