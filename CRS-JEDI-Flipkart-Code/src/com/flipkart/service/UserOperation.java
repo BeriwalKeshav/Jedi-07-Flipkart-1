@@ -1,32 +1,27 @@
 package com.flipkart.service;
 
-import java.util.UUID;
-
 import com.flipkart.dao.UserDAOImpl;
-import com.flipkart.dao.UserDaoInterface;
+import com.flipkart.dao.UserDAOInterface;
 import com.flipkart.exception.UserNotFoundException;
 
 public class UserOperation implements UserInterface{
 	
-	UserDaoInterface userDaoInterface= new UserDAOImpl();
+	UserDAOInterface userDaoImpl= new UserDAOImpl();
 
 	@Override
-	public boolean resetPassword(String uId, String newpwd) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean updatePassword(String userName, String newPassword) throws UserNotFoundException {
+		return userDaoImpl.updatePassword(userName, newPassword);	
 	}
 
 	@Override
-	public boolean verifyCredentials(String uId, String pwd) throws UserNotFoundException {
-		try
-		{
-			return userDaoInterface.verifyCredentials(uId, pwd);		
-		}
-		finally
-		{
-			
-		}
+	public boolean verifyCredentials(String userName, String password) throws UserNotFoundException {
+		return userDaoImpl.verifyCredentials(userName, password);		
 		
+	}
+
+	@Override
+	public String getUserRole(String userName) throws UserNotFoundException {
+		return userDaoImpl.getUserRole(userName);	
 	}
 	
 	
