@@ -10,20 +10,22 @@ public class StudentClientMenu {
 	RegistrationInterface registrationinterface = new RegistrationOperation();
 	public void renderMenu(String studentId)
 	{
-		System.out.println("       Student Menu");
-		System.out.println("");
-		System.out.println("1. View Catalog");
-		System.out.println("2. Register for Courses ");
-		System.out.println("3. Add Courses");
-		System.out.println("4. Drop Courses");
-		System.out.println("5. ViewReportCard");
-		System.out.println("6. Logout");
-		Scanner sc= new Scanner(System.in); 
-		int c = sc.nextInt();
-		//sc.close();
+	
 		boolean b = true;
 		while(b)
 		{
+			
+			System.out.println("+++++    Student Menu    ++++++++");
+			System.out.println("");
+			System.out.println("1. View Catalog");
+			System.out.println("2. Register for Courses ");
+			System.out.println("3. Add Courses");
+			System.out.println("4. Drop Courses");
+			System.out.println("5. ViewReportCard");
+			System.out.println("6. Logout");
+			Scanner sc= new Scanner(System.in); 
+			
+			int c = sc.nextInt();
 			switch(c) {
 				case 1:
 					

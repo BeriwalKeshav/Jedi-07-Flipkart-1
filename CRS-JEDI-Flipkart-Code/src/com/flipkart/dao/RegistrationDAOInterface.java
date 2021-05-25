@@ -5,13 +5,14 @@ import java.util.List;
 
 import com.flipkart.bean.Course;
 import com.flipkart.bean.Notification;
+import com.flipkart.bean.RegisteredCourse;
 
 /**
  * @author JEDI-03
  * Interface for Registration DAO Operation
  *
  */
-public interface RegistrationDaoInterface {
+public interface RegistrationDAOInterface {
 	
 	
 	/**
@@ -48,7 +49,7 @@ public interface RegistrationDaoInterface {
 	 * @return list of Registered Courses
 	 * @throws SQLException 
 	 */
-	public List<Course> viewRegisteredCourses(int studentId) throws SQLException;
+	public List<RegisteredCourse> viewRegisteredCourses(int studentId) throws SQLException;
 	
 	/**
 	 * Method to view grade card of the student
@@ -134,7 +135,7 @@ public interface RegistrationDaoInterface {
 	public void setRegistrationStatus(int studentId) throws SQLException;
 	
 	
-	 * @param studentId
+	/** @param studentId
 	 * @return number of courses student has registered in
 	 * @throws SQLException
 	 */

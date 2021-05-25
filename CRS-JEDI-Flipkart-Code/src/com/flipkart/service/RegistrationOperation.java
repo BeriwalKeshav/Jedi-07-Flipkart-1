@@ -8,8 +8,8 @@ import java.util.List;
 
 import com.flipkart.bean.Course;
 import com.flipkart.bean.RegisteredCourse;
-import com.flipkart.dao.RegistrationDAOImpl;
 import com.flipkart.dao.RegistrationDAOInterface;
+import com.flipkart.dao.RegistrationDAOOperation;
 import com.flipkart.exception.CourseNotOfferedException;
 import com.flipkart.exception.CourseNotRemovedException;
 import com.flipkart.exception.SeatNotAvailableException;
@@ -19,7 +19,7 @@ import com.flipkart.exception.SeatNotAvailableException;
  *
  */
 public class RegistrationOperation implements RegistrationInterface{
-	RegistrationDAOInterface registrationDAOInterface = new RegistrationDAOImpl() ;
+	RegistrationDAOInterface registrationDAOInterface = new RegistrationDAOOperation();
 	@Override
 	public boolean addCourse(String cCode, int sRollNo, List<Course> courseList)
 			throws CourseNotOfferedException, SeatNotAvailableException {

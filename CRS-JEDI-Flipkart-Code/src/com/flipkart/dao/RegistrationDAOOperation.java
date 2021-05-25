@@ -30,15 +30,15 @@ import com.flipkart.utils.DBUtil;
  * Class to implement Registration Dao Operations
  * This class communicates with the database.
  */
-public class RegistrationDaoOperation implements RegistrationDaoInterface{
+public class RegistrationDAOOperation implements RegistrationDAOInterface{
 	
-	private static volatile RegistrationDaoOperation instance=null;
+	private static volatile RegistrationDAOOperation instance=null;
 	private PreparedStatement stmt = null;
 	
 	/**
 	 * Default Constructor
 	 */
-	private RegistrationDaoOperation() {
+	public RegistrationDAOOperation() {
 		
 	}
 	
@@ -46,12 +46,12 @@ public class RegistrationDaoOperation implements RegistrationDaoInterface{
 	 * Method to make RegistrationDaoOperation Singleton
 	 * @return singleton instance
 	 */
-	public static RegistrationDaoOperation getInstance()
+	public static RegistrationDAOOperation getInstance()
 	{
 		if(instance==null)
 		{
-			synchronized(RegistrationDaoOperation.class){
-				instance=new RegistrationDaoOperation();
+			synchronized(RegistrationDAOOperation.class){
+				instance=new RegistrationDAOOperation();
 			}
 		}
 		return instance;
@@ -259,6 +259,42 @@ public class RegistrationDaoOperation implements RegistrationDaoInterface{
 
 	@Override
 	public void setRegistrationStatus(String studentId) throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<RegisteredCourse> viewRegisteredCourses(int studentId) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public double calculateFee(int studentId) throws SQLException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int numOfRegisteredCourses(int studentId) throws SQLException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public boolean isRegistered(String courseCode, int studentId) throws SQLException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean getRegistrationStatus(int studentId) throws SQLException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void setRegistrationStatus(int studentId) throws SQLException {
 		// TODO Auto-generated method stub
 		
 	}
