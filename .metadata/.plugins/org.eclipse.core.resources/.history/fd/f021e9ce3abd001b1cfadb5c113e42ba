@@ -11,8 +11,10 @@ import com.flipkart.exception.CourseNotOfferedException;
 import com.flipkart.exception.CourseNotRemovedException;
 import com.flipkart.exception.SeatNotAvailableException;
 
-
-
+/**
+ * @author adityasuraj
+ *
+ */
 public interface RegistrationInterface {
 	
 	/**

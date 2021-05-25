@@ -7,6 +7,10 @@ import java.util.UUID;
 
 import com.flipkart.exception.UserNotFoundException;
 
+/**
+ * @author vibhorkansal
+ *
+ */
 public interface UserInterface {
 	
 	/**
