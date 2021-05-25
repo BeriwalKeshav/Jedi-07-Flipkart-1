@@ -16,7 +16,7 @@ import com.flipkart.service.UserOperation;
 public class CRSMainApplication {
 	
 	UserInterface userInterface = new UserOperation();
-	static boolean loggedin = false;
+	static boolean loggedIn = false;
 	
 
 	/**
@@ -62,7 +62,7 @@ public class CRSMainApplication {
 	 * Method to display Main Menu
 	 */
 	public static void createMainMenu() {
-		
+		System.out.println("++++++++++++  CMS  +++++++++++++++");
 		System.out.println("Menu for Course Management System:");
 		System.out.println("1. Login");
 		System.out.println("2. Student Registration");
@@ -75,40 +75,53 @@ public class CRSMainApplication {
 	 * Method to login User
 	 * @throws UserNotFoundException 
 	 */
-	public void loginUser() throws UserNotFoundException {
+	public void loginUser() {
+		
+		String userName, password, role = null;
+		
 		Scanner sc = new Scanner(System.in);
-		String userId, password;
 		
 		System.out.println("Enter User Id:");
-		userId = sc.next();
+		userName = sc.next();
 		System.out.println("Enter Password:");
 		password = sc.next();
 		
-		loggedin = userInterface.verifyCredentials(userId, password);
-		System.out.println("Login Status -> " +  loggedin);
 		
 		
-		if(loggedin == false) {
-			loginUser();
+		try {
+			
+			loggedIn = userInterface.verifyCredentials(userName, password);
+			
+			System.out.println("Login Status -> " +  loggedIn);
+			
+			role = userInterface.getUserRole(userName);
+			
+			if(loggedIn == false || role == null) {
+				System.out.println("++ Login Failed Returning to Main Menu");
+				return;
+			}
+			
+			switch(role)
+			{	
+				case "STUDENT":
+					System.out.println("Student logged in!");
+					StudentClientMenu studentMenu=new StudentClientMenu();
+					studentMenu.renderMenu(userName);
+					break;
+				case "PROFESSOR":
+					System.out.println("Professor logged in!");
+					break;	
+				case "ADMIN":
+					System.out.println("Admin logged in!");
+					break;
+				default:
+					System.out.println("Invalid Input");
+			}
+		
+		} catch (UserNotFoundException ex) {
+			System.out.println("++ Login Failed Returning to Main Menu");
+			System.out.println(ex.getMessage());
 		}
-		
-		switch("STUDENT")
-		{	
-			case "STUDENT":
-				System.out.println("Student logged in!");
-				StudentClientMenu studentMenu=new StudentClientMenu();
-				studentMenu.renderMenu(userId);
-				break;
-			case "PROFESSOR":
-				System.out.println("Professor logged in!");
-				break;	
-			case "ADMIN":
-				System.out.println("Admin logged in!");
-				break;
-			default:
-				System.out.println("Invalid Input");
-		}
-//		sc.close();
 			
 	}
 	
