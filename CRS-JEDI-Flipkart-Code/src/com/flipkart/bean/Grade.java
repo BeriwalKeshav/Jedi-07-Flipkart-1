@@ -8,7 +8,16 @@ package com.flipkart.bean;
  *
  */
 
-public class Grade {                
+public class Grade {
+	
+	/**
+	 * @param grade
+	 */
+	public Grade(String grade) {
+		super();
+		this.grade = grade;
+	}
+
 	private String grade;
 
 	/**

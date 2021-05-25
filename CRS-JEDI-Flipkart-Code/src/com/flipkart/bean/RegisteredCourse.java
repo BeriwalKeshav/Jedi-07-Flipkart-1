@@ -9,20 +9,20 @@ package com.flipkart.bean;
  */
 public class RegisteredCourse {
 	private String cCode;
-	private int sRollNo;
+	private String studentId;
 	private int sem;
 	private Grade grade;
 	
 	/**
 	 * @param cCode
-	 * @param sRollNo
+	 * @param studentId
 	 * @param sem
 	 * @param grade
 	 */
-	public RegisteredCourse(String cCode, int sRollNo, int sem, Grade grade) {
+	public RegisteredCourse(String cCode, String studentId, int sem, Grade grade) {
 		super();
 		this.cCode = cCode;
-		this.sRollNo = sRollNo;
+		this.studentId = studentId;
 		this.sem = sem;
 		this.grade = grade;
 	}
@@ -41,14 +41,14 @@ public class RegisteredCourse {
 	/**
 	 * @return the sRollNo
 	 */
-	public int getsRollNo() {
-		return sRollNo;
+	public String getsstudentId() {
+		return studentId;
 	}
 	/**
 	 * @param sRollNo the sRollNo to set
 	 */
-	public void setsRollNo(int sRollNo) {
-		this.sRollNo = sRollNo;
+	public void setsstudentId(String studentId) {
+		this.studentId = studentId;
 	}
 	/**
 	 * @return the sem

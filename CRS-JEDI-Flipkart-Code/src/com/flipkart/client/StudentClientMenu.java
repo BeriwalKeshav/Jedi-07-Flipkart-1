@@ -20,7 +20,7 @@ public class StudentClientMenu {
 		{
 			switch(c) {
 				case 1:
-					b = false;
+					
 					viewCatalog(studentId);
 					break;
 				case 2:
@@ -34,8 +34,11 @@ public class StudentClientMenu {
 					break;
 				case 5:
 					viewReportCard(studentId);
+					break;
 				case 6:
+					b = false;
 					logout(studentId);
+					break;
 				default:
 					System.out.println("+++ Warning : Wrong Option +++");
 			}
