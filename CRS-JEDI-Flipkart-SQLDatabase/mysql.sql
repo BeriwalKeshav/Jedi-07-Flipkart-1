@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: crs
 Target Host: localhost
 Target Database: crs
-Date: 25-05-2021 19:48:20
+Date: 25-05-2021 23:02:27
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -27,6 +27,7 @@ CREATE TABLE `course` (
   `cName` varchar(100) default NULL,
   `isOffered` binary(255) default NULL,
   `instructor` varchar(100) default NULL,
+  `courseSeats` int(11) default NULL,
   PRIMARY KEY  (`cCode`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -117,9 +118,9 @@ CREATE TABLE `user` (
 -- Records 
 -- ----------------------------
 INSERT INTO `admin` VALUES ('admin');
-INSERT INTO `course` VALUES ('cour1', 'gafasasd adsdads', '1', 'proff');
-INSERT INTO `course` VALUES ('cour2', 'appppp p p p p p p ', '1', 'proff');
-INSERT INTO `course` VALUES ('cour3', 'gggg gggg g g gg g ', '0', 'proff');
+INSERT INTO `course` VALUES ('cour1', 'gafasasd adsdads', '1', 'proff', '10');
+INSERT INTO `course` VALUES ('cour2', 'appppp p p p p p p ', '1', 'proff', '9');
+INSERT INTO `course` VALUES ('cour3', 'gggg gggg g g gg g ', '0', 'proff', '8');
 INSERT INTO `notification` VALUES ('arrarsdasfdsdsfsdf', 'hello test ', 'stud2', 'pay321');
 INSERT INTO `notification` VALUES ('ggggggggggggg', 'test 2', 'stud', 'pay123');
 INSERT INTO `payment` VALUES ('pay123', 'stud', '1234', '0', 'CARD');
@@ -131,6 +132,6 @@ INSERT INTO `registered_courses` VALUES ('stud2', '1', 'cour1', 'C');
 INSERT INTO `student` VALUES ('stud', 'CSE');
 INSERT INTO `student` VALUES ('stud2', 'EE');
 INSERT INTO `user` VALUES ('a381df18-bd60-11eb-8529-0242ac130003', 'admin', 'admin', '2021-05-18', 'ADMIN');
-INSERT INTO `user` VALUES ('c0a018a8-bd60-11eb-8529-0242ac130003', 'proff', 'proff', '2021-05-05', 'PROFFESOR');
+INSERT INTO `user` VALUES ('c0a018a8-bd60-11eb-8529-0242ac130003', 'proff', 'proff', '2021-05-05', 'PROFESSOR');
 INSERT INTO `user` VALUES ('cdc397c6-bd60-11eb-8529-0242ac130003', 'stud', 'stud', '2021-05-04', 'STUDENT');
 INSERT INTO `user` VALUES ('ddbd34e8-bd60-11eb-8529-0242ac130003', 'stud2', 'stud2', '2021-05-13', 'STUDENT');
