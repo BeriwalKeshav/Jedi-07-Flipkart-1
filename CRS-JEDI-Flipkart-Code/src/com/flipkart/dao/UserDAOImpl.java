@@ -82,10 +82,10 @@ public class UserDAOImpl implements UserDAOInterface{
 			preparedStatement.setString(1,newPassword);
 			preparedStatement.setString(2,userName);
 			
-			ResultSet resultSet = preparedStatement.executeQuery();
+			int rows = preparedStatement.executeUpdate();
 			
-			if(resultSet.next()) {
-				System.out.println("Password updated for user -> " + resultSet.getString("userName"));
+			if(rows > 0) {
+				System.out.println("Password updated for user -> " + userName);
 				return true;
 			}
 			else{
