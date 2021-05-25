@@ -71,7 +71,6 @@ public interface RegistrationDaoInterface {
 	 * @param courseCode
 	 * @return seat availability status
 	 * @throws SQLException 
-=======
 	 * @param studentId
 	 * @return list of registered courses
 	 * @throws SQLException
@@ -135,7 +134,6 @@ public interface RegistrationDaoInterface {
 	public void setRegistrationStatus(int studentId) throws SQLException;
 	
 	
-=======
 	 * @param studentId
 	 * @return number of courses student has registered in
 	 * @throws SQLException
