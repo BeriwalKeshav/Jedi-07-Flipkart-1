@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: crs
 Target Host: localhost
 Target Database: crs
-Date: 25-05-2021 23:02:27
+Date: 26-05-2021 00:29:12
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -96,6 +96,7 @@ DROP TABLE IF EXISTS `student`;
 CREATE TABLE `student` (
   `userId` varchar(100) NOT NULL default '',
   `branch` varchar(100) default NULL,
+  `approved` tinyint(1) default NULL,
   PRIMARY KEY  (`userId`),
   CONSTRAINT `student_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `user` (`userName`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -129,8 +130,8 @@ INSERT INTO `professor` VALUES ('cse', 'ajdnasnd adasdasda', 'proff');
 INSERT INTO `registered_courses` VALUES ('stud', '3', 'cour1', 'B');
 INSERT INTO `registered_courses` VALUES ('stud', '3', 'cour2', '');
 INSERT INTO `registered_courses` VALUES ('stud2', '1', 'cour1', 'C');
-INSERT INTO `student` VALUES ('stud', 'CSE');
-INSERT INTO `student` VALUES ('stud2', 'EE');
+INSERT INTO `student` VALUES ('stud', 'CSE', null);
+INSERT INTO `student` VALUES ('stud2', 'EE', null);
 INSERT INTO `user` VALUES ('a381df18-bd60-11eb-8529-0242ac130003', 'admin', 'admin', '2021-05-18', 'ADMIN');
 INSERT INTO `user` VALUES ('c0a018a8-bd60-11eb-8529-0242ac130003', 'proff', 'proff', '2021-05-05', 'PROFESSOR');
 INSERT INTO `user` VALUES ('cdc397c6-bd60-11eb-8529-0242ac130003', 'stud', 'stud', '2021-05-04', 'STUDENT');
