@@ -1,3 +1,0 @@
-INDEX VERSION 1.131+/home/ankit/Desktop/CRS/Jedi-07-Flipkart/.metadata/.plugins/org.eclipse.jdt.core
-2138059311.index
-4090739014.index
