@@ -142,26 +142,27 @@ public class RegistrationDaoOperation implements RegistrationDaoInterface{
 		return false;
 	}
 
+	
 	@Override
 	public List<Course> viewCourses(String studentId) throws SQLException {
 		// TODO Auto-generated method stub
 		List<Course> availableCourseList = new ArrayList<>();
-		Connection conn = DBUtil.getConnection();
+		Connection connection = DBUtil.getConnection();
 		
 		try 
 		{
-//			stmt = conn.prepareStatement(SQLQueriesConstanst.VIEW_AVAILABLE_COURSES);
-//			stmt.setInt(1, studentId);
-//			stmt.setBoolean(2, true);
-//			ResultSet rs = stmt.executeQuery();
-//
-//			while (rs.next()) {
-//				availableCourseList.add(new Course(rs.getString("courseCode"), rs.getString("courseName"),
-//						rs.getString("professorId"), rs.getInt("seats")));
-//
-//			}
+			PreparedStatement preaparedstatement = connection.prepareStatement(SQLQueriesConstanst.VIEW_AVAILABLE_COURSES);
+			preaparedstatement.setString(1, studentId);
+			preaparedstatement.setBoolean(2, true);
+			ResultSet rs = preaparedstatement.executeQuery();
+ 
+			while (rs.next()) {
+				availableCourseList.add(new Course(rs.getString("cCode"), rs.getString("cName"),
+						rs.getString("instructor"), rs.getBoolean("isoffered")));
+ 
+			}
 			
-
+ 
 		} 
 		catch (SQLException e) 
 		{
@@ -173,8 +174,8 @@ public class RegistrationDaoOperation implements RegistrationDaoInterface{
 		}
 		finally
 		{
-			stmt.close();
-//			conn.close();
+//			preaparedstatement.close();
+//			connection.close();
 		}
 		
 		return availableCourseList;
