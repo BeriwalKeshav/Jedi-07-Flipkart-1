@@ -9,6 +9,8 @@ import java.util.UUID;
 import com.flipkart.bean.Course;
 import com.flipkart.bean.Professor;
 import com.flipkart.bean.Student;
+import com.flipkart.exception.ProfessorAdditionFailedException;
+import com.flipkart.exception.UserNameAlreadyInUseException;
 
 /**
  * @author keshavberiwal
@@ -19,7 +21,7 @@ public interface AdminInterface {
 	/**
 	 * @param professor
 	 */
-	public void addProfessor(Professor professor);	
+	public void addProfessor(Professor professor) throws ProfessorAdditionFailedException,UserNameAlreadyInUseException;	
 	
 	/**
 	 * @param sRollNo
