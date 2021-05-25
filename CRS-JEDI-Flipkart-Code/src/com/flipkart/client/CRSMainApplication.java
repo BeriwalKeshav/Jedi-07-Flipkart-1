@@ -48,7 +48,7 @@ public class CRSMainApplication {
 					app.updatePassword();
 					break;
 				case 4:
-					System.out.println("Exiting...");
+					System.out.println("Exiting Application...");
 					break;
 				default:
 					System.out.println("Invalid Input");
@@ -86,8 +86,6 @@ public class CRSMainApplication {
 		System.out.println("Enter Password:");
 		password = sc.next();
 		
-		
-		
 		try {
 			
 			loggedIn = userInterface.verifyCredentials(userName, password);
@@ -120,7 +118,6 @@ public class CRSMainApplication {
 		
 		} catch (UserNotFoundException ex) {
 			System.out.println("++ Login Failed Returning to Main Menu");
-			System.out.println(ex.getMessage());
 		}
 			
 	}
@@ -136,7 +133,27 @@ public class CRSMainApplication {
 	 * Method to update password of the User
 	 */
 	public void updatePassword() {
-		System.out.println("Password has been updated.");
+		String userName, newPassword, role = null;
+		
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter User Id:");
+		userName = sc.next();
+		System.out.println("Enter New Password:");
+		newPassword = sc.next();
+		
+		try {
+			
+			boolean isUpdated = userInterface.updatePassword(userName, newPassword);
+			if( isUpdated == true) {
+				System.out.println("Password changed for User -> " + userName);
+			}else {
+				System.out.println("+++++++ Password Update Failed");
+			}
+		
+		} catch (UserNotFoundException ex) {
+			System.out.println("++ User Not Found");
+		}
 	}
 
 }
