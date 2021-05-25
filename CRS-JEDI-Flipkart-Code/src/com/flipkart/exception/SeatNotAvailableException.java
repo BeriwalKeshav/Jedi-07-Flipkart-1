@@ -8,19 +8,19 @@ package com.flipkart.exception;
  *
  */
 public class SeatNotAvailableException extends Exception{
-	private Strign cCode;
+	private String cCode;
 
 	/**
 	 * @param cCode
 	 */
-	public SeatNotAvailableException(Strign cCode) {
+	public SeatNotAvailableException(String cCode) {
 		this.cCode = cCode;
 	}
 
 	/**
 	 * @return the cCode
 	 */
-	public Strign getcCode() {
+	public String getcCode() {
 		return cCode;
 	}
 	
