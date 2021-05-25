@@ -6,41 +6,43 @@ import java.util.List;
 import com.flipkart.bean.Course;
 import com.flipkart.bean.Notification;
 
-
 /**
  * @author JEDI-03
  * Interface for Registration DAO Operation
  *
  */
-public interface RegistrationDAOInterface {
+public interface RegistrationDaoInterface {
+	
 	
 	/**
-	 * Method to add course in database
 	 * @param courseCode
 	 * @param studentId
-	 * @return boolean indicating if the course is added successfully
-	 * @throws SQLException 
+	 * @param semester
+	 * @return boolean whether course got added successfully
+	 * @throws SQLException
 	 */
-	public boolean addCourse(String courseCode, int studentId) throws SQLException;
+	public boolean addCourse(String studentId,int semester, String courseCode) throws SQLException;
 	
 	/**
-	 * Drop Course selected by student
 	 * @param courseCode
 	 * @param studentId
-	 * @return boolean indicating if the course is dropped successfully
-	 * @throws CourseNotFoundException 
-	 * @throws SQLException 
+	 * @param semester
+	 * @return boolean whether course got added successfully
+	 * @throws SQLException
 	 */
-	public boolean dropCourse(String cCode, String studentId) throws SQLException;
+	public boolean dropCourse(String studentId,int semester, String courseCode) throws SQLException;
+	
+	
 	/**
-	 * Method to get the list of courses available from course catalog 
 	 * @param studentId
-	 * @return list of Courses
-	 * @throws SQLException 
+	 * @return list of courses
+	 * @throws SQLException
+
 	 */
 	public List<Course> viewCourses(String studentId) throws SQLException;
 	
 	/**
+
 	 * Method to View list of Registered Courses
 	 * @param studentId
 	 * @return list of Registered Courses
@@ -69,10 +71,37 @@ public interface RegistrationDAOInterface {
 	 * @param courseCode
 	 * @return seat availability status
 	 * @throws SQLException 
+=======
+	 * @param studentId
+	 * @return list of registered courses
+	 * @throws SQLException
+	 */
+	public List<Course> viewRegisteredCourses(String studentId) throws SQLException;
+	
+	/**
+	 * @param studentId
+	 * @param semester
+	 * @return list of registered courses containing grade
+	 * @throws SQLException
+	 */
+	public List<RegisteredCourse> viewReportCard(String studentId,int semester) throws SQLException;
+	
+	/**
+	 * @param studentId
+	 * @return calculated fee the student has to pay
+	 * @throws SQLException
+	 */
+	public double calculateFee(String studentId) throws SQLException;
+	
+	/**
+	 * @param courseCode
+	 * @return boolean whether seat is available in a course
+	 * @throws SQLException
 	 */
 	public boolean seatAvailable(String courseCode) throws SQLException;
 	
 	/**
+
 	 * Method to get the list of courses registered by the student
 	 * Number of registered courses for a student
 	 * @param studentId
@@ -106,4 +135,32 @@ public interface RegistrationDAOInterface {
 	public void setRegistrationStatus(int studentId) throws SQLException;
 	
 	
+=======
+	 * @param studentId
+	 * @return number of courses student has registered in
+	 * @throws SQLException
+	 */
+	public int numOfRegisteredCourses(String studentId) throws SQLException;
+	
+	/**
+	 * @param courseCode
+	 * @param studentId
+	 * @return boolean whether student is registered in a particular course
+	 * @throws SQLException
+	 */
+	public boolean isRegistered(String courseCode, String studentId) throws SQLException;
+	
+	/**
+	 * @param studentId
+	 * @return boolean stating student's registration status
+	 * @throws SQLException
+	 */
+	public boolean getRegistrationStatus(String studentId) throws SQLException;
+	
+	/**
+	 * set student's registration status
+	 * @param studentId
+	 * @throws SQLException
+	 */
+	public void setRegistrationStatus(String studentId) throws SQLException;
 }
