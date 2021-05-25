@@ -4,7 +4,7 @@
 package com.flipkart.exception;
 
 /**
- * @author Harshwardhan Koushik
+ * @author JEDI-07
  *
  */
 public class StudentNotRegisteredException extends Exception{
