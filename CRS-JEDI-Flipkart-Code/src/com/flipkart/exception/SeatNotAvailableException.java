@@ -21,11 +21,11 @@ public class SeatNotAvailableException extends Exception{
 	 * @return the cCode
 	 */
 	public String getcCode() {
-		return cCode;
+		return this.cCode;
 	}
 	
 	public String getMessage() {
-		return "Seat not available in course " + cCode;
+		return "Seat not available in course " + this.cCode;
 	}
 	
 
