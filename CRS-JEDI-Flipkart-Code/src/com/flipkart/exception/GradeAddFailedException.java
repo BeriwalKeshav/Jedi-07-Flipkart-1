@@ -25,5 +25,10 @@ public class GradeAddFailedException extends Exception{
 		return sRollNo;
 	}
 	
+	@Override
+	public String getMessage() {
+		return "Can not add Grade for sRollNo: " + sRollNo;
+	}
+	
 
 }

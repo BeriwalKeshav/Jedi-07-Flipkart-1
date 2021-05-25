@@ -25,5 +25,9 @@ public class ProfessorAdditionFailedException extends Exception{
 		return proffId;
 	}
 	
+	@Override
+	public String getMessage() {
+		return "Can not add professor " + proffId + " to database";
+	}
 
 }

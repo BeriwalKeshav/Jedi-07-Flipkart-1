@@ -24,5 +24,9 @@ public class SeatNotAvailableException extends Exception{
 		return cCode;
 	}
 	
+	public String getMessage() {
+		return "Seat not available in course " + cCode;
+	}
+	
 
 }
