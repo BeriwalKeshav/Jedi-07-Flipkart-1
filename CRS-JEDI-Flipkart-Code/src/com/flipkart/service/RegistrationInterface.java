@@ -3,6 +3,7 @@
  */
 package com.flipkart.service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import com.flipkart.bean.Course;
@@ -34,13 +35,14 @@ public interface RegistrationInterface {
 	/**
 	 * @param sRollNo
 	 * @return List of courses
+	 * @throws SQLException 
 	 */
-	public List<Course> viewCourses(int sRollNo);
+	public List<Course> viewCourses(String studentId) throws SQLException;
 	
 	/**
 	 * @param sRollNo
 	 * @return List of courses that student has registered in
-	 */
+	 */	
 	public List<Course> viewRegisteredCourses(int sRollNo);
 	
 	/**

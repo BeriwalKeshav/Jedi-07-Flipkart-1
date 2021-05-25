@@ -3,8 +3,6 @@
  */
 package com.flipkart.service;
 
-import java.util.UUID;
-
 import com.flipkart.exception.UserNotFoundException;
 
 public interface UserInterface {
@@ -14,14 +12,22 @@ public interface UserInterface {
 	 * @param newpwd
 	 * @return
 	 */
-	public boolean resetPassword(String uId,String newpwd);
+	public boolean updatePassword(String userName,String newPassword) throws UserNotFoundException;
 	
 	/**
 	 * @param uId
 	 * @param pwd
 	 * @return
 	 */
-	public boolean verifyCredentials(String uId,String pwd) throws UserNotFoundException;
+	public boolean verifyCredentials(String userName,String password) throws UserNotFoundException;
+	
+	
+	/**
+	 * @param userName
+	 * @return
+	 * @throws UserNotFoundException
+	 */
+	public String getUserRole(String userName) throws UserNotFoundException;
 	
 	
 	

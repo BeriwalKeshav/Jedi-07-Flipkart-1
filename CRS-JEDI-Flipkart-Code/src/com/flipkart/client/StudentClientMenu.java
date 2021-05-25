@@ -1,7 +1,13 @@
 package com.flipkart.client;
 
+import com.flipkart.*;
 import java.util.*;
+import java.sql.SQLException;
+import com.flipkart.bean.Course;
+import com.flipkart.service.RegistrationInterface;
+import com.flipkart.service.RegistrationOperation;
 public class StudentClientMenu {
+	RegistrationInterface registrationinterface = new RegistrationOperation();
 	public void renderMenu(String studentId)
 	{
 		System.out.println("       Student Menu");
@@ -44,11 +50,34 @@ public class StudentClientMenu {
 			}
 		}
 	}
-	public void viewCatalog(String studentId) {
-		System.out.println("Show Catalog ");
+	public List<Course> viewCatalog(String studentId) {
+//		System.out.println("Show Catalog ");
+		List<Course> course_avail=null;
+		try 
+		{
+			course_avail = registrationinterface.viewCourses(studentId);
+		}
+		catch (SQLException e) 
+		{
+
+            System.out.println(e.getMessage());
+		}
+		if(course_avail.isEmpty())
+		{
+			System.out.println("No Course is Available");
+			return null;
+		}
+		
+
+		System.out.println("COURSE CODE"+ "COURSE NAME"+ "INSTRUCTOR"+ "SEATS");
+		for(Course obj : course_avail)
+		{
+			System.out.println(obj.getcCode() +" " + obj.getCname() +" "+  obj.getProfName() +" "+ obj.getNoOfSeats());
+		}
+		return course_avail;
 	}
 	public void registerCourses(String studentId) {
-		System.out.println("Show Catalog ");
+		
 	}
 	public void addCourses(String studentId) {
 		System.out.println("Show Catalog ");
