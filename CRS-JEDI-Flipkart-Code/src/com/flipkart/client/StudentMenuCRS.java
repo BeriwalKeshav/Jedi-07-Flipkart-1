@@ -44,10 +44,11 @@ public class StudentMenuCRS {
 			System.out.println("4. Enter 4 To Add Course.");
 			System.out.println("5. Enter 5 To Drop Course.");
 			System.out.println("6. Enter 6 To View Report Card.");
-			System.out.println("7. Enter 7 Tp Pay Semester Fee.");			
+			System.out.println("7. Enter 7 To Pay Semester Fee.");			
 			System.out.println("8. Enter 8 To View Total Notifications Until Today.");
-			System.out.println("9. Enter 7 To Logout From The System."); 
-
+			System.out.println("9. Enter 9 To Logout From The System."); 
+			
+			System.out.println("\nEnter User Input : ");
 			int c = sc.nextInt();
 			
 			switch(c) {
@@ -71,6 +72,7 @@ public class StudentMenuCRS {
 					break;
 				case 7:
 					make_payment(studentId);
+					break;
 				case 8: 
 					viewAllNotifications(studentId);
 					break;
@@ -308,13 +310,7 @@ public class StudentMenuCRS {
 	
 	}
 
-	/**
-	 * Method To 
-	 * @param studentId
-	 */
-	public void logout(String studentId) {
-		System.out.println("Logout ");
-	}
+	
 
 	/**
 	 * Method To View Registration Status
@@ -396,6 +392,14 @@ public class StudentMenuCRS {
 			
 		}
 		
+	}
+	
+	/**
+	 * Method To 
+	 * @param studentId
+	 */
+	public void logout(String studentId) {
+		System.out.println("Logout ");
 	}
 
 }
