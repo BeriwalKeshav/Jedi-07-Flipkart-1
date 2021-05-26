@@ -68,8 +68,9 @@ public interface RegistrationInterface {
 	
 	/**
 	 * @param sRollNo
+	 * @throws SQLException 
 	 */
-	public void setRegistrationStatus(String studentId);
+	public void setRegistrationStatus(String studentId) throws SQLException;
 
 	
 	
