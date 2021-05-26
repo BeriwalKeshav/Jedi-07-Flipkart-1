@@ -4,7 +4,7 @@
 package com.flipkart.bean;
 
 /**
- * @author vibhorkansal
+ * @author JEDI Group 7
  *
  */
 public class Admin extends User {

@@ -7,10 +7,10 @@ package com.flipkart.exception;
  * @author ankit
  *
  */
-public class CourseNotOfferedException extends Exception{
+public class CourseNotInCatalogException extends Exception{
 	private String cCode;
 	
-		public CourseNotOfferedException(String cCode)
+		public CourseNotInCatalogException(String cCode)
 		{	
 			this.cCode = cCode;
 		}		
@@ -20,6 +20,6 @@ public class CourseNotOfferedException extends Exception{
 		@Override
 		public String getMessage() 
 		{
-			return "Course with courseCode: " + cCode + " can not be deleted.";
+			return "Course with courseCode: " + cCode + " can not be offered to student.";
 		}
 }
