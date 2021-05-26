@@ -24,7 +24,7 @@ import com.flipkart.service.RegistrationOperation;
  */
 public class StudentMenuCRS {
 
-	RegistrationInterface registrationinterface = new RegistrationOperation();
+	RegistrationInterface registrationinterface = RegistrationOperation.getInstance();
 	Scanner sc = new Scanner(System.in);
 	private int if_registered;
 	private int sem=1;
@@ -187,7 +187,8 @@ public class StudentMenuCRS {
 	 */
 	public void viewAllNotifications(String StudentId) {
 		List<Notification> allNotifications = null; 
-		NotificationInterface notify = NotificationOpearation.getInstance();
+
+		NotificationInterface notify =  NotificationOpearation.getInstance();
 		try {
 			allNotifications = notify.getAllNotifications(StudentId);
 		}

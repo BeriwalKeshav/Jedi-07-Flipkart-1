@@ -4,6 +4,10 @@ import com.flipkart.dao.UserDAOImpl;
 import com.flipkart.dao.UserDAOInterface;
 import com.flipkart.exception.UserNotFoundException;
 
+/**
+ * @author JEDI-7
+ *
+ */
 public class UserOperation implements UserInterface{
 	
 	private static volatile UserOperation instance=null;

@@ -11,6 +11,8 @@ import com.flipkart.bean.RegisteredCourse;
 import com.flipkart.bean.Student;
 import com.flipkart.dao.AdminDAOInterface;
 import com.flipkart.dao.AdminDAOOperation;
+import com.flipkart.dao.NotificationDAOInterface;
+import com.flipkart.dao.NotificationDAOOperation;
 import com.flipkart.exception.CourseAlreadyInCatalogException;
 import com.flipkart.exception.CourseNotInCatalogException;
 import com.flipkart.exception.CourseNotRemovedException;
@@ -25,7 +27,33 @@ import com.flipkart.exception.UserNotFoundException;
  */
 public class AdminOperation implements AdminInterface {
 
-	AdminDAOInterface adminDAOOperation = new AdminDAOOperation();
+	
+	
+	private static volatile AdminOperation instance = null;
+	AdminDAOInterface adminDAOOperation = AdminDAOOperation.getInstance();
+		
+	
+	private AdminOperation()
+	{
+		
+	}
+	
+	/**
+	 * Method to make AdminOperation Singleton
+	 * @return
+	 */
+	public static AdminOperation getInstance(){
+		
+		if(instance == null){
+			synchronized(AdminOperation.class){
+				instance= new AdminOperation();
+			}
+		}
+		return instance;
+	}
+	
+	
+	
 
 	public void addProfessor(Professor professor)
 			throws ProfessorAdditionFailedException, UserNameAlreadyInUseException {

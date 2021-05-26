@@ -10,6 +10,8 @@ import java.util.UUID;
 import com.flipkart.bean.Notification;
 import com.flipkart.dao.NotificationDAOInterface;
 import com.flipkart.dao.NotificationDAOOperation;
+import com.flipkart.dao.ProfessorDAOInterface;
+import com.flipkart.dao.ProfessorDAOOperation;
 
 /**
  * @author JEDI-7
@@ -17,33 +19,31 @@ import com.flipkart.dao.NotificationDAOOperation;
  */
 public class NotificationOpearation implements NotificationInterface{
 	
-	private static volatile NotificationOpearation instance = null;
 	
-	/**
-	 * Default Constructor
-	 */
+	
+	private static volatile NotificationOpearation instance = null;
+	NotificationDAOInterface notificationDAOInterface= NotificationDAOOperation.getInstance();
+		
+	
 	private NotificationOpearation()
 	{
-
+		
 	}
 	
 	/**
-	 * Method to make NotificationDAOOperation Singleton
+	 * Method to make NotificationOpearation Singleton
 	 * @return
 	 */
-	public static NotificationOpearation getInstance()
-	{
-		if(instance==null)
-		{
-			// This is a synchronized block, when multiple threads will access this instance
+	public static NotificationOpearation getInstance(){
+		
+		if(instance == null){
 			synchronized(NotificationOpearation.class){
-				instance=new NotificationOpearation();
+				instance= new NotificationOpearation();
 			}
 		}
 		return instance;
 	}
 	
-	NotificationDAOInterface notificationDAOInterface= NotificationDAOOperation.getInstance();
 	
 	/**
 	 * Method to send notification

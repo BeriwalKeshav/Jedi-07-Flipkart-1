@@ -101,7 +101,7 @@ public class AdminMenuCRS {
 
 	}
 
-	AdminInterface adminOperation = new AdminOperation();
+	AdminInterface adminOperation = AdminOperation.getInstance();
 
 	/**
 	 * Method To Display Courses In Catalog.
