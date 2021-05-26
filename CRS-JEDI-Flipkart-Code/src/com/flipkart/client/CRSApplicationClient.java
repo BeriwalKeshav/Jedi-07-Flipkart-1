@@ -146,9 +146,8 @@ public class CRSApplicationClient {
 
 		Student student = new Student();
 		
-		System.out.println("Enter Student User ID:");
-		String studentID = scanner.next();
-		student.setuId(studentID);
+		String uuid = UUID.randomUUID().toString();
+		student.setuId(uuid);
 		
 		System.out.println("Enter Student User Name:");
 		String studentName = scanner.next();

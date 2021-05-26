@@ -13,35 +13,37 @@ import com.flipkart.exception.GradeAddFailedException;
 import com.flipkart.exception.UserNotFoundException;
 
 /**
- * @author prafu
+ * @author JEDI-7
  *
  */
 public interface ProfessorInterface {
 	
 	
 	/**
-	 * @param sRollNo
-	 * @param cCode
+	 * @param studentRollNo
+	 * @param courseCode
 	 * @param grade
-	 * @return boolean
+	 * @throws GradeAddFailedException
+	 * @return boolean : status of add grade
 	 */
 	public boolean addGrade(String studentRollNo,String courseCode,Grade grade) throws GradeAddFailedException;
 	
 	/**
 	 * @param proffId
-	 * @return List<RegisteredCourse>
+	 * @return List<RegisteredCourse> : list of all Registered Students
 	 */
 	public List<RegisteredCourse> viewRegisteredStudents(String proffId);
 	
 	/**
 	 * @param proffId
-	 * @return List<Course>
+	 * @return List<Course> : list of all courses for professor
 	 */
 	public List<Course> viewProfessorCourses(String proffId);
 	
 	/**
 	 * @param profId
-	 * @return 
+	 * @throws UserNotFoundException
+	 * @return Professor object
 	 */
 	public Professor getProffProfleById(String profId) throws UserNotFoundException;
 	

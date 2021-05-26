@@ -1,15 +1,16 @@
 package com.flipkart.service;
 
+import java.sql.SQLException;
+import java.util.List;
 import java.util.UUID;
 
-//import com.flipkart.constant.ModeOfPayment;
-//import com.flipkart.constant.NotificationType;
+import com.flipkart.bean.Notification;
 
 
-/*
- * @author JEDI-07
- * */
-
+/**
+ * @author JEDI-7
+ *
+ */
 public interface NotificationInterface {
 	
 	/**
@@ -28,4 +29,5 @@ public interface NotificationInterface {
 	 * @return transaction id of the payment
 	 */
 	public String getReferenceId(String id); 
+	public List<Notification> getAllNotifications(String StudentId) throws SQLException;
 }

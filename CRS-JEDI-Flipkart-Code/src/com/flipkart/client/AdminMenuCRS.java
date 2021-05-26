@@ -6,6 +6,7 @@ package com.flipkart.client;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.UUID;
 
 import com.flipkart.bean.Course;
 import com.flipkart.bean.Professor;
@@ -24,7 +25,7 @@ import com.flipkart.service.AdminOperation;
 /**
  * @author JEDI-7
  *
- * Class To Display The Admin Client Menu.
+ *         Class To Display The Admin Client Menu.
  *
  */
 public class AdminMenuCRS {
@@ -32,7 +33,7 @@ public class AdminMenuCRS {
 	Scanner scanner = new Scanner(System.in);
 
 	/**
-	 *   Method To Create Admin Menu
+	 * Method To Create Admin Menu
 	 */
 	public void renderMenu(String studId) {
 
@@ -104,6 +105,7 @@ public class AdminMenuCRS {
 
 	/**
 	 * Method To Display Courses In Catalog.
+	 * 
 	 * @return List Of Courses In Catalog.
 	 */
 	private List<Course> viewCourses() {
@@ -120,10 +122,10 @@ public class AdminMenuCRS {
 		return courseList;
 	}
 
-	
 	/**
-	 *  Method To Add Course To Catalog.
-	 *  @throws Course Already In Catalog Exception.
+	 * Method To Add Course To Catalog.
+	 * 
+	 * @throws Course Already In Catalog Exception.
 	 */
 	private void addCourseToCatalogue() {
 
@@ -146,9 +148,10 @@ public class AdminMenuCRS {
 	}
 
 	/**
-	 *  Method To Display Course From Catalog.
-	 *  @throws Course Not In Catalog Exception.
-	 *  @throws Course Not Removed Exception.
+	 * Method To Display Course From Catalog.
+	 * 
+	 * @throws Course Not In Catalog Exception.
+	 * @throws Course Not Removed Exception.
 	 */
 	private void deleteCourseFromCatalogue() {
 
@@ -165,6 +168,7 @@ public class AdminMenuCRS {
 
 	/**
 	 * Method To View Students Who Are Yet To Be Approved For Registration.
+	 * 
 	 * @return List Of Students Whose Admissions Are Pending.
 	 */
 	private List<Student> viewPendingStudents() {
@@ -180,8 +184,9 @@ public class AdminMenuCRS {
 	}
 
 	/**
-	 *  Method To Approve Student For Registration Using Student's User Id.
-	 *  @throws Student Not Found For Approval Exception.
+	 * Method To Approve Student For Registration Using Student's User Id.
+	 * 
+	 * @throws Student Not Found For Approval Exception.
 	 */
 	private void approveStudents() {
 		List<Student> studentList = viewPendingStudents();
@@ -199,13 +204,17 @@ public class AdminMenuCRS {
 	}
 
 	/**
-	 *  Method To Add Professor To Database.
-	 *  @throws Professor Addition Failed Exception.
-	 *  @throws User Name Already In Use Exception.
+	 * Method To Add Professor To Database.
+	 * 
+	 * @throws Professor Addition Failed Exception.
+	 * @throws User      Name Already In Use Exception.
 	 */
 	private void addProfessor() {
 
 		Professor professor = new Professor();
+
+		String userId = UUID.randomUUID().toString();
+		professor.setuId(userId);
 
 		System.out.println("Enter Professor User Name:");
 		String professorName = scanner.next();
@@ -218,10 +227,6 @@ public class AdminMenuCRS {
 		System.out.println("Enter Designation:");
 		String designation = scanner.next();
 		professor.setpDesignation(designation);
-
-		System.out.println("Enter Professor User Id:");
-		String userId = scanner.next();
-		professor.setuId(userId);
 
 		System.out.println("Enter Password:");
 		String password = scanner.next();
@@ -241,9 +246,10 @@ public class AdminMenuCRS {
 	}
 
 	/**
-	 *  Method To Assign Course To Professor.
-	 *  @throws Course Not In Catalog Exception.
-	 *  @throws User Not Found Exception.
+	 * Method To Assign Course To Professor.
+	 * 
+	 * @throws Course Not In Catalog Exception.
+	 * @throws User   Not Found Exception.
 	 */
 	private void assignProfessor() {
 		List<Professor> professorList = adminOperation.showProfessors();
@@ -277,7 +283,7 @@ public class AdminMenuCRS {
 	}
 
 	/**
-	 *  Method To Generate Report Card Of The Student.
+	 * Method To Generate Report Card Of The Student.
 	 */
 	private void generateReportCard() {
 
@@ -287,10 +293,12 @@ public class AdminMenuCRS {
 			System.out.println("Enter StudentId");
 			String studentId = scanner.next();
 			registeredCourses = adminOperation.generateReportCard(studentId);
-			System.out.println(String.format("%12s %12s %12s %12s", "Course Code", "Student Id", "Semester", "Grade"));
+
+			System.out.println("Student Username: " + studentId);
+			System.out.println(String.format("%12s %12s %12s", "Course Code", "Semester", "Grade"));
 			for (RegisteredCourse rc : registeredCourses) {
-				System.out.println(String.format("%12s %12s %12s %12s", rc.getcCode(), rc.getsstudentId(), rc.getSem(),
-						rc.getGrade().getGrade()));
+				System.out
+						.println(String.format("%12s %12s %12s", rc.getcCode(), rc.getSem(), rc.getGrade().getGrade()));
 			}
 		} catch (Exception ex) {
 			System.out.println(ex.getMessage());
@@ -299,7 +307,7 @@ public class AdminMenuCRS {
 	}
 
 	/**
-	 *  Method Of Returning To The Main Menu.
+	 * Method Of Returning To The Main Menu.
 	 */
 	private void crsMainLogout() {
 		System.out.println("++++++++ Logging Out...... Returning to Main Menu ++++++\n\n\n");

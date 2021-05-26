@@ -4,9 +4,10 @@
 package com.flipkart.service;
 
 import java.sql.SQLException;
-
+import java.util.List;
 import java.util.UUID;
 
+import com.flipkart.bean.Notification;
 import com.flipkart.dao.NotificationDAOInterface;
 import com.flipkart.dao.NotificationDAOOperation;
 
@@ -16,7 +17,33 @@ import com.flipkart.dao.NotificationDAOOperation;
  */
 public class NotificationOpearation implements NotificationInterface{
 	
-	NotificationDAOInterface notificationDAOInterface= new NotificationDAOOperation();
+	private static volatile NotificationOpearation instance = null;
+	
+	/**
+	 * Default Constructor
+	 */
+	private NotificationOpearation()
+	{
+
+	}
+	
+	/**
+	 * Method to make NotificationDAOOperation Singleton
+	 * @return
+	 */
+	public static NotificationOpearation getInstance()
+	{
+		if(instance==null)
+		{
+			// This is a synchronized block, when multiple threads will access this instance
+			synchronized(NotificationOpearation.class){
+				instance=new NotificationOpearation();
+			}
+		}
+		return instance;
+	}
+	
+	NotificationDAOInterface notificationDAOInterface= NotificationDAOOperation.getInstance();
 	
 	/**
 	 * Method to send notification
@@ -50,6 +77,18 @@ public class NotificationOpearation implements NotificationInterface{
 			System.out.println("Error Occured :( " + ex.toString());
 		}
 		return referenceId;
+	}
+
+	@Override
+	public List<Notification> getAllNotifications(String StudentId) throws SQLException {
+		List<Notification> notifications = null;
+		try {
+			notifications = notificationDAOInterface.getAllNotifications(StudentId);
+		} 
+		catch(SQLException ex) {
+			throw ex;
+		}
+		return notifications;
 	}
 	
 }

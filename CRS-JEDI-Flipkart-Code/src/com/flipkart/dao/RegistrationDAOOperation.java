@@ -208,28 +208,48 @@ public class RegistrationDAOOperation implements RegistrationDAOInterface{
 	}
 
 	@Override
-	public List<RegisteredCourse> viewReportCard(String studentId,int semester) throws SQLException {
+	public List<RegisteredCourse> viewReportCard(String studentId) throws SQLException {
+		// TODO Auto-generated method stub
+		List<RegisteredCourse> registeredStudentsUnderProff = new ArrayList<RegisteredCourse>();
+		Connection conn = DBUtil.getConnection();
+
+		try {
+			PreparedStatement preparedStatement = conn.prepareStatement(SQLQueriesConstanst.VIEW_REPORT_CARD);
+			
+			
+			preparedStatement.setString(1, studentId);
+			
+
+			ResultSet resultSet = preparedStatement.executeQuery();
+
+			while (resultSet.next()) {
+				registeredStudentsUnderProff.add(new RegisteredCourse(resultSet.getString("courseCode"),
+						resultSet.getString("studentId"), resultSet.getInt("semester"), new Grade(resultSet.getString("grade"))));
+			}
+
+		} catch (SQLException ex) {
+			System.out.println("SQL Exception Thrown : " + ex.getMessage());
+		}
+
+		return registeredStudentsUnderProff;
+	}
+
+	@Override
+	public int calculateFee(String studentId) throws SQLException {
 		// TODO Auto-generated method stub
 		Connection conn = DBUtil.getConnection();
-		List<RegisteredCourse> grade_List = new ArrayList<>();
+		int fee = 0;
 		try
 		{
-			stmt = conn.prepareStatement(SQLQueriesConstanst.VIEW_GRADE);
+			stmt = conn.prepareStatement(SQLQueriesConstanst.CALCULATE_FEES);
 			stmt.setString(1, studentId);
 			ResultSet rs = stmt.executeQuery();
-			
-			while(rs.next())
-			{
-				String cCode = rs.getString("cCode");
-				String studId = rs.getString("studentId");
-//				String courseName = rs.getString("cName");
-				Grade grade = new Grade(rs.getString("grade"));
-				RegisteredCourse obj = new RegisteredCourse(cCode, studId, semester, grade);
-				grade_List.add(obj);
-			}
+			rs.next();
+			fee = rs.getInt(1);
 		}
 		catch(SQLException e)
 		{
+			System.out.println(e.getErrorCode());
 			System.out.println(e.getMessage());
 		}
 		catch(Exception e)
@@ -240,16 +260,9 @@ public class RegistrationDAOOperation implements RegistrationDAOInterface{
 		{
 			stmt.close();
 //			conn.close();
-			
 		}
 		
-		return grade_List;
-	}
-
-	@Override
-	public double calculateFee(String studentId) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+		return fee;
 	}
 
 	@Override

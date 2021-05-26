@@ -6,9 +6,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 import java.util.UUID;
 
 import com.flipkart.utils.DBUtil;
+import com.flipkart.bean.Notification;
 import com.flipkart.constants.SQLQueriesConstanst;
 
 /**
@@ -20,7 +22,33 @@ import com.flipkart.constants.SQLQueriesConstanst;
  */
 
 public class NotificationDAOOperation implements NotificationDAOInterface{
-		
+	
+	private static volatile NotificationDAOOperation instance = null;
+	
+	/**
+	 * Default Constructor
+	 */
+	private NotificationDAOOperation()
+	{
+
+	}
+	
+	/**
+	 * Method to make NotificationDAOOperation Singleton
+	 * @return
+	 */
+	public static NotificationDAOOperation getInstance()
+	{
+		if(instance==null)
+		{
+			// This is a synchronized block, when multiple threads will access this instance
+			synchronized(NotificationDAOOperation.class){
+				instance=new NotificationDAOOperation();
+			}
+		}
+		return instance;
+	}
+	
 	/**
 	 * Send Notification using SQL commands
 	 * @param Message: Message to be sent 
@@ -72,7 +100,6 @@ public class NotificationDAOOperation implements NotificationDAOInterface{
 			referenceId = results.getString(4);
 		}
 		catch(SQLException ex) {
-			System.out.println("There is an error :(");
 			throw ex;
 		}
 		return referenceId;
@@ -86,6 +113,7 @@ public class NotificationDAOOperation implements NotificationDAOInterface{
 	 * @return: reference id of the transaction
 	 * @throws SQLException
 	 */
+	@Override
 	public String addPayment(String StudentId,int amount,boolean status,String paymentType) throws SQLException {
 		String referenceId;
 		Connection connection = DBUtil.getConnection();
@@ -102,10 +130,34 @@ public class NotificationDAOOperation implements NotificationDAOInterface{
 			// Here, a check database for update
 		}
 		catch(SQLException ex) {
-			System.out.println("There is an error :(");
 			throw ex;
 		}
 		return referenceId;
+	}
+
+	@Override
+	public List<Notification> getAllNotifications(String studentId) throws SQLException {
+		// TODO Auto-generated method stub
+		List<Notification> allnotifications = null;
+		Connection connection = DBUtil.getConnection();
+		
+		try {
+			//select * from notification where studentId=?
+			PreparedStatement statement = connection.prepareStatement(SQLQueriesConstanst.GET_ALL_NOTIFICATIONS);
+			statement.setString(1,studentId);
+			statement.executeQuery();
+			
+			ResultSet results = statement.getGeneratedKeys();
+			
+			while(results.next()) {
+				allnotifications.add(new Notification(results.getString("notificationId"), results.getString("studentId"), results.getString("message"), results.getString("referenceId")));
+			}
+		} 
+		catch(SQLException ex) {
+			throw ex;
+		}
+		
+		return allnotifications;
 	}
 	
 }
