@@ -10,7 +10,7 @@ import com.flipkart.bean.Course;
 import com.flipkart.bean.Professor;
 import com.flipkart.bean.Student;
 import com.flipkart.exception.CourseAlreadyInCatalogException;
-import com.flipkart.exception.CourseNotOfferedException;
+import com.flipkart.exception.CourseNotInCatalogException;
 import com.flipkart.exception.CourseNotRemovedException;
 import com.flipkart.exception.ProfessorAdditionFailedException;
 import com.flipkart.exception.StudentNotFoundForApprovalException;
@@ -18,7 +18,7 @@ import com.flipkart.exception.UserNameAlreadyInUseException;
 import com.flipkart.exception.UserNotFoundException;
 
 /**
- * @author keshavberiwal
+ * @author JEDI-7
  *
  */
 public interface AdminInterface {
@@ -32,7 +32,7 @@ public interface AdminInterface {
 	 * @param sRollNo
 	 * @param studentList
 	 */
-	public void approveStudents(int sRollNo, List<Student> studentList) throws StudentNotFoundForApprovalException;
+	public void approveStudents(String studendId, List<Student> studentList) throws StudentNotFoundForApprovalException;
 	
 	/**
 	 * @param course
@@ -44,19 +44,19 @@ public interface AdminInterface {
 	 * @param courseCode
 	 * @param courseList
 	 */
-	public void deleteCourse(String cCode, List<Course> courseList)throws CourseNotRemovedException,CourseNotOfferedException;
+	public void deleteCourse(String CourseCode, List<Course> courseList)throws CourseNotRemovedException,CourseNotInCatalogException;
 	
 	/**
 	 * @param cCode
 	 * @param professorId
 	 */
-	public void assignProfessor(String cCode, String professorId) throws CourseNotOfferedException,UserNotFoundException;
+	public void assignProfessor(String CourseCode, String professorId) throws CourseNotInCatalogException,UserNotFoundException;
 	
 	/**
 	 * @param catalogId
 	 * @return
 	 */
-	public List<Course> viewCourses(int catalogId);
+	public List<Course> viewCourses();
 	
 	/**
 	 * @return

@@ -11,7 +11,7 @@ import java.util.UUID;
  *
  */
 public class User {
-	private UUID uId;
+	private String uId;
 	private String uName;
 	private String uPwd;
 	private Date uCrDate;
@@ -19,7 +19,7 @@ public class User {
 	/**
 	 * @return the uId
 	 */
-	public UUID getuId() {
+	public String getuId() {
 		return uId;
 	}
 
@@ -29,7 +29,7 @@ public class User {
 	/**
 	 * @param uId
 	 */
-	public void setuId(UUID uId) {
+	public void setuId(String uId) {
 		this.uId = uId;
 	}
 

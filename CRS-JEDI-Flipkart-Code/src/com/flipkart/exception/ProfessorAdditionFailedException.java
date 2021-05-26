@@ -9,25 +9,25 @@ package com.flipkart.exception;
  */
 public class ProfessorAdditionFailedException extends Exception{
 	
-	private String proffId;
+	private String proffuserName;
 
 	/**
 	 * @param proffId
 	 */
 	public ProfessorAdditionFailedException(String proffId) {
-		this.proffId = proffId;
+		this.proffuserName = proffId;
 	}
 
 	/**
 	 * @return the proffId
 	 */
 	public String getProffId() {
-		return proffId;
+		return proffuserName;
 	}
 	
 	@Override
 	public String getMessage() {
-		return "Can not add professor " + proffId + " to database";
+		return "Can not add professor " + proffuserName + " to database";
 	}
 
 }

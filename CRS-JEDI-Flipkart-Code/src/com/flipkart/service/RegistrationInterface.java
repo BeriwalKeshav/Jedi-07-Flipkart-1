@@ -8,7 +8,7 @@ import java.util.List;
 
 import com.flipkart.bean.Course;
 import com.flipkart.bean.RegisteredCourse;
-import com.flipkart.exception.CourseNotOfferedException;
+import com.flipkart.exception.CourseNotInCatalogException;
 import com.flipkart.exception.CourseNotRemovedException;
 import com.flipkart.exception.SeatNotAvailableException;
 
@@ -22,7 +22,7 @@ public interface RegistrationInterface {
 	 * @param courseList
 	 * @return boolean if Course added successfully
 	 */
-	public boolean addCourse(String cCode, int sRollNo, List<Course> courseList) throws CourseNotOfferedException,SeatNotAvailableException;
+	public boolean addCourse(String cCode, int sRollNo, List<Course> courseList) throws CourseNotInCatalogException,SeatNotAvailableException;
 	
 	/**
 	 * @param cCode

@@ -88,7 +88,7 @@ public class AdminClientMenu {
 
 	private void addProfessor() {
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("Enter Professor Name:");
+		System.out.println("Enter Professor User Name:");
 		String professorName = scanner.next();
 
 		System.out.println("Enter Department:");
