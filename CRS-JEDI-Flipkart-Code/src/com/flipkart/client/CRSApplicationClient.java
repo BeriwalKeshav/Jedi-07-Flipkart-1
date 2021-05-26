@@ -30,7 +30,9 @@ import com.flipkart.service.UserOperation;
 public class CRSApplicationClient {
 	
 	private static Logger logger = Logger.getLogger(CRSApplicationClient.class);
-	UserInterface userInterface = new UserOperation();
+	UserInterface userInterface = UserOperation.getInstance();
+	
+
 	static boolean loggedIn = false;
 	
 

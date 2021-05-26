@@ -28,7 +28,7 @@ public class ProfessorMenuCRS {
 	 * @param proffId
 	 */
 	
-	ProfessorInterface proffInterface = new ProfessorOperation();
+	ProfessorInterface proffInterface = ProfessorOperation.getInstance();
 	
 	
 	public void renderMenu(String proffId) {

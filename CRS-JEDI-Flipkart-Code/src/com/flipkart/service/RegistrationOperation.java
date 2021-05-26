@@ -22,7 +22,7 @@ import com.flipkart.exception.SeatNotAvailableException;
 public class RegistrationOperation implements RegistrationInterface{
 	RegistrationDAOInterface registrationDAOInterface = new RegistrationDAOOperation();
 	@Override
-	public boolean addCourse(String cCode, String studentId, List<Course> courseList)
+	public boolean addCourse(String cCode, String studentId, List<Course> courseList,int sem)
 			throws CourseNotInCatalogException, SeatNotAvailableException,CourseLimitCrossed,SQLException {
 		// TODO Auto-generated method stub
 
@@ -43,14 +43,32 @@ public class RegistrationOperation implements RegistrationInterface{
 //			throw new CourseNotFoundException(courseCode);
 //		}
 		
-		return registrationDAOInterface.addCourse(studentId, 1,cCode);
+		return registrationDAOInterface.addCourse(studentId, sem,cCode);
 	}
 
 	@Override
-	public boolean dropCourse(String cCode, int sRollNo, List<Course> registeredCourseList)
-			throws CourseNotRemovedException {
+	public boolean dropCourse(String cCode, String studentId, List<Course> registeredCourseList,int sem)
+			throws CourseNotRemovedException,SQLException {
 		// TODO Auto-generated method stub
-		return false;
+		boolean check=true;
+		for(Course course : registeredCourseList)
+		{
+			if(cCode.equalsIgnoreCase(course.getcCode())) 
+			{
+				check=false; 
+				break;
+			}
+		}
+		
+		if(check) {
+			
+			throw new CourseNotRemovedException(cCode);
+		}
+		else {
+			return registrationDAOInterface.dropCourse(studentId, sem, cCode);
+		}
+		
+//		return false;
 	}
 
 	@Override
