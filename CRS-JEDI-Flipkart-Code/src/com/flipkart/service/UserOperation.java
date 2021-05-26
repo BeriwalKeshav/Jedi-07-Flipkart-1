@@ -6,7 +6,29 @@ import com.flipkart.exception.UserNotFoundException;
 
 public class UserOperation implements UserInterface{
 	
-	UserDAOInterface userDaoImpl= new UserDAOImpl();
+	private static volatile UserOperation instance=null;
+	
+	UserDAOInterface userDaoImpl = UserDAOImpl.getInstance();
+	
+	private UserOperation()
+	{
+		
+	}
+	
+	/**
+	 * Method to make UserOperation Singleton
+	 * @return
+	 */
+	public static UserOperation getInstance(){
+		
+		if(instance==null){
+			synchronized(UserOperation.class){
+				instance=new UserOperation();
+			}
+		}
+		return instance;
+	}
+	
 
 	@Override
 	public boolean updatePassword(String userName, String newPassword) throws UserNotFoundException {

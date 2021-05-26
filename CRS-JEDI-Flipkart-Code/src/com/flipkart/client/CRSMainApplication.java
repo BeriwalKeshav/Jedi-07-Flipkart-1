@@ -19,7 +19,8 @@ import com.flipkart.service.UserOperation;
 public class CRSMainApplication {
 	
 	private static Logger logger = Logger.getLogger(CRSMainApplication.class);
-	UserInterface userInterface = new UserOperation();
+	UserInterface userInterface = UserOperation.getInstance();
+	
 	static boolean loggedIn = false;
 	
 
