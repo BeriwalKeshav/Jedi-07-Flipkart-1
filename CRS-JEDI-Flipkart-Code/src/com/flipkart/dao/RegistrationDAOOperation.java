@@ -238,7 +238,7 @@ public class RegistrationDAOOperation implements RegistrationDAOInterface{
 			preaparedstatement.setString(1, courseCode);
 			ResultSet rs = preaparedstatement.executeQuery();
 			while (rs.next()) {
-				return (rs.getInt("seats") > 0);
+				return (rs.getInt("courseSeats") > 0);
 			}
 
 		}
@@ -269,6 +269,7 @@ public class RegistrationDAOOperation implements RegistrationDAOInterface{
 			{
 				course_count++;
 			}
+//			System.out.println("Course count is "+course_count);
 			return course_count;
 		}
 		catch(SQLException e)
@@ -300,6 +301,7 @@ public class RegistrationDAOOperation implements RegistrationDAOInterface{
 			{
 				check = true;
 			}
+//			System.out.println("If registerd "+check);
 			return check;
 		}
 		catch(SQLException e)

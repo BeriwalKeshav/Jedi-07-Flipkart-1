@@ -43,7 +43,7 @@ public class RegistrationOperation implements RegistrationInterface{
 //			throw new CourseNotFoundException(courseCode);
 //		}
 		
-		return registrationDAOInterface.addCourse(cCode, 1,studentId);
+		return registrationDAOInterface.addCourse(studentId, 1,cCode);
 	}
 
 	@Override
