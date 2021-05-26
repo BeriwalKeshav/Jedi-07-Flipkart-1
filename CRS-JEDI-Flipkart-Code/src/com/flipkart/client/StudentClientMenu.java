@@ -28,36 +28,41 @@ public class StudentClientMenu {
 			System.out.println("");
 			System.out.println("1. View Catalog");
 			System.out.println("2. Register for Courses ");
-			System.out.println("3. Add Courses");
-			System.out.println("4. Drop Courses");
-			System.out.println("5. ViewReportCard");
-			System.out.println("6. Logout");
+			System.out.println("3. View Registered Courses");
+			System.out.println("4. Add Courses");
+			System.out.println("5. Drop Courses");
+			System.out.println("6. ViewReportCard");
+			System.out.println("7. Logout");
 //			Scanner sc= new Scanner(System.in); 
 
 			int c = sc.nextInt();
-			switch (c) {
-			case 1:
-
-				viewCatalog(studentId);
-				break;
-			case 2:
-				registerCourses(studentId);
-				break;
-			case 3:
-				addCourses(studentId);
-				break;
-			case 4:
-				dropCourses(studentId);
-				break;
-			case 5:
-				viewReportCard(studentId);
-				break;
-			case 6:
-				b = false;
-				logout(studentId);
-				break;
-			default:
-				System.out.println("+++ Warning : Wrong Option +++");
+			
+			switch(c) {
+				case 1:
+					
+					viewCatalog(studentId);
+					break;
+				case 2:
+					registerCourses(studentId);
+					break;
+				case 3:
+					viewRegisteredCourses(studentId);
+					break;
+				case 4:
+					addCourses(studentId);
+					break;
+				case 5:
+					dropCourses(studentId);
+					break;
+				case 6:
+					viewReportCard(studentId);
+					break;
+				case 7:
+					b = false;
+					logout(studentId);
+					break;
+				default:
+					System.out.println("+++ Warning : Wrong Option +++");
 			}
 		}
 	}
@@ -144,6 +149,27 @@ public class StudentClientMenu {
 
 	}
 
+	public List<Course> viewRegisteredCourses(String studentId) {
+		List<Course> registeredCourses=null;
+		try {
+			registeredCourses = registrationinterface.viewRegisteredCourses(studentId);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if(registeredCourses.isEmpty()) {
+			System.out.println("You have not yet registered for any Course");
+			return null;
+		}
+		else {
+			System.out.println("Course Code" + "Course Name" + "Professor" + "");
+			for(Course obj : registeredCourses) {
+				System.out.println(obj.getcCode() + " " + obj.getcName() + " " + obj.getProfName());
+			}
+			return registeredCourses;
+		}
+
+	}
 	public void addCourses(String studentId) {
 
 		if (if_registered == 0) {
@@ -171,28 +197,28 @@ public class StudentClientMenu {
 	}
 
 	public void dropCourses(String studentId) {
-//		if (if_registered == 0) {
-//			System.out.println("Registration is not complete");
-//			return;
-//		}
-//		List<Course> registeredCourseList = viewRegisteredCourse(studentId);
-//
-//		if (registeredCourseList == null)
-//			return;
-//
-//		System.out.println("Enter the Course Code : ");
-//		String courseCode = sc.next();
-//
-//		try {
-//			registrationinterface.dropCourse(courseCode, studentId, registeredCourseList);
-//			System.out.println("You have successfully dropped Course : " + courseCode);
-//
-//		} catch (CourseNotRemovedException e) {
-//			System.out.println("You have not registered for course : " + courseCode);
-//		} catch (SQLException e) {
-//
-//			System.out.println(e.getMessage());
-//		}
+		if (if_registered == 0) {
+			System.out.println("Registration is not complete");
+			return;
+		}
+		List<Course> registeredCourseList = viewRegisteredCourses(studentId);
+
+		if (registeredCourseList == null)
+			return;
+
+		System.out.println("Enter the Course Code : ");
+		String courseCode = sc.next();
+
+		try {
+			registrationinterface.dropCourse(courseCode, studentId, registeredCourseList,sem);
+			System.out.println("You have successfully dropped Course : " + courseCode);
+
+		} catch (CourseNotRemovedException e) {
+			System.out.println("You have not registered for course : " + courseCode);
+		} catch (SQLException e) {
+
+			System.out.println(e.getMessage());
+		}
 	}
 
 //		System.out.println("Drop the course ");

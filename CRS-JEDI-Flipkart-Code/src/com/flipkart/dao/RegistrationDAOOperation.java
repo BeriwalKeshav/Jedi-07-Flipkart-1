@@ -178,7 +178,33 @@ public class RegistrationDAOOperation implements RegistrationDAOInterface{
 	@Override
 	public List<Course> viewRegisteredCourses(String studentId) throws SQLException {
 		// TODO Auto-generated method stub
-		return null;
+		Connection conn = DBUtil.getConnection();
+		List<Course> registeredCourseList = new ArrayList<>();
+		try 
+		{
+			stmt = conn.prepareStatement(SQLQueriesConstanst.VIEW_REGISTERED_COURSES);
+			stmt.setString(1, studentId);
+
+			ResultSet rs = stmt.executeQuery();
+			
+			while (rs.next()) {
+				registeredCourseList.add(new Course(rs.getString("cCode"), rs.getString("cName"),
+						rs.getString("instructor"), rs.getBoolean("isOffered"),rs.getInt("courseSeats")));
+
+			}
+		} 
+		catch (SQLException e) 
+		{
+			System.out.println(e.getMessage());
+
+		} 
+		finally
+		{
+			stmt.close();
+//			conn.close();
+		}
+		
+		return registeredCourseList;
 	}
 
 	@Override

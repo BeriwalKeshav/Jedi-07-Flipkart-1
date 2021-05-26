@@ -34,7 +34,7 @@ public interface RegistrationInterface {
 	 * @return boolean if Course deleted successfully
 	 * @throws SQLException 
 	 */
-	public boolean dropCourse(String cCode,String studentId, List<Course> registeredCourseList) throws CourseNotRemovedException, SQLException;
+	public boolean dropCourse(String cCode,String studentId, List<Course> registeredCourseList,int sem) throws CourseNotRemovedException, SQLException;
 	
 	/**
 	 * @param sRollNo
@@ -44,10 +44,11 @@ public interface RegistrationInterface {
 	public List<Course> viewCourses(String studentId) throws SQLException;
 	
 	/**
-	 * @param sRollNo
+	 * @param studentId
 	 * @return List of courses that student has registered in
+	 * @throws SQLException 
 	 */	
-	public List<Course> viewRegisteredCourses(int sRollNo);
+	public List<Course> viewRegisteredCourses(String studentId) throws SQLException;
 	
 	/**
 	 * @param sRollNo

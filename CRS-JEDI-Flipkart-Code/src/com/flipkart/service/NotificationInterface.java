@@ -7,7 +7,7 @@ import java.util.UUID;
 
 
 /*
- * @author Harshwardhan Koushik
+ * @author JEDI-07
  * */
 
 public interface NotificationInterface {
@@ -19,12 +19,12 @@ public interface NotificationInterface {
 	 * @param message: Message to be sent
 	 * @return notification id for the record added in the database
 	 */
-	public String sendNotification(String referenceId,int studentId,String message);
+	public String sendNotification(String message,String studentId,String referenceId);
 	
 	/**
 	 * Method to return UUID for a transaction
 	 * @param id: notification id added in the database
 	 * @return transaction id of the payment
 	 */
-	public UUID getReferenceId(String id); 
+	public String getReferenceId(String id); 
 }

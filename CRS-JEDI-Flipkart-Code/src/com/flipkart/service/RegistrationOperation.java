@@ -47,7 +47,7 @@ public class RegistrationOperation implements RegistrationInterface{
 	}
 
 	@Override
-	public boolean dropCourse(String cCode, String studentId, List<Course> registeredCourseList)
+	public boolean dropCourse(String cCode, String studentId, List<Course> registeredCourseList,int sem)
 			throws CourseNotRemovedException,SQLException {
 		// TODO Auto-generated method stub
 		boolean check=true;
@@ -55,16 +55,19 @@ public class RegistrationOperation implements RegistrationInterface{
 		{
 			if(cCode.equalsIgnoreCase(course.getcCode())) 
 			{
-				check=true; 
+				check=false; 
 				break;
 			}
 		}
 		
-		check=false;
 		if(check) {
+			
 			throw new CourseNotRemovedException(cCode);
 		}
-		return registrationDAOInterface.dropCourse(studentId, 1, cCode);
+		else {
+			return registrationDAOInterface.dropCourse(studentId, sem, cCode);
+		}
+		
 //		return false;
 	}
 
@@ -74,11 +77,11 @@ public class RegistrationOperation implements RegistrationInterface{
 		
 		return registrationDAOInterface.viewCourses(studentId);
 	}
-
+	
 	@Override
-	public List<Course> viewRegisteredCourses(int sRollNo) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Course> viewRegisteredCourses(String studentId) throws SQLException {
+			return registrationDAOInterface.viewRegisteredCourses(studentId);
+		
 	}
 
 	@Override
