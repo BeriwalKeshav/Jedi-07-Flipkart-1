@@ -27,6 +27,7 @@ import com.flipkart.exception.StudentNotFoundForApprovalException;
 import com.flipkart.exception.UserCannotBeAddedException;
 import com.flipkart.exception.UserNameAlreadyInUseException;
 import com.flipkart.exception.UserNotFoundException;
+import com.flipkart.service.AdminOperation;
 import com.flipkart.utils.DBUtil;
 
 /**
@@ -36,7 +37,30 @@ import com.flipkart.utils.DBUtil;
 public class AdminDAOOperation implements AdminDAOInterface {
 
 	private PreparedStatement statement = null;
-	private static Logger logger = Logger.getLogger(AdminDAOOperation.class);
+	private static Logger logger = Logger.getLogger(AdminDAOOperation.class);	
+	private static volatile AdminDAOOperation instance = null;
+		
+	
+	private AdminDAOOperation()
+	{
+		
+	}
+	
+	/**
+	 * Method to make AdminOperation Singleton
+	 * @return
+	 */
+	public static AdminDAOOperation getInstance(){
+		
+		if(instance == null){
+			synchronized(AdminDAOOperation.class){
+				instance= new AdminDAOOperation();
+			}
+		}
+		return instance;
+	}
+	
+	
 	Connection connection = DBUtil.getConnection();
 
 	/**

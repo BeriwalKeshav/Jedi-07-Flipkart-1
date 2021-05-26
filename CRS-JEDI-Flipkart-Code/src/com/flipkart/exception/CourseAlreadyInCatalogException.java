@@ -4,8 +4,8 @@
 package com.flipkart.exception;
 
 /**
- * @author adityasuraj
- *
+ * Course already in catalog exception
+ * @author JEDI-07
  */
 public class CourseAlreadyInCatalogException extends Exception {
 	
@@ -13,7 +13,7 @@ public class CourseAlreadyInCatalogException extends Exception {
 	
 	/***
 	 * Constructor
-	 * @param cCode
+	 * @param String: Course code
 	 */
 	public CourseAlreadyInCatalogException(String cCode) {
 		this.cCode = cCode;
@@ -22,7 +22,7 @@ public class CourseAlreadyInCatalogException extends Exception {
 
 	/**
 	 * Getter method
-	 * @return cCode course code
+	 * @return String: course code
 	 */
 	public String getCourseCode() {
 		return cCode;
@@ -30,6 +30,7 @@ public class CourseAlreadyInCatalogException extends Exception {
 
 	/**
 	 * Message returned when exception is thrown
+	 * @return Exception message to be thrown
 	 */
 	@Override
 	public String getMessage() {

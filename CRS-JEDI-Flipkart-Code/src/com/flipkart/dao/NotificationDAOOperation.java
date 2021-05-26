@@ -14,6 +14,7 @@ import org.apache.log4j.Logger;
 import com.flipkart.utils.DBUtil;
 import com.flipkart.bean.Notification;
 import com.flipkart.constants.SQLQueriesConstanst;
+import com.flipkart.service.NotificationOpearation;
 
 /**
  * @author JEDI-07
@@ -24,6 +25,7 @@ import com.flipkart.constants.SQLQueriesConstanst;
  */
 
 public class NotificationDAOOperation implements NotificationDAOInterface{
+		
 	
 	private static volatile NotificationDAOOperation instance = null;
 	private static Logger logger = Logger.getLogger(NotificationDAOOperation.class);
@@ -33,20 +35,18 @@ public class NotificationDAOOperation implements NotificationDAOInterface{
 	 */
 	private NotificationDAOOperation()
 	{
-
+		
 	}
 	
 	/**
-	 * Method to make NotificationDAOOperation Singleton
+	 * Method to make UserDAOImpl Singleton
 	 * @return
 	 */
-	public static NotificationDAOOperation getInstance()
-	{
-		if(instance==null)
-		{
-			// This is a synchronized block, when multiple threads will access this instance
+	public static NotificationDAOOperation getInstance(){
+		
+		if(instance == null){
 			synchronized(NotificationDAOOperation.class){
-				instance=new NotificationDAOOperation();
+				instance= new NotificationDAOOperation();
 			}
 		}
 		return instance;
@@ -138,7 +138,7 @@ public class NotificationDAOOperation implements NotificationDAOInterface{
 		return referenceId;
 	}
 
-	@Override
+	@Override 
 	public List<Notification> getAllNotifications(String studentId) throws SQLException {
 		// TODO Auto-generated method stub
 		List<Notification> allnotifications = null;

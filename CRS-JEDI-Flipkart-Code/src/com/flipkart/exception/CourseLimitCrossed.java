@@ -4,19 +4,24 @@
 package com.flipkart.exception;
 
 /**
- * @author Administrator
- *
+ * Course limit crossed exception
+ * @author JEDI-07
  */
 public class CourseLimitCrossed extends Exception {
 	private int no;
 
 	/**
-	 * @param no
+	 * Assigns number of courses offered
+	 * @param no : number of courses
 	 */
 	public CourseLimitCrossed(int no) {
 		this.no = no;
 	}
 
+	/**
+	 * Message returned when exception is thrown
+	 * @return Error Message
+	 * */
 	public String getMessgae() {
 		return "Course Registration Limit Exceeded";
 	}

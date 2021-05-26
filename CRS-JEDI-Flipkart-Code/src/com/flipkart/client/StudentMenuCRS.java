@@ -24,7 +24,7 @@ import com.flipkart.service.RegistrationOperation;
  */
 public class StudentMenuCRS {
 
-	RegistrationInterface registrationinterface = new RegistrationOperation();
+	RegistrationInterface registrationinterface = RegistrationOperation.getInstance();
 	Scanner sc = new Scanner(System.in);
 	private int if_registered;
 	private int sem=1;
@@ -35,19 +35,20 @@ public class StudentMenuCRS {
 
 		boolean b = true;
 		while (b) {
-			System.out.println("++++++++++++++++++++++++++++++++");
+			System.out.println("++++++++++++++++++++++++++++++++++");
 			System.out.println("++++++++++ Student Menu ++++++++++");
-			System.out.println("++++++++++++++++++++++++++++++++");
+			System.out.println("++++++++++++++++++++++++++++++++++");
 			System.out.println("1. Enter 1 To View Catalog Of Courses.");
 			System.out.println("2. Enter 2 To Register For Courses.");
 			System.out.println("3. Enter 3 To View Registered Courses.");
 			System.out.println("4. Enter 4 To Add Course.");
 			System.out.println("5. Enter 5 To Drop Course.");
-			System.out.println("6. Enter 6 To View Report Card");
-			System.out.println("7. Make Payment");			
-			System.out.println("8. View Notifications");
-			System.out.println("9. Enter 7 To Logout From The System."); 
-
+			System.out.println("6. Enter 6 To View Report Card.");
+			System.out.println("7. Enter 7 To Pay Semester Fee.");			
+			System.out.println("8. Enter 8 To View Total Notifications Until Today.");
+			System.out.println("9. Enter 9 To Logout From The System."); 
+			
+			System.out.println("\nEnter User Input : ");
 			int c = sc.nextInt();
 			
 			switch(c) {
@@ -71,6 +72,7 @@ public class StudentMenuCRS {
 					break;
 				case 7:
 					make_payment(studentId);
+					break;
 				case 8: 
 					viewAllNotifications(studentId);
 					break;
@@ -181,9 +183,14 @@ public class StudentMenuCRS {
 
 	}
 	
+	/**
+	 * Method To View All Notifications
+	 * @param StudentId
+	 */
 	public void viewAllNotifications(String StudentId) {
 		List<Notification> allNotifications = null; 
-		NotificationInterface notify = NotificationOpearation.getInstance();
+
+		NotificationInterface notify =  NotificationOpearation.getInstance();
 		try {
 			allNotifications = notify.getAllNotifications(StudentId);
 		}
@@ -214,9 +221,8 @@ public class StudentMenuCRS {
 			return null;
 		}
 		else {
-			System.out.println("Course Code" + "Course Name" + "Professor" + "");
 			for(Course obj : registeredCourses) {
-				System.out.println(obj.getcCode() + " " + obj.getcName() + " " + obj.getProfName());
+				System.out.println("Course Code  : " + obj.getcCode() + "\nCourse Name : " + obj.getcName() + "\nProfessor : " + obj.getProfName());
 			}
 			return registeredCourses;
 		}
@@ -254,6 +260,12 @@ public class StudentMenuCRS {
 		}
 	}
 
+	/**
+	 * Method To Drop Course.
+	 * @param studentId
+	 * @throws Course Not Removed Exception.
+	 * @throws SQLException.
+	 */
 	public void dropCourses(String studentId) {
 		if (if_registered == 0) {
 			System.out.println("Registration is not complete");
@@ -279,6 +291,10 @@ public class StudentMenuCRS {
 		}
 	}
 
+	/**
+	 * Method To View Generate Report Card
+	 * @param studentId
+	 */
 	public void viewReportCard(String studentId) {
 		try {
 			List<RegisteredCourse> registeredCourses = new ArrayList<RegisteredCourse>();
@@ -294,10 +310,14 @@ public class StudentMenuCRS {
 	
 	}
 
-	public void logout(String studentId) {
-		System.out.println("Logout ");
-	}
+	
 
+	/**
+	 * Method To View Registration Status
+	 * @param studentId
+	 * @return student Id
+	 * @throws SQL Exception
+.	 */
 	public int getRegistrationStatus(String studentId) {
 		try {
 			return registrationinterface.getRegistrationStatus(studentId);
@@ -309,7 +329,7 @@ public class StudentMenuCRS {
 	}
 	
 	/**
-	 * Make Payment for selected courses. Student is provided with an option to pay the fees and select the mode of payment.
+	 * Make Payment For Selected Courses. Student is provided with an option to pay the fees and select the mode of payment.
 	 * @param studentId
 	 */
 	private void make_payment(String studentId)
@@ -372,6 +392,14 @@ public class StudentMenuCRS {
 			
 		}
 		
+	}
+	
+	/**
+	 * Method To 
+	 * @param studentId
+	 */
+	public void logout(String studentId) {
+		System.out.println("Logout ");
 	}
 
 }

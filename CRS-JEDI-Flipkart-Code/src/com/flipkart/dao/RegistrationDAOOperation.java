@@ -19,6 +19,7 @@ import com.flipkart.bean.RegisteredCourse;
 //import com.flipkart.constant.ModeOfPayment;
 //import com.flipkart.constant.NotificationType;
 import com.flipkart.constants.SQLQueriesConstanst;
+import com.flipkart.service.RegistrationOperation;
 import com.flipkart.utils.DBUtil;
 
 /**
@@ -32,27 +33,28 @@ public class RegistrationDAOOperation implements RegistrationDAOInterface{
 	private static Logger logger = Logger.getLogger(RegistrationDAOOperation.class);
 	private PreparedStatement stmt = null;
 	
-	/**
-	 * Default Constructor
-	 */
-	public RegistrationDAOOperation() {
+	StudentDAOInterface studentDaoInterface = StudentDAOOperation.getInstance();
+	
+	private RegistrationDAOOperation()
+	{
 		
 	}
-	
 	/**
-	 * Method to make RegistrationDaoOperation Singleton
-	 * @return singleton instance
+	 * Method to make RegistrationDAOOperation Singleton
+	 * @return
 	 */
 	public static RegistrationDAOOperation getInstance()
 	{
 		if(instance==null)
 		{
+			// This is a synchronized block, when multiple threads will access this instance
 			synchronized(RegistrationDAOOperation.class){
 				instance=new RegistrationDAOOperation();
 			}
 		}
 		return instance;
 	}
+
 
 	/**
 	 * DONE
