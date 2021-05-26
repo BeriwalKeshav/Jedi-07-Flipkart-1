@@ -4,18 +4,23 @@
 package com.flipkart.exception;
 
 /**
- * @author ankit
- *
+ * Course not in catalog exception
+ * @author JEDI-07
  */
 public class CourseNotInCatalogException extends Exception{
-	private String cCode;
+		private String cCode;
 	
+		/**
+		 * Constructor
+		 * @param String: course code
+		 */
 		public CourseNotInCatalogException(String cCode)
 		{	
 			this.cCode = cCode;
 		}		
 		/**
 		 * Message thrown by exception
+		 * @return String: Error Message
 		 */
 		@Override
 		public String getMessage() 

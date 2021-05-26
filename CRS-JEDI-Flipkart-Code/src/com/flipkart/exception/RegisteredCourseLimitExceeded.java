@@ -4,24 +4,24 @@
 package com.flipkart.exception;
 
 /**
- * @author adityasuraj
- *
+ * Exception to check weather the number of registered courses exceeded limit
+ * @author JEDI-07
  */
 public class RegisteredCourseLimitExceeded extends Exception {
 	private int numCourses;
 
 	/**
 	 * Constructor
-	 * @param numCourses number of courses
+	 * @param integer: number of courses
  	 */
 	public RegisteredCourseLimitExceeded(int numCourses )
 	{	
 		this.numCourses = numCourses;
 	}
 
-
 	/**
 	 * Message returned when exception is thrown
+	 * @return String: Error Message
 	 */
 	@Override
 	public String getMessage() 

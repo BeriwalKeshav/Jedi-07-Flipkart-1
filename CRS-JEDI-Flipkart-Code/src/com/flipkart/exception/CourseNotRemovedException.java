@@ -4,23 +4,24 @@
 package com.flipkart.exception;
 
 /**
- * @author ankit
- *
+ * Course not removed exception
+ * @author JEDI-07
  */
 public class CourseNotRemovedException extends Exception{
 	private String cCode;
+	
+	/**
+	 * Constructor
+	 * @param String: course code
+	 * */
 	public CourseNotRemovedException(String cCode)
 	{	
 		this.cCode = cCode;
 	}
-
-	/**
-	 * Getter function for course code
-	 * @return
-	 */
 	
 	/**
 	 * Message thrown by exception
+	 * @return String: Error Message
 	 */
 	@Override
 	public String getMessage() 
