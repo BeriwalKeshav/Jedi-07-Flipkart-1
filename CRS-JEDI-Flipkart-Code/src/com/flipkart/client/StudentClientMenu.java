@@ -74,7 +74,7 @@ public class StudentClientMenu {
 		System.out.println("COURSE CODE"+ "COURSE NAME"+ "INSTRUCTOR"+ "SEATS");
 		for(Course obj : course_avail)
 		{
-			System.out.println(obj.getcCode() +" " + obj.getCname() +" "+  obj.getProfName() +" "+ obj.getNoOfSeats());
+			System.out.println(obj.getcCode() +" " + obj.getcName() +" "+  obj.getProfName() +" "+ obj.getNoOfSeats());
 		}
 		return course_avail;
 	}

@@ -8,6 +8,12 @@ package com.flipkart.bean;
  *
  */
 public class Course {
+	
+	
+	public Course(String cCode, String cName){
+		super();
+		this.cCode = cCode;
+	}
 	/**
 	 * @param cCode
 	 * @param cName
