@@ -56,4 +56,6 @@ public class SQLQueriesConstanst {
 	public static final String GET_REFERENCE_ID = "select * from notification where notificationId=?";
 	public static final String GET_ALL_NOTIFICATIONS = "select * from notification where studentId=?";
 	
+	public static final String CALCULATE_FEES  = "select sum(amount) from payment where studentId = ? and status = 0;";
+	
 }

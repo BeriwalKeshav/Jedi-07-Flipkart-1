@@ -62,7 +62,7 @@ public interface RegistrationDAOInterface {
 	 * @throws SQLException 
 	 */
 	
-	public double calculateFee(String studentId) throws SQLException;
+	public int calculateFee(String studentId) throws SQLException;
 	
 	/**
 	 * @param courseCode

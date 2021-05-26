@@ -31,7 +31,7 @@ public class NotificationOpearation implements NotificationInterface{
 	}
 	
 	/**
-	 * Method to make UserDAOImpl Singleton
+	 * Method to make NotificationOpearation Singleton
 	 * @return
 	 */
 	public static NotificationOpearation getInstance(){

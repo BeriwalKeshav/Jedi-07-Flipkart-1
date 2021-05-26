@@ -68,7 +68,7 @@ public interface RegistrationInterface {
 	 * @param sRollNo : student id
 	 * @return double calculated fee
 	 */
-	public double calculateFee(int sRollNo);
+	public int calculateFee(String studentId) throws SQLException;
 	
 	/**
 	 * @param studentId : student id

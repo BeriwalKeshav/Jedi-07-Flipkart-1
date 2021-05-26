@@ -45,6 +45,42 @@
 
 
 21:28:21,122  INFO CRSApplicationClient,main:91 - Enter user input : 
+<<<<<<< HEAD
+21:46:43,402  INFO CRSApplicationClient,main:82 - 
+
+++++++++++++++++++++++++++++++++++
+21:46:43,419  INFO CRSApplicationClient,main:83 - ++++++++++++  CMS  +++++++++++++++
+21:46:43,420  INFO CRSApplicationClient,main:84 - Menu for Course Management System:
+21:46:43,422  INFO CRSApplicationClient,main:85 - 1. Login
+21:46:43,423  INFO CRSApplicationClient,main:86 - 2. Student Registration
+21:46:43,424  INFO CRSApplicationClient,main:87 - 3. Update password
+21:46:43,425  INFO CRSApplicationClient,main:88 - 4. Exit
+21:46:43,426  INFO CRSApplicationClient,main:89 - ++++++++++++++++++++++++++++++++++
+
+
+21:46:43,427  INFO CRSApplicationClient,main:91 - Enter user input : 
+21:46:47,480  INFO CRSApplicationClient,main:104 - Enter User Id:
+21:46:50,712  INFO CRSApplicationClient,main:106 - Enter Password:
+21:46:54,550 DEBUG CRSApplicationClient,main:113 - Login Status -> true
+21:46:54,555 DEBUG CRSApplicationClient,main:136 - Admin logged in!
+21:50:56,602  INFO CRSApplicationClient,main:82 - 
+
+++++++++++++++++++++++++++++++++++
+21:50:56,609  INFO CRSApplicationClient,main:83 - ++++++++++++  CMS  +++++++++++++++
+21:50:56,609  INFO CRSApplicationClient,main:84 - Menu for Course Management System:
+21:50:56,610  INFO CRSApplicationClient,main:85 - 1. Login
+21:50:56,612  INFO CRSApplicationClient,main:86 - 2. Student Registration
+21:50:56,613  INFO CRSApplicationClient,main:87 - 3. Update password
+21:50:56,614  INFO CRSApplicationClient,main:88 - 4. Exit
+21:50:56,615  INFO CRSApplicationClient,main:89 - ++++++++++++++++++++++++++++++++++
+
+
+21:50:56,616  INFO CRSApplicationClient,main:91 - Enter user input : 
+21:51:01,920  INFO CRSApplicationClient,main:104 - Enter User Id:
+21:51:06,845  INFO CRSApplicationClient,main:106 - Enter Password:
+21:51:10,870 DEBUG CRSApplicationClient,main:113 - Login Status -> true
+21:51:10,876 DEBUG CRSApplicationClient,main:136 - Admin logged in!
+=======
 21:53:09,504  INFO CRSApplicationClient,main:82 - 
 
 ++++++++++++++++++++++++++++++++++
@@ -439,6 +475,7 @@
 
 
 23:00:09,287  INFO CRSApplicationClient,main:91 - Enter user input : 
+<<<<<<< HEAD
 23:23:58,625  INFO CRSApplicationClient,main:82 - 
 
 ++++++++++++++++++++++++++++++++++
@@ -487,3 +524,6 @@
 
 23:24:33,611  INFO CRSApplicationClient,main:91 - Enter user input : 
 23:24:38,483  INFO CRSApplicationClient,main:68 - Exiting Application...
+=======
+>>>>>>> 9088537c4c69447ae077a97ea6fa76b1f5aa0aca
+>>>>>>> be4c9786ff37d2b0479b14bc39a83ec5d5062ee3
