@@ -9,6 +9,8 @@ import java.util.*;
 
 import com.flipkart.bean.Professor;
 import com.flipkart.bean.Student;
+import org.apache.log4j.Logger;
+
 import com.flipkart.constants.RolesConstant;
 import com.flipkart.dao.StudentDAOInterface;
 import com.flipkart.dao.StudentDAOOperation;
@@ -27,6 +29,7 @@ import com.flipkart.service.UserOperation;
  */
 public class CRSMainApplication {
 	
+	private static Logger logger = Logger.getLogger(CRSMainApplication.class);
 	UserInterface userInterface = new UserOperation();
 	static boolean loggedIn = false;
 	
@@ -60,10 +63,10 @@ public class CRSMainApplication {
 					app.updatePassword();
 					break;
 				case 4:
-					System.out.println("Exiting Application...");
+					logger.info("Exiting Application...");
 					break;
 				default:
-					System.out.println("Invalid Input");
+					logger.info("Invalid Input");
 			}
 		}
 		sc.close();
@@ -74,13 +77,16 @@ public class CRSMainApplication {
 	 * Method to display Main Menu
 	 */
 	public static void createMainMenu() {
-		System.out.println("++++++++++++  CMS  +++++++++++++++");
-		System.out.println("Menu for Course Management System:");
-		System.out.println("1. Login");
-		System.out.println("2. Student Registration");
-		System.out.println("3. Update password");
-		System.out.println("4. Exit");
-		System.out.println("Enter user input");
+		logger.info("\n\n++++++++++++++++++++++++++++++++++");
+		logger.info("++++++++++++  CMS  +++++++++++++++");
+		logger.info("Menu for Course Management System:");
+		logger.info("1. Login");
+		logger.info("2. Student Registration");
+		logger.info("3. Update password");
+		logger.info("4. Exit");
+		logger.info("++++++++++++++++++++++++++++++++++\n\n");
+		
+		logger.info("Enter user input : ");
 	}
 	
 	/**
@@ -93,21 +99,21 @@ public class CRSMainApplication {
 		
 		Scanner sc = new Scanner(System.in);
 		
-		System.out.println("Enter User Id:");
+		logger.info("Enter User Id:");
 		userName = sc.next();
-		System.out.println("Enter Password:");
+		logger.info("Enter Password:");
 		password = sc.next();
 		
 		try {
 			
 			loggedIn = userInterface.verifyCredentials(userName, password);
 			
-			System.out.println("Login Status -> " +  loggedIn);
+			logger.debug("Login Status -> " +  loggedIn);
 			
 			role = userInterface.getUserRole(userName);
 			
 			if(loggedIn == false || role == null) {
-				System.out.println("++ Login Failed Returning to Main Menu");
+				logger.error("++ Login Failed Returning to Main Menu");
 				return;
 			}
 			
@@ -115,26 +121,26 @@ public class CRSMainApplication {
 			switch(RolesConstant.stringToName(role))
 			{	
 				case STUDENT:
-					System.out.println("Student logged in!");
+					logger.debug("Student logged in!");
 					StudentClientMenu studentMenu=new StudentClientMenu();
 					studentMenu.renderMenu(userName);
 					break;
 				case PROFESSOR:
-					System.out.println("Professor logged in!");
+					logger.debug("Professor logged in!");
 					ProfessorClientMenu professorMenu = new ProfessorClientMenu();
 					professorMenu.renderMenu(userName);
 					break;	
 				case ADMIN:
-					System.out.println("Admin logged in!");
+					logger.debug("Admin logged in!");
 					AdminClientMenu adminMenu=new AdminClientMenu();
 					adminMenu.renderMenu(userName);
 					break;
 				default:
-					System.out.println("Invalid Input");
+					logger.info("Invalid Input Returning to Main Menu");
 			}
 		
 		} catch (UserNotFoundException ex) {
-			System.out.println("++ Login Failed Returning to Main Menu");
+			logger.error("Login Failed Returning to Main Menu");
 		}
 			
 	}
@@ -206,22 +212,22 @@ public class CRSMainApplication {
 		
 		Scanner sc = new Scanner(System.in);
 		
-		System.out.println("Enter User Id:");
+		logger.info("Enter User Id:");
 		userName = sc.next();
-		System.out.println("Enter New Password:");
+		logger.info("Enter New Password:");
 		newPassword = sc.next();
 		
 		try {
 			
 			boolean isUpdated = userInterface.updatePassword(userName, newPassword);
 			if( isUpdated == true) {
-				System.out.println("Password changed for User -> " + userName);
+				logger.info("Password changed for User -> " + userName);
 			}else {
-				System.out.println("+++++++ Password Update Failed");
+				logger.info("+++++++ Password Update Failed");
 			}
 		
 		} catch (UserNotFoundException ex) {
-			System.out.println("++ User Not Found");
+			logger.error("User Not Found");
 		}
 	}
 

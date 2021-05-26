@@ -43,10 +43,11 @@ public interface RegistrationInterface {
 	public List<Course> viewCourses(String studentId) throws SQLException;
 	
 	/**
-	 * @param sRollNo
+	 * @param studentId
 	 * @return List of courses that student has registered in
+	 * @throws SQLException 
 	 */	
-	public List<Course> viewRegisteredCourses(int sRollNo);
+	public List<Course> viewRegisteredCourses(String studentId) throws SQLException;
 	
 	/**
 	 * @param sRollNo
