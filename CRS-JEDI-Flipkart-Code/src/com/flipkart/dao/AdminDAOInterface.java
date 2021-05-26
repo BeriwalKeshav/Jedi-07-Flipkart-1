@@ -25,7 +25,8 @@ import com.flipkart.exception.UserNotFoundException;
 public interface AdminDAOInterface {
 
 	/**
-	 * @param professor
+	 * Method to Add Professor
+	 * @param professor : Professor to be Added
 	 * @throws ProfessorAdditionFailedException
 	 * @throws UserNameAlreadyInUseException
 	 */
@@ -33,13 +34,15 @@ public interface AdminDAOInterface {
 			throws ProfessorAdditionFailedException, UserNameAlreadyInUseException;
 
 	/**
-	 * @param user
+	 * Method to Add User
+	 * @param user : User to be Added
 	 * @throws UserCannotBeAddedException
 	 * @throws UserNameAlreadyInUseException
 	 */
 	public void addUser(User user) throws UserCannotBeAddedException, UserNameAlreadyInUseException;
 
-	/**
+	/** 
+	 * Method to Approve Student
 	 * @param sRollNo
 	 * @throws StudentNotFoundForApprovalException
 	 */
