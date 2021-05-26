@@ -93,7 +93,7 @@ public class AdminMenuCRS {
 
 	}
 
-	AdminInterface adminOperation = new AdminOperation();
+	AdminInterface adminOperation = AdminOperation.getInstance();
 
 	private List<Course> viewCourses() {
 		List<Course> courseList = adminOperation.viewCourses();

@@ -12,6 +12,7 @@ import java.util.UUID;
 import com.flipkart.utils.DBUtil;
 import com.flipkart.bean.Notification;
 import com.flipkart.constants.SQLQueriesConstanst;
+import com.flipkart.service.NotificationOpearation;
 
 /**
  * @author JEDI-07
@@ -23,6 +24,30 @@ import com.flipkart.constants.SQLQueriesConstanst;
 
 public class NotificationDAOOperation implements NotificationDAOInterface{
 		
+	
+	private static volatile NotificationDAOOperation instance = null;
+		
+	
+	private NotificationDAOOperation()
+	{
+		
+	}
+	
+	/**
+	 * Method to make UserDAOImpl Singleton
+	 * @return
+	 */
+	public static NotificationDAOOperation getInstance(){
+		
+		if(instance == null){
+			synchronized(NotificationDAOOperation.class){
+				instance= new NotificationDAOOperation();
+			}
+		}
+		return instance;
+	}
+	
+	
 	/**
 	 * Send Notification using SQL commands
 	 * @param Message: Message to be sent 
