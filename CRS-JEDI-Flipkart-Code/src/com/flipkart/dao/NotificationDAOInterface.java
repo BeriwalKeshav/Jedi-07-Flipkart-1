@@ -23,4 +23,5 @@ public interface NotificationDAOInterface {
 	 */
 	public String sendNotification(String message,String studentId,String referenceId) throws SQLException;
 	public String getReferenceId(String notificationId) throws SQLException;
+	public String addPayment(String StudentId,int amount,boolean status,String paymentType) throws SQLException;
 }

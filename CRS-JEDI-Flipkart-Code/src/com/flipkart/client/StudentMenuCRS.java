@@ -4,10 +4,15 @@ import com.flipkart.*;
 import java.util.*;
 import java.sql.SQLException;
 import com.flipkart.bean.Course;
+import com.flipkart.constants.ModeOfPayment;
+import com.flipkart.dao.NotificationDAOInterface;
+import com.flipkart.dao.NotificationDAOOperation;
 import com.flipkart.exception.CourseLimitCrossed;
 import com.flipkart.exception.CourseNotInCatalogException;
 import com.flipkart.exception.CourseNotRemovedException;
 import com.flipkart.exception.SeatNotAvailableException;
+import com.flipkart.service.NotificationInterface;
+import com.flipkart.service.NotificationOpearation;
 import com.flipkart.service.RegistrationInterface;
 import com.flipkart.service.RegistrationOperation;
 
@@ -25,7 +30,7 @@ public class StudentMenuCRS {
 		boolean b = true;
 		while (b) {
 
-			System.out.println("+++++    Student Menu    ++++++++");
+			System.out.println("********** Student Menu *********");
 			System.out.println("");
 			System.out.println("1. View Catalog");
 			System.out.println("2. Register for Courses ");
@@ -33,7 +38,9 @@ public class StudentMenuCRS {
 			System.out.println("4. Add Courses");
 			System.out.println("5. Drop Courses");
 			System.out.println("6. ViewReportCard");
-			System.out.println("7. Logout");
+			System.out.println("7. Make Payment");
+			System.out.println("8. Logout");
+			System.out.println("*********************************");
 //			Scanner sc= new Scanner(System.in); 
 
 			int c = sc.nextInt();
@@ -59,11 +66,14 @@ public class StudentMenuCRS {
 					viewReportCard(studentId);
 					break;
 				case 7:
+					make_payment(studentId);
+					break;
+				case 8:
 					b = false;
 					logout(studentId);
 					break;
 				default:
-					System.out.println("+++ Warning : Wrong Option +++");
+					System.out.println("**** Warning : Wrong Option ****");
 			}
 		}
 	}
@@ -239,6 +249,72 @@ public class StudentMenuCRS {
 		}
 		return 0;
 
+	}
+	
+	/**
+	 * Make Payment for selected courses. Student is provided with an option to pay the fees and select the mode of payment.
+	 * @param studentId
+	 */
+	private void make_payment(String studentId)
+	{
+		
+		int fee = 0;
+		try
+		{
+			fee = registrationinterface.calculateFee(studentId);
+		} 
+		catch (SQLException e) 
+		{
+
+            System.out.println(e.getMessage());
+		}
+
+		if(fee == 0)
+		{
+			System.out.println("You have no outstanding payment");
+		}
+		else
+		{
+			
+			System.out.println("Your total fee  = " + fee);
+			System.out.println("Want to continue Fee Payment(y/n)");
+			String ch = sc.next();
+			if(ch.equals("y"))
+			{
+				System.out.println("Select Mode of Payment:");
+				
+				int index = 1;
+				for(ModeOfPayment mode : ModeOfPayment.values())
+				{
+					System.out.println(index + ". " + mode);
+					index = index + 1;
+				}
+				
+				ModeOfPayment mode = ModeOfPayment.getModeofPayment(sc.nextInt());
+				NotificationDAOInterface notificationDaoOperation = NotificationDAOOperation.getInstance();
+				NotificationInterface notificationInterface = NotificationOpearation.getInstance();
+				
+				if(mode == null)
+					System.out.println("Invalid Input");
+				else
+				{
+					try 
+					{
+						String referenceId = notificationDaoOperation.addPayment(studentId, fee, true, mode.toString());
+						String message = mode.toString() + " Payment";
+						notificationInterface.sendNotification(message, studentId, referenceId);
+					}
+					catch (Exception e) 
+					{
+
+			            System.out.println(e.getMessage());
+					}
+				}
+					
+			}
+			
+		}
+		
 	}
 
 }

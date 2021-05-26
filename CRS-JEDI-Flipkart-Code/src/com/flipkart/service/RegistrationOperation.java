@@ -91,9 +91,9 @@ public class RegistrationOperation implements RegistrationInterface{
 	}
 
 	@Override
-	public double calculateFee(int sRollNo) {
+	public int calculateFee(String studentId) throws SQLException {
 		// TODO Auto-generated method stub
-		return 0;
+		return registrationDAOInterface.calculateFee(studentId);
 	}
 
 	@Override

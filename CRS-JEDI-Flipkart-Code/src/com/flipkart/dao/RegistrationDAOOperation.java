@@ -247,9 +247,34 @@ public class RegistrationDAOOperation implements RegistrationDAOInterface{
 	}
 
 	@Override
-	public double calculateFee(String studentId) throws SQLException {
+	public int calculateFee(String studentId) throws SQLException {
 		// TODO Auto-generated method stub
-		return 0;
+		Connection conn = DBUtil.getConnection();
+		int fee = 0;
+		try
+		{
+			stmt = conn.prepareStatement(SQLQueriesConstanst.CALCULATE_FEES);
+			stmt.setString(1, studentId);
+			ResultSet rs = stmt.executeQuery();
+			rs.next();
+			fee = rs.getInt(1);
+		}
+		catch(SQLException e)
+		{
+			System.out.println(e.getErrorCode());
+			System.out.println(e.getMessage());
+		}
+		catch(Exception e)
+		{
+			System.out.println(e.getMessage());
+		}
+		finally
+		{
+			stmt.close();
+//			conn.close();
+		}
+		
+		return fee;
 	}
 
 	@Override
