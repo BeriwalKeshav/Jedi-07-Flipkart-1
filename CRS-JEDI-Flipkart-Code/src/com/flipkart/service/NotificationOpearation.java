@@ -17,7 +17,33 @@ import com.flipkart.dao.NotificationDAOOperation;
  */
 public class NotificationOpearation implements NotificationInterface{
 	
-	NotificationDAOInterface notificationDAOInterface= new NotificationDAOOperation();
+	private static volatile NotificationOpearation instance = null;
+	
+	/**
+	 * Default Constructor
+	 */
+	private NotificationOpearation()
+	{
+
+	}
+	
+	/**
+	 * Method to make NotificationDAOOperation Singleton
+	 * @return
+	 */
+	public static NotificationOpearation getInstance()
+	{
+		if(instance==null)
+		{
+			// This is a synchronized block, when multiple threads will access this instance
+			synchronized(NotificationOpearation.class){
+				instance=new NotificationOpearation();
+			}
+		}
+		return instance;
+	}
+	
+	NotificationDAOInterface notificationDAOInterface= NotificationDAOOperation.getInstance();
 	
 	/**
 	 * Method to send notification

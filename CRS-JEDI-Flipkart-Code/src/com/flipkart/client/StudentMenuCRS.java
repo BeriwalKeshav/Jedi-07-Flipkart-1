@@ -1,9 +1,12 @@
 package com.flipkart.client;
 
-import com.flipkart.*;
 import java.util.*;
 import java.sql.SQLException;
 import com.flipkart.bean.Course;
+import com.flipkart.constants.ModeOfPayment;
+import com.flipkart.dao.NotificationDAOInterface;
+import com.flipkart.dao.NotificationDAOOperation;
+import com.flipkart.bean.RegisteredCourse;
 import com.flipkart.bean.Notification;
 import com.flipkart.exception.CourseLimitCrossed;
 import com.flipkart.exception.CourseNotInCatalogException;
@@ -14,6 +17,11 @@ import com.flipkart.service.NotificationOpearation;
 import com.flipkart.service.RegistrationInterface;
 import com.flipkart.service.RegistrationOperation;
 
+/**
+ * @author JEDI-7
+ * Class To Display The Student Client Menu.
+ *
+ */
 public class StudentMenuCRS {
 
 	RegistrationInterface registrationinterface = new RegistrationOperation();
@@ -27,24 +35,23 @@ public class StudentMenuCRS {
 
 		boolean b = true;
 		while (b) {
-
-			System.out.println("+++++    Student Menu    ++++++++");
-			System.out.println("");
-			System.out.println("1. View Catalog");
-			System.out.println("2. Register for Courses ");
-			System.out.println("3. View Registered Courses");
-			System.out.println("4. Add Courses");
-			System.out.println("5. Drop Courses");
-			System.out.println("6. ViewReportCard");
-			System.out.println("7. View Notifications");
-			System.out.println("8. Logout");
-//			Scanner sc= new Scanner(System.in); 
+			System.out.println("++++++++++++++++++++++++++++++++");
+			System.out.println("++++++++++ Student Menu ++++++++++");
+			System.out.println("++++++++++++++++++++++++++++++++");
+			System.out.println("1. Enter 1 To View Catalog Of Courses.");
+			System.out.println("2. Enter 2 To Register For Courses.");
+			System.out.println("3. Enter 3 To View Registered Courses.");
+			System.out.println("4. Enter 4 To Add Course.");
+			System.out.println("5. Enter 5 To Drop Course.");
+			System.out.println("6. Enter 6 To View Report Card");
+			System.out.println("7. Make Payment");			
+			System.out.println("8. View Notifications");
+			System.out.println("9. Enter 7 To Logout From The System."); 
 
 			int c = sc.nextInt();
 			
 			switch(c) {
 				case 1:
-					
 					viewCatalog(studentId);
 					break;
 				case 2:
@@ -62,21 +69,30 @@ public class StudentMenuCRS {
 				case 6:
 					viewReportCard(studentId);
 					break;
-				case 7: 
+				case 7:
+					make_payment(studentId);
+				case 8: 
 					viewAllNotifications(studentId);
 					break;
-				case 8:
+				case 9:
 					b = false;
 					logout(studentId);
 					break;
-				default:
-					System.out.println("+++ Warning : Wrong Option +++");
+				default:{
+					System.out.println("+++++++++ Wrong Choice !!!!! +++++");
+					System.out.println("+++++++++ Please Enter The Valid One ++++++++");
+				}
+
 			}
 		}
 	}
 
+	/**
+	 * Method To View Catalog Of Courses.
+	 * @param studentId
+	 * @return List Of Available Courses 
+	 */
 	public List<Course> viewCatalog(String studentId) {
-//		System.out.println("Show Catalog ");
 		List<Course> course_avail = null;
 		try {
 			course_avail = registrationinterface.viewCourses(studentId);
@@ -97,6 +113,14 @@ public class StudentMenuCRS {
 		return course_avail;
 	}
 
+	/**
+	 * Method To Register For Courses.
+	 * @param studentId
+	 * @return List of Registered Courses
+	 * @throws Course Not In Catalog Exception.
+	 * @throws Seat Not Available Exception.
+	 * @throws Course Limit Crossed Exception. 
+	 **/
 	public void registerCourses(String studentId) {
 		if (if_registered > 0) {
 			System.out.println("Registration is already complete");
@@ -159,7 +183,7 @@ public class StudentMenuCRS {
 	
 	public void viewAllNotifications(String StudentId) {
 		List<Notification> allNotifications = null; 
-		NotificationInterface notify = new NotificationOpearation();
+		NotificationInterface notify = NotificationOpearation.getInstance();
 		try {
 			allNotifications = notify.getAllNotifications(StudentId);
 		}
@@ -172,6 +196,11 @@ public class StudentMenuCRS {
 		}
 	}
 
+	/**
+	 * Method To View Registered Courses.
+	 * @param studentId
+	 * @return List of Registered Courses
+	 */
 	public List<Course> viewRegisteredCourses(String studentId) {
 		List<Course> registeredCourses=null;
 		try {
@@ -193,6 +222,14 @@ public class StudentMenuCRS {
 		}
 
 	}
+	
+	/**
+	 * Method To Add Course For Registration
+	 * @param studentId
+	 * @throws Course Not In Catalog Exception. 
+	 * @throws Seat Not Available Exception.
+	 * @throws Course Limit Crossed Exception. 
+	 */
 	public void addCourses(String studentId) {
 
 		if (if_registered == 0) {
@@ -202,7 +239,6 @@ public class StudentMenuCRS {
 
 		List<Course> courseAvail = viewCatalog(studentId);
 		if (courseAvail == null) {
-//			System.out.println("You cannot Add more courses");
 			return;
 		}
 		System.out.println("Enter Course Code");
@@ -214,7 +250,6 @@ public class StudentMenuCRS {
 				System.out.println("You have already registered for the course");
 		} catch (CourseNotInCatalogException | SeatNotAvailableException | CourseLimitCrossed | SQLException e) {
 			// TODO Auto-generated catch block
-//			e.printStackTrace();
 			System.out.println(e.getMessage());
 		}
 	}
@@ -244,9 +279,19 @@ public class StudentMenuCRS {
 		}
 	}
 
-//		System.out.println("Drop the course ");
 	public void viewReportCard(String studentId) {
-		System.out.println("Show ReportCard ");
+		try {
+			List<RegisteredCourse> registeredCourses = new ArrayList<RegisteredCourse>();
+			registeredCourses = registrationinterface.viewReportCard(studentId);
+			System.out.println("Student Username: "+studentId);
+			System.out.println(String.format("%12s %12s %12s", "Course Code", "Semester", "Grade"));
+			for(RegisteredCourse rc: registeredCourses){
+				System.out.println(String.format("%12s %12s %12s", rc.getcCode(), rc.getSem(), rc.getGrade().getGrade()));
+			}
+		} catch (Exception ex) {
+			System.out.println(ex.getMessage());
+		}
+	
 	}
 
 	public void logout(String studentId) {
@@ -261,6 +306,72 @@ public class StudentMenuCRS {
 		}
 		return 0;
 
+	}
+	
+	/**
+	 * Make Payment for selected courses. Student is provided with an option to pay the fees and select the mode of payment.
+	 * @param studentId
+	 */
+	private void make_payment(String studentId)
+	{
+		
+		int fee = 0;
+		try
+		{
+			fee = registrationinterface.calculateFee(studentId);
+		} 
+		catch (SQLException e) 
+		{
+
+            System.out.println(e.getMessage());
+		}
+
+		if(fee == 0)
+		{
+			System.out.println("You have no outstanding payment");
+		}
+		else
+		{
+			
+			System.out.println("Your total fee  = " + fee);
+			System.out.println("Want to continue Fee Payment(y/n)");
+			String ch = sc.next();
+			if(ch.equals("y"))
+			{
+				System.out.println("Select Mode of Payment:");
+				
+				int index = 1;
+				for(ModeOfPayment mode : ModeOfPayment.values())
+				{
+					System.out.println(index + ". " + mode);
+					index = index + 1;
+				}
+				
+				ModeOfPayment mode = ModeOfPayment.getModeofPayment(sc.nextInt());
+				NotificationDAOInterface notificationDaoOperation = NotificationDAOOperation.getInstance();
+				NotificationInterface notificationInterface = NotificationOpearation.getInstance();
+				
+				if(mode == null)
+					System.out.println("Invalid Input");
+				else
+				{
+					try 
+					{
+						String referenceId = notificationDaoOperation.addPayment(studentId, fee, true, mode.toString());
+						String message = mode.toString() + " Payment";
+						notificationInterface.sendNotification(message, studentId, referenceId);
+					}
+					catch (Exception e) 
+					{
+
+			            System.out.println(e.getMessage());
+					}
+				}
+					
+			}
+			
+		}
+		
 	}
 
 }

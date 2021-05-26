@@ -40,7 +40,7 @@ public interface AdminInterface {
 	
 	/**
 	 * Method to add new Course to the Database
-	 * @param course : bean of Course
+	 * @param course : object of Course
 	 * @param courseList : list of courses
 	 * @throws CourseAlreadyInCatalogException
 	 */

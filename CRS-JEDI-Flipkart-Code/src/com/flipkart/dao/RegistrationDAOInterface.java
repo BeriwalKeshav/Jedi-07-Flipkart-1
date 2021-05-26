@@ -59,7 +59,7 @@ public interface RegistrationDAOInterface {
 	 * @throws SQLException 
 	 */
 	
-	public List<RegisteredCourse> viewReportCard(String studentId,int semester) throws SQLException;
+	public List<RegisteredCourse> viewReportCard(String studentId) throws SQLException;
 	
 	/**
 	 * Method to retrieve fee for the selected courses from the database and calculate total fee
@@ -68,7 +68,7 @@ public interface RegistrationDAOInterface {
 	 * @throws SQLException 
 	 */
 	
-	public double calculateFee(String studentId) throws SQLException;
+	public int calculateFee(String studentId) throws SQLException;
 	
 	/**
 	 * Method to see if there is Seat available for a course

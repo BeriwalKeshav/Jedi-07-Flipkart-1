@@ -22,7 +22,33 @@ import com.flipkart.constants.SQLQueriesConstanst;
  */
 
 public class NotificationDAOOperation implements NotificationDAOInterface{
-		
+	
+	private static volatile NotificationDAOOperation instance = null;
+	
+	/**
+	 * Default Constructor
+	 */
+	private NotificationDAOOperation()
+	{
+
+	}
+	
+	/**
+	 * Method to make NotificationDAOOperation Singleton
+	 * @return
+	 */
+	public static NotificationDAOOperation getInstance()
+	{
+		if(instance==null)
+		{
+			// This is a synchronized block, when multiple threads will access this instance
+			synchronized(NotificationDAOOperation.class){
+				instance=new NotificationDAOOperation();
+			}
+		}
+		return instance;
+	}
+	
 	/**
 	 * Send Notification using SQL commands
 	 * @param Message: Message to be sent 
@@ -87,6 +113,7 @@ public class NotificationDAOOperation implements NotificationDAOInterface{
 	 * @return: reference id of the transaction
 	 * @throws SQLException
 	 */
+	@Override
 	public String addPayment(String StudentId,int amount,boolean status,String paymentType) throws SQLException {
 		String referenceId;
 		Connection connection = DBUtil.getConnection();

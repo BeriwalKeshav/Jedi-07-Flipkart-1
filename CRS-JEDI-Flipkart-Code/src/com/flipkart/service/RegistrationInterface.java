@@ -22,7 +22,7 @@ public interface RegistrationInterface {
 	
 	/**
 	 * @param cCode
-	 * @param sRollNo
+	 * @param studentId
 	 * @param courseList
 	 * @return boolean : if Course added successfully
 	 * @throws CourseLimitCrossed 
@@ -35,7 +35,7 @@ public interface RegistrationInterface {
 	
 	/**
 	 * @param cCode : course code
-	 * @param sRollNo : student id
+	 * @param studentId : student id
 	 * @param registeredCourseList
 	 * @return boolean if Course deleted successfully
 	 * @throws SQLException 
@@ -44,7 +44,7 @@ public interface RegistrationInterface {
 	public boolean dropCourse(String cCode,String studentId, List<Course> registeredCourseList,int sem) throws CourseNotRemovedException, SQLException;
 	
 	/**
-	 * @param sRollNo : student id
+	 * @param studentId : student id
 	 * @return List of courses
 	 * @throws SQLException 
 	 */
@@ -58,26 +58,27 @@ public interface RegistrationInterface {
 	public List<Course> viewRegisteredCourses(String studentId) throws SQLException;
 	
 	/**
-	 * @param sRollNo : student id
+	 * @param studentId : student id
 	 * @return List of RegisteredCourse as it has grade and semester
+	 * @throws SQLException 
 	 */
-	public List<RegisteredCourse> viewReportCard(int sRollNo);
+	public List<RegisteredCourse> viewReportCard(String studentId) throws SQLException;
 	
 	/**
 	 * @param sRollNo : student id
 	 * @return double calculated fee
 	 */
-	public double calculateFee(int sRollNo);
+	public int calculateFee(String studentId) throws SQLException;
 	
 	/**
-	 * @param sRollNo : student id
+	 * @param studentId : student id
 	 * @throws SQLException 
 	 * @return boolean whether Registration was approved successfully
 	 */
 	public int getRegistrationStatus(String studentId) throws SQLException;
 	
 	/**
-	 * @param sRollNo : student id
+	 * @param studentId : student id
 	 * @throws SQLException 
 	 */
 	public void setRegistrationStatus(String studentId) throws SQLException;

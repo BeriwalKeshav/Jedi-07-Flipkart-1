@@ -67,6 +67,7 @@ public class StudentDAOOperation implements StudentDAOInterface{
 			preparedStatement.setString(2, student.getuName());
 			preparedStatement.setString(3, student.getuPwd());
 			preparedStatement.setDate(4,new Date(student.getuCrDate().getTime()));
+			preparedStatement.setString(5,"STUDENT");
 
 			int rowsAffected=preparedStatement.executeUpdate();
 			if(rowsAffected==1)
