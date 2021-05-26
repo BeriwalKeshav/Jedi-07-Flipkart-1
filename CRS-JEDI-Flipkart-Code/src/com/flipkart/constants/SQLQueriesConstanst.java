@@ -42,5 +42,9 @@ public class SQLQueriesConstanst {
 	public static final String ADD_STUDENT="insert into student (userId,branch,approved) values (?,?,?)";
 	public static final String GET_STUDENT_ID="select student.userId from user inner join student on student.userId = user.userName where user.userId = ? ";
 	public static final String IS_APPROVED="select approved from student where userId = ? ";
+	public static final String NUM_OF_REGISTERED_COURSES=" select studentId from registered_courses where studentId = ? ";
+	public static final String IS_REGISTERED=" select courseCode from registered_courses where courseCode=? and studentId=? ";
+	public static final String GET_SEATS = "select courseSeats from course where cCode = ?";
+	public static final String SET_REGISTRATION_STATUS="update student set approved = 1 where userId=?";
 
 }

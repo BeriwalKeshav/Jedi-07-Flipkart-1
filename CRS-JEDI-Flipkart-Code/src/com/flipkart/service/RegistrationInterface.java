@@ -8,6 +8,7 @@ import java.util.List;
 
 import com.flipkart.bean.Course;
 import com.flipkart.bean.RegisteredCourse;
+import com.flipkart.exception.CourseLimitCrossed;
 import com.flipkart.exception.CourseNotInCatalogException;
 import com.flipkart.exception.CourseNotRemovedException;
 import com.flipkart.exception.SeatNotAvailableException;
@@ -21,8 +22,10 @@ public interface RegistrationInterface {
 	 * @param sRollNo
 	 * @param courseList
 	 * @return boolean if Course added successfully
+	 * @throws CourseLimitCrossed 
+	 * @throws SQLException 
 	 */
-	public boolean addCourse(String cCode, String studentId, List<Course> courseList) throws CourseNotInCatalogException,SeatNotAvailableException;
+	public boolean addCourse(String cCode, String studentId, List<Course> courseList) throws CourseNotInCatalogException,SeatNotAvailableException, CourseLimitCrossed, SQLException;
 	
 	/**
 	 * @param cCode
@@ -66,7 +69,7 @@ public interface RegistrationInterface {
 	/**
 	 * @param sRollNo
 	 */
-	public void setRegistrationStatus(int sRollNo);
+	public void setRegistrationStatus(String studentId);
 
 	
 	

@@ -4,6 +4,9 @@ import com.flipkart.*;
 import java.util.*;
 import java.sql.SQLException;
 import com.flipkart.bean.Course;
+import com.flipkart.exception.CourseLimitCrossed;
+import com.flipkart.exception.CourseNotInCatalogException;
+import com.flipkart.exception.SeatNotAvailableException;
 import com.flipkart.service.RegistrationInterface;
 import com.flipkart.service.RegistrationOperation;
 public class StudentClientMenu {
@@ -97,13 +100,25 @@ public class StudentClientMenu {
 				System.out.println("Enter Course code for Course"+(course_count+1));
 				String courseCode=sc.next();
 				if(registrationinterface.addCourse(courseCode,studentId, avail_course)) {
-					
+					System.out.println("Course "+courseCode +" added Sucessfully");
+				}
+				else {
+					System.out.println("Already Registerd for the course: "+ courseCode);
 				}
 				
 			}
-			catch{
+			catch(SQLException | CourseNotInCatalogException | SeatNotAvailableException | CourseLimitCrossed e){
+				System.out.println(e.getMessage());
 				
 			}
+		}
+		System.out.println("Student "+studentId + " registerd sucesssfully");
+		if_registered=1;
+		try {
+			registrationinterface.setRegistrationStatus(studentId);
+		}
+		catch(SQLException e){
+			System.out.println(e.getMessage());
 		}
 		
 	}
