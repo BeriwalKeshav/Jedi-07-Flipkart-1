@@ -10,9 +10,19 @@ package com.flipkart.bean;
 public class Course {
 	
 	
-	public Course(String cCode, String cName){
+	private String cCode;
+	private String cName;
+	private boolean isOffered;
+	private String ProfName;
+	private int NoOfSeats;
+	/**
+	 * @param sql2 
+	 * @param sql 
+	 */
+	public Course(String sql, String sql2) {
 		super();
 		this.cCode = cCode;
+		this.cName = cName;
 	}
 	/**
 	 * @param cCode
@@ -20,7 +30,7 @@ public class Course {
 	 * @param isOffered
 	 * @param profName
 	 */
-	public Course(String cCode, String cName, String profName,boolean isOffered) {
+	public Course(String cCode, String cName, String profName, boolean isOffered) {
 		super();
 		this.cCode = cCode;
 		this.cName = cName;
@@ -28,11 +38,7 @@ public class Course {
 		ProfName = profName;
 	}
 
-	private String cCode;
-	private String cName;
-	private boolean isOffered;
-	private String ProfName;
-	private int NoOfSeats;
+	
 	/**
 	 * @param cCode
 	 * @param cname
@@ -40,7 +46,7 @@ public class Course {
 	 * @param profName
 	 * @param noOfSeats
 	 */
-	public Course(String cCode, String cname, boolean isOffered, String profName, int noOfSeats) {
+	public Course(String cCode, String cName, boolean isOffered, String profName, int noOfSeats) {
 		super();
 		this.cCode = cCode;
 		this.cName = cName;

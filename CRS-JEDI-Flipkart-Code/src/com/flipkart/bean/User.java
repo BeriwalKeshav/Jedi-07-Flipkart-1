@@ -69,10 +69,10 @@ public class User {
 	}
 
 	/**
-	 * @param uCrDate the uCrDate to set
+	 * @param createDate the uCrDate to set
 	 */
-	public void setuCrDate(Date uCrDate) {
-		this.uCrDate = uCrDate;
+	public void setuCrDate(Date createDate) {
+		this.uCrDate = createDate;
 	}
 
 }

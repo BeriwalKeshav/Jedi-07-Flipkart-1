@@ -4,7 +4,7 @@
 package com.flipkart.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
+import java.util.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -30,7 +30,7 @@ import com.flipkart.utils.DBUtil;
  * @author JEDI-7
  *
  */
-public class AdminDAOImpl implements AdminDAOInterface {
+public class AdminDAOOperation implements AdminDAOInterface {
 
 	private PreparedStatement statement = null;
 
@@ -100,7 +100,7 @@ public class AdminDAOImpl implements AdminDAOInterface {
 			statement.setString(1, user.getuId());
 			statement.setString(2, user.getuName());
 			statement.setString(3, user.getuPwd());
-			statement.setDate(4, (Date) user.getuCrDate());
+			statement.setObject(4,user.getuCrDate());
 			int row = statement.executeUpdate();
 
 			System.out.println(row + " user added.");
@@ -254,8 +254,8 @@ public class AdminDAOImpl implements AdminDAOInterface {
 			ResultSet resultSet = statement.executeQuery();
 
 			while (resultSet.next()) {
-
-				Course course = new Course();
+				
+				Course course = new Course(sql,sql);
 				course.setcCode(resultSet.getString(1));
 				course.setcName(resultSet.getString(2));
 				courseList.add(course);
