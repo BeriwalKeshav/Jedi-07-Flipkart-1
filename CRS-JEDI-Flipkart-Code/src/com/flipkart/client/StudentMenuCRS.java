@@ -167,7 +167,7 @@ public class StudentMenuCRS {
 	
 	public void viewAllNotifications(String StudentId) {
 		List<Notification> allNotifications = null; 
-		NotificationInterface notify = new NotificationOpearation();
+		NotificationInterface notify = NotificationOpearation.getInstance();
 		try {
 			allNotifications = notify.getAllNotifications(StudentId);
 		}
