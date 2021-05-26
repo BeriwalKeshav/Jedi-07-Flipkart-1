@@ -5,10 +5,13 @@ import java.util.*;
 import java.sql.SQLException;
 import com.flipkart.bean.Course;
 import com.flipkart.bean.RegisteredCourse;
+import com.flipkart.bean.Notification;
 import com.flipkart.exception.CourseLimitCrossed;
 import com.flipkart.exception.CourseNotInCatalogException;
 import com.flipkart.exception.CourseNotRemovedException;
 import com.flipkart.exception.SeatNotAvailableException;
+import com.flipkart.service.NotificationInterface;
+import com.flipkart.service.NotificationOpearation;
 import com.flipkart.service.RegistrationInterface;
 import com.flipkart.service.RegistrationOperation;
 
@@ -34,7 +37,8 @@ public class StudentMenuCRS {
 			System.out.println("4. Add Courses");
 			System.out.println("5. Drop Courses");
 			System.out.println("6. ViewReportCard");
-			System.out.println("7. Logout");
+			System.out.println("7. View Notifications");
+			System.out.println("8. Logout");
 //			Scanner sc= new Scanner(System.in); 
 
 			int c = sc.nextInt();
@@ -59,7 +63,10 @@ public class StudentMenuCRS {
 				case 6:
 					viewReportCard(studentId);
 					break;
-				case 7:
+				case 7: 
+					viewAllNotifications(studentId);
+					break;
+				case 8:
 					b = false;
 					logout(studentId);
 					break;
@@ -149,6 +156,21 @@ public class StudentMenuCRS {
 			System.out.println(e.getMessage());
 		}
 
+	}
+	
+	public void viewAllNotifications(String StudentId) {
+		List<Notification> allNotifications = null; 
+		NotificationInterface notify = new NotificationOpearation();
+		try {
+			allNotifications = notify.getAllNotifications(StudentId);
+		}
+		catch (SQLException ex){
+			System.out.println("Some Error Occured!");
+		}
+		System.out.println("You have " + allNotifications.size() + " Notifications!\n");
+		for(Notification nf: allNotifications) {
+			System.out.println(nf.getNotifyId() + '\t' + nf.getMsg());
+		}
 	}
 
 	public List<Course> viewRegisteredCourses(String studentId) {

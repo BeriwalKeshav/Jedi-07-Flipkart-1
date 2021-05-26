@@ -426,3 +426,16 @@
 
 22:49:25,202  INFO CRSApplicationClient,main:91 - Enter user input : 
 22:49:27,808  INFO CRSApplicationClient,main:68 - Exiting Application...
+23:00:09,281  INFO CRSApplicationClient,main:82 - 
+
+++++++++++++++++++++++++++++++++++
+23:00:09,285  INFO CRSApplicationClient,main:83 - ++++++++++++  CMS  +++++++++++++++
+23:00:09,285  INFO CRSApplicationClient,main:84 - Menu for Course Management System:
+23:00:09,286  INFO CRSApplicationClient,main:85 - 1. Login
+23:00:09,286  INFO CRSApplicationClient,main:86 - 2. Student Registration
+23:00:09,286  INFO CRSApplicationClient,main:87 - 3. Update password
+23:00:09,286  INFO CRSApplicationClient,main:88 - 4. Exit
+23:00:09,287  INFO CRSApplicationClient,main:89 - ++++++++++++++++++++++++++++++++++
+
+
+23:00:09,287  INFO CRSApplicationClient,main:91 - Enter user input : 
