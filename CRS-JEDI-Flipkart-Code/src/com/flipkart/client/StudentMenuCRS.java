@@ -13,7 +13,7 @@ import com.flipkart.exception.CourseNotInCatalogException;
 import com.flipkart.exception.CourseNotRemovedException;
 import com.flipkart.exception.SeatNotAvailableException;
 import com.flipkart.service.NotificationInterface;
-import com.flipkart.service.NotificationOpearation;
+import com.flipkart.service.NotificationOperation;
 import com.flipkart.service.RegistrationInterface;
 import com.flipkart.service.RegistrationOperation;
 
@@ -190,7 +190,7 @@ public class StudentMenuCRS {
 	public void viewAllNotifications(String StudentId) {
 		List<Notification> allNotifications = null; 
 
-		NotificationInterface notify =  NotificationOpearation.getInstance();
+		NotificationInterface notify =  NotificationOperation.getInstance();
 		try {
 			allNotifications = notify.getAllNotifications(StudentId);
 		}
@@ -369,7 +369,7 @@ public class StudentMenuCRS {
 				
 				ModeOfPayment mode = ModeOfPayment.getModeofPayment(sc.nextInt());
 				NotificationDAOInterface notificationDaoOperation = NotificationDAOOperation.getInstance();
-				NotificationInterface notificationInterface = NotificationOpearation.getInstance();
+				NotificationInterface notificationInterface = NotificationOperation.getInstance();
 				
 				if(mode == null)
 					System.out.println("Invalid Input");

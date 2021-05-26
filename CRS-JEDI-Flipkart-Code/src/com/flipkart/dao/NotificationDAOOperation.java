@@ -12,7 +12,7 @@ import java.util.UUID;
 import com.flipkart.utils.DBUtil;
 import com.flipkart.bean.Notification;
 import com.flipkart.constants.SQLQueriesConstanst;
-import com.flipkart.service.NotificationOpearation;
+import com.flipkart.service.NotificationOperation;
 
 /**
  * @author JEDI-07
@@ -119,8 +119,8 @@ public class NotificationDAOOperation implements NotificationDAOInterface{
 		try {
 			referenceId = UUID.randomUUID().toString();
 			PreparedStatement statement = connection.prepareStatement(SQLQueriesConstanst.INSERT_PAYMENT);
-			statement.setString(1,StudentId);
-			statement.setString(2,referenceId);
+			statement.setString(2,StudentId);
+			statement.setString(1,referenceId);
 			statement.setInt(3, amount);
 			statement.setBoolean(4, status);
 			statement.setString(5, paymentType);

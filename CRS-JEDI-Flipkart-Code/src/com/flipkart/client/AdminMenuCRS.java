@@ -12,15 +12,18 @@ import com.flipkart.bean.Course;
 import com.flipkart.bean.Professor;
 import com.flipkart.bean.RegisteredCourse;
 import com.flipkart.bean.Student;
+import com.flipkart.bean.User;
 import com.flipkart.exception.CourseAlreadyInCatalogException;
 import com.flipkart.exception.CourseNotInCatalogException;
 import com.flipkart.exception.CourseNotRemovedException;
 import com.flipkart.exception.ProfessorAdditionFailedException;
 import com.flipkart.exception.StudentNotFoundForApprovalException;
-import com.flipkart.exception.UserNotFoundException;
 import com.flipkart.exception.UserNameAlreadyInUseException;
+import com.flipkart.exception.UserNotFoundException;
 import com.flipkart.service.AdminInterface;
 import com.flipkart.service.AdminOperation;
+import com.flipkart.service.NotificationInterface;
+import com.flipkart.service.NotificationOperation;
 
 /**
  * @author JEDI-7
@@ -88,7 +91,7 @@ public class AdminMenuCRS {
 
 			case 8:
 				generateReportCard();
-
+				break;
 			case 9:
 				crsMainLogout();
 				break;
@@ -189,6 +192,7 @@ public class AdminMenuCRS {
 	 * @throws Student Not Found For Approval Exception.
 	 */
 	private void approveStudents() {
+		NotificationInterface notificationInterface = NotificationOperation.getInstance(); 
 		List<Student> studentList = viewPendingStudents();
 		if (studentList.size() == 0) {
 			return;
@@ -198,6 +202,7 @@ public class AdminMenuCRS {
 
 		try {
 			adminOperation.approveStudents(studentUserId, studentList);
+			//Add Payment Notification
 		} catch (StudentNotFoundForApprovalException e) {
 			System.out.println(e.getMessage());
 		}
@@ -253,17 +258,17 @@ public class AdminMenuCRS {
 	 */
 	private void assignProfessor() {
 		List<Professor> professorList = adminOperation.showProfessors();
-		System.out.println(String.format("%20s | %20s | %20s ", "ProfessorId", "Name", "Designation"));
+		System.out.println(String.format("%20s | %20s | %20s ", "ProfessorId",  "Designation", "Department"));
 		for (Professor professor : professorList) {
-			System.out.println(String.format("%20s | %20s | %20s ", professor.getuId(), professor.getuName(),
-					professor.getpDesignation()));
+			System.out.println(String.format("%20s | %20s | %20s ", professor.getuName(),
+					professor.getpDesignation(),professor.getpDepartment()));
 		}
 
 		System.out.println("\n\n");
 		List<Course> courseList = adminOperation.viewCourses();
-		System.out.println(String.format("%20s | %20s", "CourseCode", "CourseName"));
+		System.out.println(String.format("%20s | %20s | %20s", "CourseCode", "CourseName", "Instructor"));
 		for (Course course : courseList) {
-			System.out.println((String.format("%20s | %20s ", course.getcCode(), course.getcName())));
+			System.out.println((String.format("%20s | %20s | %20s", course.getcCode(), course.getcName(),course.getProfName())));
 		}
 
 		System.out.println(("Enter Course Code:"));

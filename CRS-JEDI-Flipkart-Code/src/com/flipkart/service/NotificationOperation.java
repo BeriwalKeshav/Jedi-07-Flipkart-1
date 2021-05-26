@@ -17,15 +17,15 @@ import com.flipkart.dao.ProfessorDAOOperation;
  * @author JEDI-7
  *
  */
-public class NotificationOpearation implements NotificationInterface{
+public class NotificationOperation implements NotificationInterface{
 	
 	
 	
-	private static volatile NotificationOpearation instance = null;
+	private static volatile NotificationOperation instance = null;
 	NotificationDAOInterface notificationDAOInterface= NotificationDAOOperation.getInstance();
 		
 	
-	private NotificationOpearation()
+	private NotificationOperation()
 	{
 		
 	}
@@ -34,11 +34,11 @@ public class NotificationOpearation implements NotificationInterface{
 	 * Method to make NotificationOpearation Singleton
 	 * @return
 	 */
-	public static NotificationOpearation getInstance(){
+	public static NotificationOperation getInstance(){
 		
 		if(instance == null){
-			synchronized(NotificationOpearation.class){
-				instance= new NotificationOpearation();
+			synchronized(NotificationOperation.class){
+				instance= new NotificationOperation();
 			}
 		}
 		return instance;
@@ -91,4 +91,14 @@ public class NotificationOpearation implements NotificationInterface{
 		return notifications;
 	}
 	
+	public String addPayment(String StudentId,int amount,boolean status,String paymentType) throws SQLException {
+		String referenceId = null;
+		try {
+			referenceId = notificationDAOInterface.addPayment(StudentId,amount,status,paymentType);
+		} 
+		catch(SQLException ex) {
+			throw ex;
+		}
+		return referenceId;
+	}
 }

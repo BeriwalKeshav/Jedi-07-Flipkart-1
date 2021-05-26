@@ -153,6 +153,7 @@ public class AdminDAOOperation implements AdminDAOInterface {
 	public void approveStudents(String studentId) throws StudentNotFoundForApprovalException {
 
 		statement = null;
+		
 		try {
 			String sql = SQLQueriesConstanst.APPROVE_STUDENT_QUERY;
 			statement = connection.prepareStatement(sql);
@@ -285,9 +286,7 @@ public class AdminDAOOperation implements AdminDAOInterface {
 
 			while (resultSet.next()) {
 
-				Course course = new Course(sql, sql);
-				course.setcCode(resultSet.getString(1));
-				course.setcName(resultSet.getString(2));
+				Course course = new Course(resultSet.getString(1),resultSet.getString(2),resultSet.getString(3));
 				courseList.add(course);
 
 			}
@@ -318,9 +317,10 @@ public class AdminDAOOperation implements AdminDAOInterface {
 
 			while (resultSet.next()) {
 
-				Professor professor = new Professor(sql, sql);
+				Professor professor = new Professor();
 				professor.setpDepartment(resultSet.getString(1));
 				professor.setpDesignation(resultSet.getString(2));
+				professor.setuName(resultSet.getString(3));
 				professorList.add(professor);
 
 			}

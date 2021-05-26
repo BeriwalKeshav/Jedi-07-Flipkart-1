@@ -30,13 +30,13 @@ public class SQLQueriesConstanst {
 	
 	public static final String ADD_PROFESSOR_QUERY = "INSERT INTO professor(department, designation, proffid) VALUES (?, ?, ?)";
 	public static final String ADD_USER_QUERY = "INSERT INTO user(userId, userName, passwordHash, createDate ,role) values (?, ?, ?, ?, ?)";
-	public static final String APPROVE_STUDENT_QUERY = "UPDATE student SET approved = 1 where studentId = ?";
+	public static final String APPROVE_STUDENT_QUERY = "UPDATE student SET approved = 2 where userId = ?";
 	public static final String ADD_COURSE_QUERY = "INSERT INTO course(cCode, cName,isOffered,courseSeats) values (?, ?,?,?)";
 	public static final String DELETE_COURSE_QUERY = "DELETE FROM course WHERE cCode = ?";
-	public static final String ASSIGN_COURSE_QUERY = "UPDATE course SET professorId = ? isOffered = ? where cCode = ?";
-	public static final String VIEW_COURSE_QUERY = "SELECT cCode, cName FROM course";
-	public static final String VIEW_PROFESSOR_QUERY = "SELECT department, designation FROM professor";
-	public static final String VIEW_PENDING_ADMISSION_QUERY = "SELECT student.userId, user.userName, student.branch FROM (student INNER JOIN user ON user.userName = student.userId) WHERE student.approved = 0 OR student.approved = NULL";
+	public static final String ASSIGN_COURSE_QUERY = "UPDATE course SET instructor = ?,isOffered = ?, courseSeats = 10 where cCode = ?";
+	public static final String VIEW_COURSE_QUERY = "SELECT cCode, cName, instructor FROM course";
+	public static final String VIEW_PROFESSOR_QUERY = "SELECT department, designation, proffId FROM professor";
+	public static final String VIEW_PENDING_ADMISSION_QUERY = "SELECT student.userId, user.userName, student.branch FROM (student INNER JOIN user ON user.userName = student.userId) WHERE student.approved = 1";
 	public static final String VIEW_REPORT_CARD = "SELECT * FROM registered_courses WHERE studentId = ?";
 	public static final String GET_REGISTER_STATUS=" select approved from student where userId = ? ";
 	

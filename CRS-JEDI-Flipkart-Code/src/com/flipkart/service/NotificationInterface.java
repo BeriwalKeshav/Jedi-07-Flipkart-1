@@ -30,4 +30,5 @@ public interface NotificationInterface {
 	 */
 	public String getReferenceId(String id); 
 	public List<Notification> getAllNotifications(String StudentId) throws SQLException;
+	public String addPayment(String StudentId,int amount,boolean status,String paymentType) throws SQLException;
 }
