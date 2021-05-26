@@ -4,6 +4,7 @@ import com.flipkart.*;
 import java.util.*;
 import java.sql.SQLException;
 import com.flipkart.bean.Course;
+import com.flipkart.bean.RegisteredCourse;
 import com.flipkart.exception.CourseLimitCrossed;
 import com.flipkart.exception.CourseNotInCatalogException;
 import com.flipkart.exception.CourseNotRemovedException;
@@ -224,7 +225,18 @@ public class StudentMenuCRS {
 
 //		System.out.println("Drop the course ");
 	public void viewReportCard(String studentId) {
-		System.out.println("Show ReportCard ");
+		try {
+			List<RegisteredCourse> registeredCourses = new ArrayList<RegisteredCourse>();
+			registeredCourses = registrationinterface.viewReportCard(studentId);
+			System.out.println("Student Username: "+studentId);
+			System.out.println(String.format("%12s %12s %12s", "Course Code", "Semester", "Grade"));
+			for(RegisteredCourse rc: registeredCourses){
+				System.out.println(String.format("%12s %12s %12s", rc.getcCode(), rc.getSem(), rc.getGrade().getGrade()));
+			}
+		} catch (Exception ex) {
+			System.out.println(ex.getMessage());
+		}
+	
 	}
 
 	public void logout(String studentId) {

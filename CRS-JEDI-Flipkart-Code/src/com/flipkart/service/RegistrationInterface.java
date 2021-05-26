@@ -53,8 +53,9 @@ public interface RegistrationInterface {
 	/**
 	 * @param sRollNo
 	 * @return List of RegisteredCourse as it has grade and semester
+	 * @throws SQLException 
 	 */
-	public List<RegisteredCourse> viewReportCard(int sRollNo);
+	public List<RegisteredCourse> viewReportCard(String studentId) throws SQLException;
 	
 	/**
 	 * @param sRollNo
