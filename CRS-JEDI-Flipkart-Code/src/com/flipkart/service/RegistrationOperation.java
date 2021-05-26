@@ -22,7 +22,7 @@ import com.flipkart.exception.SeatNotAvailableException;
 public class RegistrationOperation implements RegistrationInterface{
 	RegistrationDAOInterface registrationDAOInterface = new RegistrationDAOOperation();
 	@Override
-	public boolean addCourse(String cCode, int sRollNo, List<Course> courseList)
+	public boolean addCourse(String cCode, String studentId, List<Course> courseList)
 			throws CourseNotInCatalogException, SeatNotAvailableException {
 		// TODO Auto-generated method stub
 		return false;
@@ -61,9 +61,9 @@ public class RegistrationOperation implements RegistrationInterface{
 	}
 
 	@Override
-	public boolean getRegistrationStatus(int sRollNo) {
+	public int getRegistrationStatus(String studentId) throws SQLException {
 		// TODO Auto-generated method stub
-		return false;
+		return registrationDAOInterface.getRegistrationStatus(studentId);
 	}
 
 	@Override

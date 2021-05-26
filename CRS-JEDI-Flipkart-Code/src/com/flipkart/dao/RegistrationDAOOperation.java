@@ -9,20 +9,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
-//import org.apache.log4j.Logger;
-
 import com.flipkart.bean.Course;
 import com.flipkart.bean.Grade;
-import com.flipkart.bean.Notification;
 import com.flipkart.bean.RegisteredCourse;
 //import com.flipkart.constant.Grade;
 //import com.flipkart.constant.ModeOfPayment;
 //import com.flipkart.constant.NotificationType;
 import com.flipkart.constants.SQLQueriesConstanst;
-import com.flipkart.exception.RegisteredCourseLimitExceeded;
-import com.flipkart.exception.CourseNotInCatalogException;
-import com.flipkart.exception.SeatNotAvailableException;
 import com.flipkart.utils.DBUtil;
 
 /**
@@ -203,7 +196,7 @@ public class RegistrationDAOOperation implements RegistrationDAOInterface{
 			{
 				String cCode = rs.getString("cCode");
 				String studId = rs.getString("studentId");
-				String courseName = rs.getString("cName");
+//				String courseName = rs.getString("cName");
 				Grade grade = new Grade(rs.getString("grade"));
 				RegisteredCourse obj = new RegisteredCourse(cCode, studId, semester, grade);
 				grade_List.add(obj);
@@ -252,49 +245,28 @@ public class RegistrationDAOOperation implements RegistrationDAOInterface{
 	}
 
 	@Override
-	public boolean getRegistrationStatus(String studentId) throws SQLException {
+	public int getRegistrationStatus(String studentId) throws SQLException {
 		// TODO Auto-generated method stub
-		return false;
+		Connection connection = DBUtil.getConnection();
+		int status=0;
+		try 
+		{
+			PreparedStatement preaparedstatement = connection.prepareStatement(SQLQueriesConstanst.GET_REGISTER_STATUS);
+			preaparedstatement.setString(1, studentId);
+			ResultSet rs = preaparedstatement.executeQuery();
+			rs.next();
+			status=rs.getInt("approved");
+		} 
+		catch(SQLException e){
+			System.out.println(e.getMessage());
+		}
+		
+		return status;
 	}
+
 
 	@Override
 	public void setRegistrationStatus(String studentId) throws SQLException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public List<RegisteredCourse> viewRegisteredCourses(int studentId) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public double calculateFee(int studentId) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int numOfRegisteredCourses(int studentId) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public boolean isRegistered(String courseCode, int studentId) throws SQLException {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean getRegistrationStatus(int studentId) throws SQLException {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public void setRegistrationStatus(int studentId) throws SQLException {
 		// TODO Auto-generated method stub
 		
 	}
