@@ -4,9 +4,12 @@ import com.flipkart.*;
 import java.util.*;
 import java.sql.SQLException;
 import com.flipkart.bean.Course;
+import com.flipkart.bean.Notification;
 import com.flipkart.exception.CourseLimitCrossed;
 import com.flipkart.exception.CourseNotInCatalogException;
 import com.flipkart.exception.SeatNotAvailableException;
+import com.flipkart.service.NotificationInterface;
+import com.flipkart.service.NotificationOpearation;
 import com.flipkart.service.RegistrationInterface;
 import com.flipkart.service.RegistrationOperation;
 public class StudentClientMenu {
@@ -54,7 +57,10 @@ public class StudentClientMenu {
 				case 6:
 					viewReportCard(studentId);
 					break;
-				case 7:
+				case 7: 
+					viewAllNotifications(studentId);
+					break;
+				case 8:
 					b = false;
 					logout(studentId);
 					break;
@@ -88,6 +94,20 @@ public class StudentClientMenu {
 			System.out.println(obj.getcCode() +" " + obj.getcName() +" "+  obj.getProfName() +" "+ obj.getNoOfSeats());
 		}
 		return course_avail;
+	}
+	public void viewAllNotifications(String StudentId) {
+		List<Notification> allNotifications = null; 
+		NotificationInterface notify = new NotificationOpearation();
+		try {
+			allNotifications = notify.getAllNotifications(StudentId);
+		}
+		catch (SQLException ex){
+			System.out.println("Some Error Occured!");
+		}
+		System.out.println("You have " + allNotifications.size() + " Notifications!\n");
+		for(Notification nf: allNotifications) {
+			System.out.println(nf.getNotifyId() + '\t' + nf.getMsg());
+		}
 	}
 	public void registerCourses(String studentId) {
 		if(if_registered>0) {
