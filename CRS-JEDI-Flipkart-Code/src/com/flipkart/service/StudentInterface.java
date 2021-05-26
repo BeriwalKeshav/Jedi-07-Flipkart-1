@@ -26,12 +26,12 @@ public interface StudentInterface{
 	 * @param uId
 	 * @return
 	 */
-	public int getStudentId(UUID uId);
+	public String getStudentId(UUID uId);
 	
     	
 	/**
 	 * @param sId
 	 * @return
 	 */
-	public boolean isApproved(int sId);
+	public boolean isApproved(String sId);
 }
