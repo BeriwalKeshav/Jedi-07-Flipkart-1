@@ -117,9 +117,9 @@ public class AdminMenuCRS {
 
 		scanner.nextLine();
 		System.out.println("Enter Course Name:");
-		String courseName = scanner.nextLine();
-		Course course = new Course(courseCode, courseName, null, false);
 
+		String courseName = scanner.nextLine();
+		Course course = new Course(courseCode, courseName, null, false,10);
 		try {
 			adminOperation.addCourse(course, courseList);
 		} catch (CourseAlreadyInCatalogException e) {

@@ -24,4 +24,9 @@ public class StudentNotRegisteredException extends Exception{
 		return this.userName;
 	}
 	
+	@Override
+	public String getMessage() {
+		return "Can not add student " + userName + " to database";
+	}
+	
 }

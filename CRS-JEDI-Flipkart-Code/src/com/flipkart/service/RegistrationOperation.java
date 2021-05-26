@@ -43,7 +43,7 @@ public class RegistrationOperation implements RegistrationInterface{
 //			throw new CourseNotFoundException(courseCode);
 //		}
 		
-		return registrationDAOInterface.addCourse(cCode, 1,studentId);
+		return registrationDAOInterface.addCourse(studentId, 1,cCode);
 	}
 
 	@Override
@@ -59,11 +59,11 @@ public class RegistrationOperation implements RegistrationInterface{
 		
 		return registrationDAOInterface.viewCourses(studentId);
 	}
-
+	
 	@Override
-	public List<Course> viewRegisteredCourses(int sRollNo) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Course> viewRegisteredCourses(String studentId) throws SQLException {
+			return registrationDAOInterface.viewRegisteredCourses(studentId);
+		
 	}
 
 	@Override

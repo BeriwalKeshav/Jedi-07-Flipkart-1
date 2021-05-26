@@ -5,8 +5,9 @@ package com.flipkart.service;
 
 import java.util.UUID;
 
+import com.flipkart.exception.ProfessorAdditionFailedException;
 import com.flipkart.exception.StudentNotRegisteredException;
-
+import com.flipkart.exception.UserNameAlreadyInUseException;
 import com.flipkart.bean.Student;
 //import com.flipkart.client.CRSApplication;
 //import com.flipkart.constant.Gender;
@@ -46,10 +47,18 @@ public class StudentOperation implements StudentInterface {
 	}
 	
 	@Override
-	public int register(String uname, UUID uID, String uPwd, String sBranch, int sRollNo)
-			throws StudentNotRegisteredException {
+	public int addStudent(Student student)
+			throws StudentNotRegisteredException, UserNameAlreadyInUseException {
 		// TODO Auto-generated method stub
-		return 0;
+		int flag=1;
+		try {
+			studentDaoInterface.addStudent(student);
+			
+		} catch (StudentNotRegisteredException | UserNameAlreadyInUseException e) {
+			flag=0;
+			throw e;
+		}
+		return flag;
 	}
 
 	@Override

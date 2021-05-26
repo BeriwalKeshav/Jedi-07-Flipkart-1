@@ -151,7 +151,7 @@ public class RegistrationDAOOperation implements RegistrationDAOInterface{
  
 			while (rs.next()) {
 				availableCourseList.add(new Course(rs.getString("cCode"), rs.getString("cName"),
-						rs.getString("instructor"), rs.getBoolean("isoffered")));
+						rs.getString("instructor"), rs.getBoolean("isoffered"),rs.getInt("courseSeats")));
  
 			}
 			
@@ -178,7 +178,33 @@ public class RegistrationDAOOperation implements RegistrationDAOInterface{
 	@Override
 	public List<Course> viewRegisteredCourses(String studentId) throws SQLException {
 		// TODO Auto-generated method stub
-		return null;
+		Connection conn = DBUtil.getConnection();
+		List<Course> registeredCourseList = new ArrayList<>();
+		try 
+		{
+			stmt = conn.prepareStatement(SQLQueriesConstanst.VIEW_REGISTERED_COURSES);
+			stmt.setString(1, studentId);
+
+			ResultSet rs = stmt.executeQuery();
+			
+			while (rs.next()) {
+				registeredCourseList.add(new Course(rs.getString("cCode"), rs.getString("cName"),
+						rs.getString("profName"), rs.getBoolean("isOffered"),rs.getInt("NoOfSeats")));
+
+			}
+		} 
+		catch (SQLException e) 
+		{
+			System.out.println(e.getMessage());
+
+		} 
+		finally
+		{
+			stmt.close();
+			conn.close();
+		}
+		
+		return registeredCourseList;
 	}
 
 	@Override
@@ -238,7 +264,7 @@ public class RegistrationDAOOperation implements RegistrationDAOInterface{
 			preaparedstatement.setString(1, courseCode);
 			ResultSet rs = preaparedstatement.executeQuery();
 			while (rs.next()) {
-				return (rs.getInt("seats") > 0);
+				return (rs.getInt("courseSeats") > 0);
 			}
 
 		}

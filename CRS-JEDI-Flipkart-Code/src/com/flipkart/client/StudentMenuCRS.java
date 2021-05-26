@@ -26,10 +26,11 @@ public class StudentMenuCRS {
 			System.out.println("");
 			System.out.println("1. View Catalog");
 			System.out.println("2. Register for Courses ");
-			System.out.println("3. Add Courses");
-			System.out.println("4. Drop Courses");
-			System.out.println("5. ViewReportCard");
-			System.out.println("6. Logout");
+			System.out.println("3. View Registered Courses");
+			System.out.println("4. Add Courses");
+			System.out.println("5. Drop Courses");
+			System.out.println("6. ViewReportCard");
+			System.out.println("7. Logout");
 //			Scanner sc= new Scanner(System.in); 
 			
 			int c = sc.nextInt();
@@ -42,15 +43,18 @@ public class StudentMenuCRS {
 					registerCourses(studentId);
 					break;
 				case 3:
-					addCourses(studentId);
+					viewRegisteredCourses(studentId);
 					break;
 				case 4:
-					dropCourses(studentId);
+					addCourses(studentId);
 					break;
 				case 5:
-					viewReportCard(studentId);
+					dropCourses(studentId);
 					break;
 				case 6:
+					viewReportCard(studentId);
+					break;
+				case 7:
 					b = false;
 					logout(studentId);
 					break;
@@ -78,7 +82,7 @@ public class StudentMenuCRS {
 		}
 		
 
-		System.out.println("COURSE CODE"+ "COURSE NAME"+ "INSTRUCTOR"+ "SEATS");
+		System.out.println(" COURSE CODE "+ " COURSE NAME "+ " INSTRUCTOR "+ " SEATS ");
 		for(Course obj : course_avail)
 		{
 			System.out.println(obj.getcCode() +" " + obj.getcName() +" "+  obj.getProfName() +" "+ obj.getNoOfSeats());
@@ -111,6 +115,7 @@ public class StudentMenuCRS {
 				System.out.println(e.getMessage());
 				
 			}
+			course_count++;
 		}
 		System.out.println("Student "+studentId + " registerd sucesssfully");
 		if_registered=1;
@@ -121,6 +126,27 @@ public class StudentMenuCRS {
 			System.out.println(e.getMessage());
 		}
 		
+	}
+	public List<Course> viewRegisteredCourses(String studentId) {
+		List<Course> registeredCourses=null;
+		try {
+			registeredCourses = registrationinterface.viewRegisteredCourses(studentId);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if(registeredCourses.isEmpty()) {
+			System.out.println("You have not yet registered for any Course");
+			return null;
+		}
+		else {
+			System.out.println("Course Code" + "Course Name" + "Professor" + "");
+			for(Course obj : registeredCourses) {
+				System.out.println(obj.getcCode() + " " + obj.getcName() + " " + obj.getProfName() + " " + obj.getNoOfSeats());
+			}
+			return registeredCourses;
+		}
+
 	}
 	public void addCourses(String studentId) {
 		System.out.println("Show Catalog ");
