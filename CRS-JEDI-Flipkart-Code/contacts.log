@@ -105,3 +105,58 @@
 21:08:49,078  INFO CRSMainApplication,main:90 - Enter Password:
 21:08:50,631  INFO CRSMainApplication,main:97 - Login Status -> true
 21:08:50,633  INFO CRSMainApplication,main:110 - Student logged in!
+20:32:16,687  INFO CRSMainApplication,main:69 - ++++++++++++  CMS  +++++++++++++++
+20:32:16,688  INFO CRSMainApplication,main:70 - Menu for Course Management System:
+20:32:16,688  INFO CRSMainApplication,main:71 - 1. Login
+20:32:16,689  INFO CRSMainApplication,main:72 - 2. Student Registration
+20:32:16,689  INFO CRSMainApplication,main:73 - 3. Update password
+20:32:16,689  INFO CRSMainApplication,main:74 - 4. Exit
+20:32:16,689  INFO CRSMainApplication,main:75 - Enter user input : 
+20:32:29,170  INFO CRSMainApplication,main:69 - ++++++++++++  CMS  +++++++++++++++
+20:32:29,171  INFO CRSMainApplication,main:70 - Menu for Course Management System:
+20:32:29,172  INFO CRSMainApplication,main:71 - 1. Login
+20:32:29,172  INFO CRSMainApplication,main:72 - 2. Student Registration
+20:32:29,172  INFO CRSMainApplication,main:73 - 3. Update password
+20:32:29,172  INFO CRSMainApplication,main:74 - 4. Exit
+20:32:29,172  INFO CRSMainApplication,main:75 - Enter user input : 
+20:32:31,920  INFO CRSMainApplication,main:88 - Enter User Id:
+20:32:33,441  INFO CRSMainApplication,main:90 - Enter Password:
+20:32:34,934  INFO CRSMainApplication,main:97 - Login Status -> true
+20:32:34,935  INFO CRSMainApplication,main:120 - Admin logged in!
+20:33:50,723  INFO CRSMainApplication,main:69 - ++++++++++++++++++++++++++++++++++
+20:33:50,725  INFO CRSMainApplication,main:70 - ++++++++++++  CMS  +++++++++++++++
+20:33:50,725  INFO CRSMainApplication,main:71 - Menu for Course Management System:
+20:33:50,725  INFO CRSMainApplication,main:72 - 1. Login
+20:33:50,725  INFO CRSMainApplication,main:73 - 2. Student Registration
+20:33:50,725  INFO CRSMainApplication,main:74 - 3. Update password
+20:33:50,725  INFO CRSMainApplication,main:75 - 4. Exit
+20:33:50,725  INFO CRSMainApplication,main:76 - ++++++++++++++++++++++++++++++++++
+20:33:50,725  INFO CRSMainApplication,main:78 - Enter user input : 
+20:33:54,730  INFO CRSMainApplication,main:152 - Enter User Id:
+20:33:56,412  INFO CRSMainApplication,main:154 - Enter New Password:
+20:33:59,015 ERROR CRSMainApplication,main:167 - ++ User Not Found
+20:33:59,015  INFO CRSMainApplication,main:69 - ++++++++++++++++++++++++++++++++++
+20:33:59,015  INFO CRSMainApplication,main:70 - ++++++++++++  CMS  +++++++++++++++
+20:33:59,015  INFO CRSMainApplication,main:71 - Menu for Course Management System:
+20:33:59,015  INFO CRSMainApplication,main:72 - 1. Login
+20:33:59,015  INFO CRSMainApplication,main:73 - 2. Student Registration
+20:33:59,015  INFO CRSMainApplication,main:74 - 3. Update password
+20:33:59,015  INFO CRSMainApplication,main:75 - 4. Exit
+20:33:59,016  INFO CRSMainApplication,main:76 - ++++++++++++++++++++++++++++++++++
+20:33:59,016  INFO CRSMainApplication,main:78 - Enter user input : 
+20:36:24,319  INFO CRSMainApplication,main:69 - 
+20:36:24,321  INFO CRSMainApplication,main:70 - ++++++++++++  CMS  +++++++++++++++
+20:36:24,321  INFO CRSMainApplication,main:71 - Menu for Course Management System:
+20:36:24,321  INFO CRSMainApplication,main:72 - 1. Login
+20:36:24,321  INFO CRSMainApplication,main:73 - 2. Student Registration
+20:36:24,321  INFO CRSMainApplication,main:74 - 3. Update password
+20:36:24,321  INFO CRSMainApplication,main:75 - 4. Exit
+20:36:24,322  INFO CRSMainApplication,main:76 - ++++++++++++++++++++++++++++++++++
+
+
+20:36:24,322  INFO CRSMainApplication,main:78 - Enter user input : 
+20:36:26,311  INFO CRSMainApplication,main:91 - Enter User Id:
+20:36:27,915  INFO CRSMainApplication,main:93 - Enter Password:
+20:36:29,570 DEBUG CRSMainApplication,main:100 - Login Status -> true
+20:36:29,571 DEBUG CRSMainApplication,main:123 - Admin logged in!
+
