@@ -93,14 +93,15 @@ public class AdminDAOOperation implements AdminDAOInterface {
 
 		statement = null;
 		try {
-
+			
 			String sql = SQLQueriesConstanst.ADD_USER_QUERY;
 			statement = connection.prepareStatement(sql);
 
 			statement.setString(1, user.getuId());
 			statement.setString(2, user.getuName());
 			statement.setString(3, user.getuPwd());
-			statement.setObject(4,user.getuCrDate());
+			statement.setObject(4, user.getuCrDate());
+			statement.setObject(5, "PROFESSOR");
 			int row = statement.executeUpdate();
 
 			System.out.println(row + " user added.");
@@ -288,7 +289,7 @@ public class AdminDAOOperation implements AdminDAOInterface {
 
 			while (resultSet.next()) {
 
-				Professor professor = new Professor();
+				Professor professor = new Professor(sql,sql);
 				professor.setpDepartment(resultSet.getString(1));
 				professor.setpDesignation(resultSet.getString(2));
 				professorList.add(professor);

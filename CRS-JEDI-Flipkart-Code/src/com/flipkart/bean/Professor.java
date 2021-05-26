@@ -13,6 +13,9 @@ public class Professor extends User {
 	 * @param pDepartment
 	 * @param pDesignation
 	 */
+	public Professor() {
+		
+	}
 	public Professor(String pDepartment, String pDesignation) {
 		//super();
 		this.pDepartment = pDepartment;

@@ -166,7 +166,7 @@ public class AdminClientMenu {
 	private void addProfessor() {
 
 		Professor professor = new Professor();
-
+		
 		System.out.println("Enter Professor User Name:");
 		String professorName = scanner.next();
 		professor.setuName(professorName);

@@ -29,7 +29,7 @@ public class SQLQueriesConstanst {
 	public static final String VIEW_GRADE = "select course.cCode,registered_courses.studentId,course.cName,registered_courses.grade from course inner join registered_courses on course.cCode = registered_courses.courseCode where registered_courses.studentId = ?;";
 	
 	public static final String ADD_PROFESSOR_QUERY = "INSERT INTO professor(department, designation, proffid) VALUES (?, ?, ?)";
-	public static final String ADD_USER_QUERY = "INSERT INTO user(userId, userName, passwordHash, createDate) values (?, ?, ?, ?)";
+	public static final String ADD_USER_QUERY = "INSERT INTO user(userId, userName, passwordHash, createDate ,role) values (?, ?, ?, ?, ?)";
 	public static final String APPROVE_STUDENT_QUERY = "UPDATE student SET approved = 1 where studentId = ?";
 	public static final String ADD_COURSE_QUERY = "INSERT INTO course(cCode, cName) values (?, ?)";
 	public static final String DELETE_COURSE_QUERY = "DELETE FROM course WHERE cCode = ?";
