@@ -6,6 +6,7 @@ package com.flipkart.service;
 import java.util.List;
 import com.flipkart.bean.Course;
 import com.flipkart.bean.Professor;
+import com.flipkart.bean.RegisteredCourse;
 import com.flipkart.bean.Student;
 import com.flipkart.exception.CourseAlreadyInCatalogException;
 import com.flipkart.exception.CourseNotInCatalogException;
@@ -67,5 +68,9 @@ public interface AdminInterface {
 	public List<Student> viewPendingStudents();
 	
 	
+	/**
+	 * @return
+	 */
+	public List<RegisteredCourse> generateReportCard(String studentId);	
 
 }

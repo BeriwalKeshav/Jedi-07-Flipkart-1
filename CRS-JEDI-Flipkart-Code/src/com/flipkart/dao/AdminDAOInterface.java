@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.flipkart.bean.Course;
 import com.flipkart.bean.Professor;
+import com.flipkart.bean.RegisteredCourse;
 import com.flipkart.bean.Student;
 import com.flipkart.bean.User;
 import com.flipkart.exception.CourseAlreadyInCatalogException;
@@ -86,4 +87,9 @@ public interface AdminDAOInterface {
 	 */
 	public List<Student> viewPendingStudents();
 
+	
+	/**
+	 * @return
+	 */
+	public List<RegisteredCourse> generateReportCard(String studentId);
 }

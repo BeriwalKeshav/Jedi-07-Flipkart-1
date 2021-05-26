@@ -11,6 +11,7 @@ import com.flipkart.bean.Professor;
 import com.flipkart.bean.RegisteredCourse;
 import com.flipkart.dao.ProfessorDAOInterface;
 import com.flipkart.dao.ProfessorDAOOperation;
+import com.flipkart.dao.UserDAOImpl;
 import com.flipkart.exception.GradeAddFailedException;
 import com.flipkart.exception.UserNotFoundException;
 
@@ -19,9 +20,32 @@ import com.flipkart.exception.UserNotFoundException;
  *
  */
 public class ProfessorOperation implements ProfessorInterface{
+	
+	private static volatile ProfessorOperation instance = null;
+	ProfessorDAOInterface proffDaoOperation= ProfessorDAOOperation.getInstance();
+		
+	
+	private ProfessorOperation()
+	{
+		
+	}
+	
+	/**
+	 * Method to make UserDAOImpl Singleton
+	 * @return
+	 */
+	public static ProfessorOperation getInstance(){
+		
+		if(instance == null){
+			synchronized(ProfessorOperation.class){
+				instance= new ProfessorOperation();
+			}
+		}
+		return instance;
+	}
 
 	
-	ProfessorDAOInterface proffDaoOperation= new ProfessorDAOOperation();
+	
 	
 	@Override
 	public boolean addGrade(String studentRollNo, String courseCode, Grade grade) throws GradeAddFailedException {

@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 import com.flipkart.bean.Student;
 import com.flipkart.exception.StudentNotRegisteredException;
+import com.flipkart.exception.UserNameAlreadyInUseException;
 
 /**
  * @author JEDI-7
@@ -20,7 +21,7 @@ public interface StudentDAOInterface {
 	 * @return boolean true if student is added, else false
 	 * @throws StudentNotRegisteredException
 	 */
-	public boolean addStudent(Student student) throws StudentNotRegisteredException;
+	public boolean addStudent(Student student) throws StudentNotRegisteredException,UserNameAlreadyInUseException;
 	
 	/**
 	 * Method to retrieve Student Id from User Id

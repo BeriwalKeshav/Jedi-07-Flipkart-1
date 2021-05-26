@@ -3,3 +3,5 @@
 *.class
 !/.gitignore
 /bin/
+contacts.log
+*.log

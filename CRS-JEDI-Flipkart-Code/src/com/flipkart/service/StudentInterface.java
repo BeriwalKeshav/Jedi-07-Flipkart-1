@@ -5,7 +5,9 @@ package com.flipkart.service;
 
 import java.util.UUID;
 
+import com.flipkart.bean.Student;
 import com.flipkart.exception.StudentNotRegisteredException;
+import com.flipkart.exception.UserNameAlreadyInUseException;
 
 
 public interface StudentInterface{
@@ -20,7 +22,7 @@ public interface StudentInterface{
 	 * @param sRoll
 	 * @return
 	 */
-	public int register(String uname,UUID uID,String uPwd,String sBranch,int sRollNo) throws StudentNotRegisteredException;
+	public int addStudent(Student student) throws StudentNotRegisteredException, UserNameAlreadyInUseException;
 	
 	/**
 	 * @param uId

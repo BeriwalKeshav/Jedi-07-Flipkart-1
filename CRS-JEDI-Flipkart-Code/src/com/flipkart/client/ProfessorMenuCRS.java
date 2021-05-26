@@ -22,13 +22,13 @@ import com.flipkart.service.UserOperation;
  * @author prafu
  *
  */
-public class ProfessorClientMenu {
+public class ProfessorMenuCRS {
 	
 	/**
 	 * @param proffId
 	 */
 	
-	ProfessorInterface proffInterface = new ProfessorOperation();
+	ProfessorInterface proffInterface = ProfessorOperation.getInstance();
 	
 	
 	public void renderMenu(String proffId) {

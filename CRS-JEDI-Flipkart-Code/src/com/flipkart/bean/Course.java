@@ -21,8 +21,8 @@ public class Course {
 	 */
 	public Course(String sql, String sql2) {
 		super();
-		this.cCode = cCode;
-		this.cName = cName;
+		this.cCode = sql;
+		this.cName = sql2;
 	}
 	/**
 	 * @param cCode

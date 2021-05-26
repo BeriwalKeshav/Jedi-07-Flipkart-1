@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.flipkart.bean.Course;
 import com.flipkart.bean.Professor;
+import com.flipkart.bean.RegisteredCourse;
 import com.flipkart.bean.Student;
 import com.flipkart.dao.AdminDAOInterface;
 import com.flipkart.dao.AdminDAOOperation;
@@ -89,5 +90,9 @@ public class AdminOperation implements AdminInterface {
 	
 	public List<Student> viewPendingStudents() {
 		return adminDAOOperation.viewPendingStudents();
+	}
+	
+	public List<RegisteredCourse> generateReportCard(String studentId){
+		return adminDAOOperation.generateReportCard(studentId);
 	}
 }

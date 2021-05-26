@@ -10,6 +10,7 @@ import java.sql.SQLException;
 
 import com.flipkart.constants.SQLQueriesConstanst;
 import com.flipkart.exception.UserNotFoundException;
+import com.flipkart.service.UserOperation;
 import com.flipkart.utils.DBUtil;
 
 /**
@@ -18,6 +19,30 @@ import com.flipkart.utils.DBUtil;
  */
 public class UserDAOImpl implements UserDAOInterface{
 
+	
+	private static volatile UserDAOImpl instance = null;
+	
+	
+	private UserDAOImpl()
+	{
+		
+	}
+	
+	/**
+	 * Method to make UserDAOImpl Singleton
+	 * @return
+	 */
+	public static UserDAOImpl getInstance(){
+		
+		if(instance == null){
+			synchronized(UserDAOImpl.class){
+				instance= new UserDAOImpl();
+			}
+		}
+		return instance;
+	}
+	
+	
 	@Override
 	public boolean verifyCredentials(String userName, String password) throws UserNotFoundException {
 		Connection connection = DBUtil.getConnection();
