@@ -9,6 +9,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.log4j.Logger;
+
 import com.flipkart.bean.Course;
 import com.flipkart.bean.Grade;
 import com.flipkart.bean.RegisteredCourse;
@@ -16,6 +19,7 @@ import com.flipkart.bean.RegisteredCourse;
 //import com.flipkart.constant.ModeOfPayment;
 //import com.flipkart.constant.NotificationType;
 import com.flipkart.constants.SQLQueriesConstanst;
+import com.flipkart.service.RegistrationOperation;
 import com.flipkart.utils.DBUtil;
 
 /**
@@ -26,29 +30,31 @@ import com.flipkart.utils.DBUtil;
 public class RegistrationDAOOperation implements RegistrationDAOInterface{
 	
 	private static volatile RegistrationDAOOperation instance=null;
+	private static Logger logger = Logger.getLogger(RegistrationDAOOperation.class);
 	private PreparedStatement stmt = null;
 	
-	/**
-	 * Default Constructor
-	 */
-	public RegistrationDAOOperation() {
+	StudentDAOInterface studentDaoInterface = StudentDAOOperation.getInstance();
+	
+	private RegistrationDAOOperation()
+	{
 		
 	}
-	
 	/**
-	 * Method to make RegistrationDaoOperation Singleton
-	 * @return singleton instance
+	 * Method to make RegistrationDAOOperation Singleton
+	 * @return
 	 */
 	public static RegistrationDAOOperation getInstance()
 	{
 		if(instance==null)
 		{
+			// This is a synchronized block, when multiple threads will access this instance
 			synchronized(RegistrationDAOOperation.class){
 				instance=new RegistrationDAOOperation();
 			}
 		}
 		return instance;
 	}
+
 
 	/**
 	 * DONE
@@ -79,7 +85,7 @@ public class RegistrationDAOOperation implements RegistrationDAOInterface{
 		}
 		catch (SQLException e) 
 		{
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		}
 		finally
 		{
@@ -123,7 +129,7 @@ public class RegistrationDAOOperation implements RegistrationDAOInterface{
 		}
 		catch(Exception e)
 		{
-			System.out.println("Exception found" + e.getMessage());
+			logger.error("Exception found" + e.getMessage());
 		}
 		finally
 		{
@@ -159,11 +165,11 @@ public class RegistrationDAOOperation implements RegistrationDAOInterface{
 		} 
 		catch (SQLException e) 
 		{
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		} 
 		catch (Exception e)
 		{
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		}
 		finally
 		{
@@ -195,7 +201,7 @@ public class RegistrationDAOOperation implements RegistrationDAOInterface{
 		} 
 		catch (SQLException e) 
 		{
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 
 		} 
 		finally
@@ -228,16 +234,41 @@ public class RegistrationDAOOperation implements RegistrationDAOInterface{
 			}
 
 		} catch (SQLException ex) {
-			System.out.println("SQL Exception Thrown : " + ex.getMessage());
+			logger.error("SQL Exception Thrown : " + ex.getMessage());
 		}
 
 		return registeredStudentsUnderProff;
 	}
 
 	@Override
-	public double calculateFee(String studentId) throws SQLException {
+	public int calculateFee(String studentId) throws SQLException {
 		// TODO Auto-generated method stub
-		return 0;
+		Connection conn = DBUtil.getConnection();
+		int fee = 0;
+		try
+		{
+			stmt = conn.prepareStatement(SQLQueriesConstanst.CALCULATE_FEES);
+			stmt.setString(1, studentId);
+			ResultSet rs = stmt.executeQuery();
+			rs.next();
+			fee = rs.getInt(1);
+		}
+		catch(SQLException e)
+		{
+			logger.error(e.getErrorCode());
+			logger.error(e.getMessage());
+		}
+		catch(Exception e)
+		{
+			logger.error(e.getMessage());
+		}
+		finally
+		{
+			stmt.close();
+//			conn.close();
+		}
+		
+		return fee;
 	}
 
 	@Override
@@ -257,7 +288,7 @@ public class RegistrationDAOOperation implements RegistrationDAOInterface{
 
 		}
 		catch (SQLException e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		finally
 		{
@@ -287,11 +318,11 @@ public class RegistrationDAOOperation implements RegistrationDAOInterface{
 		}
 		catch(SQLException e)
 		{
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		}
 		catch(Exception e)
 		{
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		}
 		
 		return course_count;
@@ -318,11 +349,11 @@ public class RegistrationDAOOperation implements RegistrationDAOInterface{
 		}
 		catch(SQLException e)
 		{
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		}
 		catch(Exception e)
 		{
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		}
 		
 		return check;
@@ -342,7 +373,7 @@ public class RegistrationDAOOperation implements RegistrationDAOInterface{
 			status=rs.getInt("approved");
 		} 
 		catch(SQLException e){
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		}
 		
 		return status;
@@ -361,7 +392,7 @@ public class RegistrationDAOOperation implements RegistrationDAOInterface{
 		}
 		catch (SQLException e) 
 		{
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 
 		} 
 		finally

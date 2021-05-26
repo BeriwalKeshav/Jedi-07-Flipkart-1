@@ -10,14 +10,40 @@ import java.util.UUID;
 import com.flipkart.bean.Notification;
 import com.flipkart.dao.NotificationDAOInterface;
 import com.flipkart.dao.NotificationDAOOperation;
+import com.flipkart.dao.ProfessorDAOInterface;
+import com.flipkart.dao.ProfessorDAOOperation;
 
 /**
  * @author JEDI-7
  *
  */
-public class NotificationOpearation implements NotificationInterface{
+public class NotificationOperation implements NotificationInterface{
 	
-	NotificationDAOInterface notificationDAOInterface= new NotificationDAOOperation();
+	
+	
+	private static volatile NotificationOperation instance = null;
+	NotificationDAOInterface notificationDAOInterface= NotificationDAOOperation.getInstance();
+		
+	
+	private NotificationOperation()
+	{
+		
+	}
+	
+	/**
+	 * Method to make NotificationOpearation Singleton
+	 * @return
+	 */
+	public static NotificationOperation getInstance(){
+		
+		if(instance == null){
+			synchronized(NotificationOperation.class){
+				instance= new NotificationOperation();
+			}
+		}
+		return instance;
+	}
+	
 	
 	/**
 	 * Method to send notification
@@ -65,4 +91,14 @@ public class NotificationOpearation implements NotificationInterface{
 		return notifications;
 	}
 	
+	public String addPayment(String StudentId,int amount,boolean status,String paymentType) throws SQLException {
+		String referenceId = null;
+		try {
+			referenceId = notificationDAOInterface.addPayment(StudentId,amount,status,paymentType);
+		} 
+		catch(SQLException ex) {
+			throw ex;
+		}
+		return referenceId;
+	}
 }

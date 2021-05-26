@@ -4,8 +4,8 @@
 package com.flipkart.exception;
 
 /**
- * @author vibhorkansal
- *
+ * Course registration failed exception
+ * @author JEDI-07
  */
 public class CourseRegistrationFailedException extends Exception {
 
@@ -13,8 +13,7 @@ public class CourseRegistrationFailedException extends Exception {
 
 	/**
 	 * Constructor
-	 * 
-	 * @param courseCode
+	 * @param String: course code
 	 */
 	public CourseRegistrationFailedException(String cCode) {
 		this.cCode = cCode;
@@ -22,8 +21,7 @@ public class CourseRegistrationFailedException extends Exception {
 
 	/**
 	 * Getter method
-	 * 
-	 * @return course code
+	 * @return String: course code
 	 */
 	public String getCourseCode() {
 		return cCode;
@@ -31,6 +29,7 @@ public class CourseRegistrationFailedException extends Exception {
 
 	/**
 	 * Message returned when exception is thrown
+	 * @return String: Error Message
 	 */
 	@Override
 	public String getMessage() {

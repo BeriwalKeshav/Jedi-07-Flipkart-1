@@ -19,10 +19,11 @@ public class Course {
 	 * @param sql2 
 	 * @param sql 
 	 */
-	public Course(String sql, String sql2) {
+	public Course(String ccode, String cname, String ProfName) {
 		super();
-		this.cCode = sql;
-		this.cName = sql2;
+		this.cCode = ccode;
+		this.cName = cname;
+		this.ProfName = ProfName;
 	}
 	/**
 	 * @param cCode

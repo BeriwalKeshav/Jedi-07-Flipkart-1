@@ -10,6 +10,8 @@ import com.flipkart.bean.Course;
 import com.flipkart.bean.RegisteredCourse;
 import com.flipkart.dao.RegistrationDAOInterface;
 import com.flipkart.dao.RegistrationDAOOperation;
+import com.flipkart.dao.StudentDAOInterface;
+import com.flipkart.dao.StudentDAOOperation;
 import com.flipkart.exception.CourseLimitCrossed;
 import com.flipkart.exception.CourseNotInCatalogException;
 import com.flipkart.exception.CourseNotRemovedException;
@@ -20,7 +22,35 @@ import com.flipkart.exception.SeatNotAvailableException;
  *
  */
 public class RegistrationOperation implements RegistrationInterface{
-	RegistrationDAOInterface registrationDAOInterface = new RegistrationDAOOperation();
+	
+	
+	
+	private static volatile RegistrationOperation instance=null;
+	RegistrationDAOInterface registrationDAOInterface = RegistrationDAOOperation.getInstance();
+	
+	StudentDAOInterface studentDaoInterface = StudentDAOOperation.getInstance();
+	
+	private RegistrationOperation()
+	{
+		
+	}
+	/**
+	 * Method to make RegistrationOperation Singleton
+	 * @return
+	 */
+	public static RegistrationOperation getInstance()
+	{
+		if(instance==null)
+		{
+			// This is a synchronized block, when multiple threads will access this instance
+			synchronized(RegistrationOperation.class){
+				instance=new RegistrationOperation();
+			}
+		}
+		return instance;
+	}
+	
+	
 	@Override
 	public boolean addCourse(String cCode, String studentId, List<Course> courseList,int sem)
 			throws CourseNotInCatalogException, SeatNotAvailableException,CourseLimitCrossed,SQLException {
@@ -90,9 +120,9 @@ public class RegistrationOperation implements RegistrationInterface{
 	}
 
 	@Override
-	public double calculateFee(int sRollNo) {
+	public int calculateFee(String studentId) throws SQLException {
 		// TODO Auto-generated method stub
-		return 0;
+		return registrationDAOInterface.calculateFee(studentId);
 	}
 
 	@Override

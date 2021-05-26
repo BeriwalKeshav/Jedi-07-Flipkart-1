@@ -9,9 +9,12 @@ import java.sql.Statement;
 import java.util.List;
 import java.util.UUID;
 
+import org.apache.log4j.Logger;
+
 import com.flipkart.utils.DBUtil;
 import com.flipkart.bean.Notification;
 import com.flipkart.constants.SQLQueriesConstanst;
+import com.flipkart.service.NotificationOperation;
 
 /**
  * @author JEDI-07
@@ -23,6 +26,32 @@ import com.flipkart.constants.SQLQueriesConstanst;
 
 public class NotificationDAOOperation implements NotificationDAOInterface{
 		
+	
+	private static volatile NotificationDAOOperation instance = null;
+	private static Logger logger = Logger.getLogger(NotificationDAOOperation.class);
+
+	/**
+	 * Default Constructor
+	 */
+	private NotificationDAOOperation()
+	{
+		
+	}
+	
+	/**
+	 * Method to make UserDAOImpl Singleton
+	 * @return
+	 */
+	public static NotificationDAOOperation getInstance(){
+		
+		if(instance == null){
+			synchronized(NotificationDAOOperation.class){
+				instance= new NotificationDAOOperation();
+			}
+		}
+		return instance;
+	}
+	
 	/**
 	 * Send Notification using SQL commands
 	 * @param Message: Message to be sent 
@@ -47,7 +76,7 @@ public class NotificationDAOOperation implements NotificationDAOInterface{
 			ps.executeUpdate();
 			ResultSet results = ps.getGeneratedKeys();
 						
-			System.out.println("Student with studentID" + StudentId + "has paid the fees!");
+			logger.info("Student with studentID" + StudentId + "has paid the fees!");
 		}
 		catch(SQLException ex) {
 			throw ex;
@@ -87,6 +116,7 @@ public class NotificationDAOOperation implements NotificationDAOInterface{
 	 * @return: reference id of the transaction
 	 * @throws SQLException
 	 */
+	@Override
 	public String addPayment(String StudentId,int amount,boolean status,String paymentType) throws SQLException {
 		String referenceId;
 		Connection connection = DBUtil.getConnection();
@@ -94,8 +124,8 @@ public class NotificationDAOOperation implements NotificationDAOInterface{
 		try {
 			referenceId = UUID.randomUUID().toString();
 			PreparedStatement statement = connection.prepareStatement(SQLQueriesConstanst.INSERT_PAYMENT);
-			statement.setString(1,StudentId);
-			statement.setString(2,referenceId);
+			statement.setString(2,StudentId);
+			statement.setString(1,referenceId);
 			statement.setInt(3, amount);
 			statement.setBoolean(4, status);
 			statement.setString(5, paymentType);
@@ -108,7 +138,7 @@ public class NotificationDAOOperation implements NotificationDAOInterface{
 		return referenceId;
 	}
 
-	@Override
+	@Override 
 	public List<Notification> getAllNotifications(String studentId) throws SQLException {
 		// TODO Auto-generated method stub
 		List<Notification> allnotifications = null;
