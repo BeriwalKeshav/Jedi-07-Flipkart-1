@@ -13,18 +13,18 @@ import com.flipkart.exception.GradeAddFailedException;
 import com.flipkart.exception.UserNotFoundException;
 
 /**
- * @author prafu
+ * @author JEDI-7
  *
  */
 public interface ProfessorDAOInterface {
 
 	/**
-	 * @param sRollNo
+	 * 
+	 * @param studentId
 	 * @param cCode
 	 * @param grade
-	 * @return boolean
 	 */
-	public boolean addGrade(String studentRollNo,String courseCode,Grade grade) throws GradeAddFailedException;
+	public boolean addGrade(String studentId,String courseCode,Grade grade) throws GradeAddFailedException;
 	
 	/**
 	 * @param proffId
