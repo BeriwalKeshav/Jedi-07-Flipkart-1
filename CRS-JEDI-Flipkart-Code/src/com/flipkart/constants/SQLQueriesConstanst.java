@@ -31,5 +31,7 @@ public class SQLQueriesConstanst {
 	public static final String VIEW_COURSE_QUERY = "select cCode, cName FROM course";
 	public static final String VIEW_PROFESSOR_QUERY = "SELECT department, designation FROM professor";
 	public static final String VIEW_PENDING_ADMISSION_QUERY = "SELECT userId, userName, branch FROM student JOIN user WHERE approved = 0";
-
+	public static final String INSERT_PAYMENT = "insert into payment(referenceId,studentId,amount,status,paymentType) values(?,?,?,?,?)";
+	public static final String INSERT_NOTIFICATION = "insert into notification(notificationId,message,studentId,referenceId) values(?,?,?,?)";
+	public static final String GET_REFERENCE_ID = "select * from notification where notificationId=?";
 }

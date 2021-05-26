@@ -21,7 +21,7 @@ import com.flipkart.bean.RegisteredCourse;
 //import com.flipkart.constant.NotificationType;
 import com.flipkart.constants.SQLQueriesConstanst;
 import com.flipkart.exception.RegisteredCourseLimitExceeded;
-import com.flipkart.exception.CourseNotOfferedException;
+import com.flipkart.exception.CourseNotInCatalogException;
 import com.flipkart.exception.SeatNotAvailableException;
 import com.flipkart.utils.DBUtil;
 

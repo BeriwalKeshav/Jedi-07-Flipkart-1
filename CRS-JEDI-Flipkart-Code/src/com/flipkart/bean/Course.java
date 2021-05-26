@@ -4,20 +4,26 @@
 package com.flipkart.bean;
 
 /**
- * @author vibhorkansal
+ * @author JEDI-7
  *
  */
 public class Course {
+	
+	
+	public Course(String cCode, String cName){
+		super();
+		this.cCode = cCode;
+	}
 	/**
 	 * @param cCode
-	 * @param cname
+	 * @param cName
 	 * @param isOffered
 	 * @param profName
 	 */
-	public Course(String cCode, String cname, String profName,boolean isOffered) {
+	public Course(String cCode, String cName, String profName,boolean isOffered) {
 		super();
 		this.cCode = cCode;
-		this.cname = cname;
+		this.cName = cName;
 		this.isOffered = isOffered;
 		ProfName = profName;
 	}
@@ -37,7 +43,7 @@ public class Course {
 	public Course(String cCode, String cname, boolean isOffered, String profName, int noOfSeats) {
 		super();
 		this.cCode = cCode;
-		this.cname = cname;
+		this.cName = cName;
 		this.isOffered = isOffered;
 		ProfName = profName;
 		NoOfSeats = noOfSeats;
