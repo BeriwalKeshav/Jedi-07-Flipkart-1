@@ -14,12 +14,12 @@ import com.flipkart.bean.RegisteredCourse;
 public interface RegistrationDAOInterface {
 	
 	
-	/**
-	 * @param courseCode
+	/** Method to Add Course 
 	 * @param studentId
 	 * @param semester
-	 * @return boolean whether course got added successfully
+	 * @param courseCode
 	 * @throws SQLException
+	 * @return boolean whether course got added successfully
 	 */
 	public boolean addCourse(String studentId,int semester, String courseCode) throws SQLException;
 	
@@ -27,12 +27,18 @@ public interface RegistrationDAOInterface {
 	 * @param courseCode
 	 * @param studentId
 	 * @param semester
-	 * @return boolean whether course got added successfully
 	 * @throws SQLException
+	 * @return boolean whether course got added successfully
 	 */
 	public boolean dropCourse(String studentId,int semester, String courseCode) throws SQLException;
 	
 	
+	/**
+	 * Method to View Courses
+	 * @param studentId
+	 * @return List of Courses
+	 * @throws SQLException
+	 */
 	
 	public List<Course> viewCourses(String studentId) throws SQLException;
 	
@@ -40,8 +46,8 @@ public interface RegistrationDAOInterface {
 	/**
 	 * Method to View list of Registered Courses
 	 * @param studentId
-	 * @return list of Registered Courses
 	 * @throws SQLException 
+	 * @return list of Registered Courses
 	 */
 	public List<Course> viewRegisteredCourses(String studentId) throws SQLException;
 	
@@ -65,6 +71,7 @@ public interface RegistrationDAOInterface {
 	public double calculateFee(String studentId) throws SQLException;
 	
 	/**
+	 * Method to see if there is Seat available for a course
 	 * @param courseCode
 	 * @return boolean whether seat is available in a course
 	 * @throws SQLException
@@ -95,6 +102,7 @@ public interface RegistrationDAOInterface {
 	 * @param studentId
 	 * @return Student's registration status
 	 * @throws SQLException
+	 * return RegistrationStatus
 	 */
 	public int getRegistrationStatus(String studentId) throws SQLException;
 	

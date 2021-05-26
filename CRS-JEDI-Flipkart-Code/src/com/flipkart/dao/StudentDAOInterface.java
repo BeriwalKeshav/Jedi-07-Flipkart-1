@@ -18,8 +18,9 @@ public interface StudentDAOInterface {
 	/**
 	 * Method to add student to database
 	 * @param student: student object containing all the student fields
-	 * @return boolean true if student is added, else false
 	 * @throws StudentNotRegisteredException
+	 * @author UserNameAlreadyInUseException
+	 * @return boolean true if student is added, else false
 	 */
 	public boolean addStudent(Student student) throws StudentNotRegisteredException,UserNameAlreadyInUseException;
 	

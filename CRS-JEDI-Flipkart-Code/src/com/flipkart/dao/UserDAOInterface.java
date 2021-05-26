@@ -12,26 +12,29 @@ import com.flipkart.exception.UserNotFoundException;
 public interface UserDAOInterface {
 	
 	/**
+	 * Method to Verify Credentials for Logging In
 	 * @param userId
 	 * @param password
-	 * @return
 	 * @throws UserNotFoundException
+	 * @return
 	 */
 	public boolean verifyCredentials(String userName,String password) throws UserNotFoundException;
 	
 	/**
+	 * Method to obtain the user role
 	 * @param userName
-	 * @return
 	 * @throws UserNotFoundException 
+	 * @return
 	 */
 	public String getUserRole(String userName) throws UserNotFoundException;
 	
 	
 	/**
+	 * Method to update password of an account
 	 * @param userID
 	 * @param newPassword
-	 * @return
 	 * @throws UserNotFoundException 
+	 * @return
 	 */
 	public boolean updatePassword(String userName, String newPassword) throws UserNotFoundException;
 
