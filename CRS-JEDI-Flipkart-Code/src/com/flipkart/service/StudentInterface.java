@@ -9,31 +9,33 @@ import com.flipkart.bean.Student;
 import com.flipkart.exception.StudentNotRegisteredException;
 import com.flipkart.exception.UserNameAlreadyInUseException;
 
-
+/**
+ * @author JEDI-7
+ *
+ */
 public interface StudentInterface{
 	
 	
 	
+	
 	/**
-	 * @param uname
-	 * @param uID
-	 * @param uPwd
-	 * @param sBranch
-	 * @param sRoll
-	 * @return
+	 * @param student
+	 * @return success/failure integer flag
+	 * @throws StudentNotRegisteredException
+	 * @throws UserNameAlreadyInUseException
 	 */
 	public int addStudent(Student student) throws StudentNotRegisteredException, UserNameAlreadyInUseException;
 	
 	/**
-	 * @param uId
-	 * @return
+	 * @param uId : uuid for student
+	 * @return student id string
 	 */
 	public String getStudentId(UUID uId);
 	
     	
 	/**
-	 * @param sId
-	 * @return
+	 * @param sId : student id
+	 * @return boolean : is student is approved or not
 	 */
 	public boolean isApproved(String sId);
 }
