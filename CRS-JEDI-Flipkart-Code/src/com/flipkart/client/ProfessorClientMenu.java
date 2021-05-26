@@ -3,7 +3,18 @@
  */
 package com.flipkart.client;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+
+import com.flipkart.bean.Course;
+import com.flipkart.bean.Professor;
+import com.flipkart.bean.RegisteredCourse;
+import com.flipkart.exception.UserNotFoundException;
+import com.flipkart.service.ProfessorInterface;
+import com.flipkart.service.ProfessorOperation;
+import com.flipkart.service.UserInterface;
+import com.flipkart.service.UserOperation;
 
 /**
  * @author prafu
@@ -14,21 +25,24 @@ public class ProfessorClientMenu {
 	/**
 	 * @param proffId
 	 */
+	
+	ProfessorInterface proffInterface = new ProfessorOperation();
+	
+	
 	public void renderMenu(String proffId) {
 		
 		Scanner sc = new Scanner(System.in);
-		int choice;
+		int choice = -1;
 		
-		int curr = 20;
-		while(curr < 20) { // Check login
-			curr++; 
+		while(choice != 5) {
 			
-			System.out.println("++++++++++++++++++++++++++++++++");
+			System.out.println("\n\n\n++++++++++++++++++++++++++++++++");
 			System.out.println("++++++++ Professor Menu ++++++++");
 			System.out.println("1. Add Grade");
 			System.out.println("2. View Registered Students");
 			System.out.println("3. View My Courses");
-			System.out.println("4. Logout");
+			System.out.println("4. View My Details");
+			System.out.println("5. Logout");
 			
 			choice = sc.nextInt();
 			
@@ -43,6 +57,9 @@ public class ProfessorClientMenu {
 					getMyCourses(proffId);
 					break;
 				case 4:
+					viewMyDetails(proffId);
+					break;
+				case 5:
 					crsMainLogout();
 					break;
 				default:
@@ -51,14 +68,38 @@ public class ProfessorClientMenu {
 			}
 			
 		 }
-		 sc.close();
+		 // sc.close();
 	}
 	
+	private void viewMyDetails(String proffId) {
+		try {
+			
+			Professor proff = proffInterface.getProffProfleById(proffId);
+			
+			System.out.println(String.format("%15s %15s", "Designation", "Department"));
+			System.out.println(String.format("%15s %15s", proff.getpDesignation(), proff.getpDepartment()));
+		} catch (Exception ex) {
+			System.out.println("++ Some Error Occurred returning to Menu");
+		}
+		
+	}
+
 	/**
 	 * @param proffId
 	 */
 	public void getMyCourses(String proffId) {
-		System.out.println("Inside getMyCourses");
+		try {
+			List<Course> myCourses = new ArrayList<Course>();
+			
+			myCourses = proffInterface.viewProfessorCourses(proffId);
+			
+			System.out.println(String.format("%20s %20s %20s %20s", "Course Code", "Course Name", "Professor Name", "Is Offered"));
+			for(Course cr: myCourses){
+				System.out.println(String.format("%20s %20s %20s %20s", cr.getcCode(), cr.getcName(), cr.getProfName(), cr.isOffered()));
+			}
+		} catch (Exception ex) {
+			System.out.println("++ Some Error Occurred returning to Menu");
+		}
 	}
 	
 	/**
@@ -88,13 +129,24 @@ public class ProfessorClientMenu {
 	 * @param proffId
 	 */
 	public void viewRegisteredStudents(String proffId) {
-		System.out.println("Inside viewRegisteredStudents");
+		try {
+			List<RegisteredCourse> registeredCourses = new ArrayList<RegisteredCourse>();
+			
+			registeredCourses = proffInterface.viewRegisteredStudents(proffId);
+			
+			System.out.println(String.format("%12s %12s %12s", "Course Code", "Student Id", "Semester"));
+			for(RegisteredCourse rc: registeredCourses){
+				System.out.println(String.format("%12s %12s %12s", rc.getcCode(), rc.getsstudentId(), rc.getSem()));
+			}
+		} catch (Exception ex) {
+			System.out.println("++ Some Error Occurred returning to Menu");
+		}
 	}
 	
 	/**
 	 * 
 	 */
 	public void crsMainLogout() {
-		System.out.println("Inside crsMainLogout");
+		System.out.println("++++++ Logging Out... Returning to Main Menu ++++++\n\n\n");
 	}
 }

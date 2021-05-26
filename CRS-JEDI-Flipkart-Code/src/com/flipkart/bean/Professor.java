@@ -9,6 +9,16 @@ package com.flipkart.bean;
  */
 public class Professor extends User {
 	private String pDepartment;
+	/**
+	 * @param pDepartment
+	 * @param pDesignation
+	 */
+	public Professor(String pDepartment, String pDesignation) {
+		//super();
+		this.pDepartment = pDepartment;
+		this.pDesignation = pDesignation;
+	}
+
 	private String pDesignation;
 
 	/**
