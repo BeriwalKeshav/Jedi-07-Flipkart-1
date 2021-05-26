@@ -113,8 +113,8 @@ public class CRSMainApplication {
 					break;	
 				case "ADMIN":
 					System.out.println("Admin logged in!");
-					//AdminClientMenu adminMenu=new AdminClientMenu();
-					//adminMenu.renderMenu(userName);
+					AdminClientMenu adminMenu=new AdminClientMenu();
+					adminMenu.renderMenu(userName);
 					break;
 				default:
 					System.out.println("Invalid Input");

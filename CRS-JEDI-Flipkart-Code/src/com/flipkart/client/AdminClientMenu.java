@@ -3,54 +3,83 @@
  */
 package com.flipkart.client;
 
+
+import java.util.List;
 import java.util.Scanner;
 
+import com.flipkart.bean.Course;
+import com.flipkart.bean.Professor;
+import com.flipkart.bean.Student;
+import com.flipkart.exception.CourseAlreadyInCatalogException;
+import com.flipkart.exception.CourseNotInCatalogException;
+import com.flipkart.exception.CourseNotRemovedException;
+import com.flipkart.exception.ProfessorAdditionFailedException;
+import com.flipkart.exception.UserNotFoundException;
+import com.flipkart.exception.UserNameAlreadyInUseException;
+import com.flipkart.service.AdminInterface;
+import com.flipkart.service.AdminOperation;
+import com.flipkart.service.NotificationInterface;
 
 public class AdminClientMenu {
 
+	Scanner scanner = new Scanner(System.in);
+
 	public void renderMenu(String studId) {
 
-		Scanner scanner = new Scanner(System.in);
-		int choice;
-		choice = scanner.nextInt();
+		int choice = -1 ;
 
-		int c = 20;
-		while (c < 20) {
-			c++;
-
+		
+		while (choice != 9) {
 			System.out.println("++++++++++++++++++++++++++++++++");
 			System.out.println("++++++++ Admin Menu ++++++++");
-			System.out.println("1. Add Course To Catalogue");
-			System.out.println("2. Delete Course From Catalogue");
-			System.out.println("3. Approve Students");
-			System.out.println("4. Add Professor");
-			System.out.println("5. Generate Report Card");
-			System.out.println("6. Logout");
+			System.out.println("++++++++++++++++++++++++++++++++");
+			System.out.println("1. View Course In Catalogue");
+			System.out.println("2. Add Course To Catalogue");
+			System.out.println("3. Delete Course From Catalogue");
+			System.out.println("4. Approve Students");
+			System.out.println("5. View Pending Admissions");
+			System.out.println("6. Add Professor");
+			System.out.println("7. Assign Course To Professor");
+			System.out.println("8. Generate Report Card");
+			System.out.println("9. Logout");
+			System.out.println("++++++++++++++++++++++++++++++++");
 
 			choice = scanner.nextInt();
-
+			System.out.println(choice);
 			switch (choice) {
 
 			case 1:
-				addCourseToCatalogue();
+				viewCourses();
 				break;
 
 			case 2:
-				deleteCourseFromCatalogue();
+				addCourseToCatalogue();
 				break;
 
 			case 3:
-				approveStudent();
+				deleteCourseFromCatalogue();
 				break;
 
 			case 4:
-				addProfessor();
+				approveStudents();
 				break;
 
 			case 5:
-				generateReportCard();
+				viewPendingStudents();
+				break;
 
 			case 6:
+				addProfessor();
+				break;
+
+			case 7:
+				assignProfessor();
+				break;
+
+			case 8:
+				generateReportCard();
+
+			case 9:
 				crsMainLogout();
 				break;
 			default:
@@ -58,62 +87,155 @@ public class AdminClientMenu {
 
 			}
 		}
-		scanner.close();
 
-    }
+	}
+
+	AdminInterface adminOperation = new AdminOperation();
+
+	private List<Course> viewCourses() {
+		List<Course> courseList = adminOperation.viewCourses();
+		if (courseList.size() == 0) {
+			System.out.println("No course in the catalogue!");
+			return courseList;
+		}
+		System.out.println(String.format("%20s | %20s | %20s", "COURSE CODE", "COURSE NAME", "INSTRUCTOR"));
+		for (Course course : courseList) {
+			System.out.println(
+					String.format("%20s | %20s | %20s", course.getcCode(), course.getcName(), course.getProfName()));
+		}
+		return courseList;
+	}
+
 	private void addCourseToCatalogue() {
-		Scanner scanner = new Scanner(System.in);
 
+		List<Course> courseList = viewCourses();
+		
 		System.out.println("Enter Course Code:");
-		String courseCode = scanner.nextLine();
+		String courseCode = scanner.next();
 
+		
 		System.out.println("Enter Course Name:");
 		String courseName = scanner.next();
+		Course course = new Course(courseCode, courseName, null, false);
 
-		scanner.close();
+		try {
+			adminOperation.addCourse(course, courseList);
+		} catch (CourseAlreadyInCatalogException e) {
+			System.out.println(e.getMessage());
+		}
 
 	}
 
 	private void deleteCourseFromCatalogue() {
-		Scanner scanner = new Scanner(System.in);
 
+		List<Course> courseList = viewCourses();
 		System.out.println("Enter Course Code:");
-		String courseCode = scanner.nextLine();
+		String courseCode = scanner.next();
 
-		System.out.println("Enter Course Name:");
-		String courseName = scanner.next();
-
-		scanner.close();
+		try {
+			adminOperation.deleteCourse(courseCode, courseList);
+		} catch (CourseNotInCatalogException | CourseNotRemovedException e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
+	private List<Student> viewPendingStudents() {
+		List<Student> pendingStudentsList = adminOperation.viewPendingStudents();
+		if (pendingStudentsList.size() == 0) {
+			return pendingStudentsList;
+		}
+		System.out.println(String.format("%20s | %20s | %20s | %20s", "UserId", "StudentId", "Name"));
+		for (Student student : pendingStudentsList) {
+			System.out.println(String.format("%20s | %20d | %20s | %20s", student.getuId(), student.getuName()));
+		}
+		return pendingStudentsList;
+	}
+	
+	private void approveStudents() {
+		List<Student> studentList = viewPendingStudents();
+		if (studentList.size() == 0) {
+			return;
+		}
+		System.out.println("Enter Student's ID:");
+		String studentUserIdApproval = scanner.next();
+
+	}
+
+	
+
 	private void addProfessor() {
-		Scanner scanner = new Scanner(System.in);
+
+		Professor professor = new Professor();
+
 		System.out.println("Enter Professor User Name:");
 		String professorName = scanner.next();
+		professor.setuName(professorName);
 
 		System.out.println("Enter Department:");
 		String department = scanner.next();
+		professor.setpDepartment(department);
 
 		System.out.println("Enter Designation:");
 		String designation = scanner.next();
+		professor.setpDesignation(designation);
 
 		System.out.println("Enter Professor User Id:");
 		String userId = scanner.next();
+		professor.setuId(userId);
 
 		System.out.println("Enter Password:");
 		String password = scanner.next();
-		scanner.close();
+		professor.setuPwd(password);
+
+		System.out.println("Enter Create Date");
+		// Date createDate = java.time.Date.now();
+		long millis = System.currentTimeMillis();
+		java.sql.Date date = new java.sql.Date(millis);
+		professor.setuCrDate(date);
+
+		try {
+			adminOperation.addProfessor(professor);
+		} catch (ProfessorAdditionFailedException | UserNameAlreadyInUseException e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
-	private void approveStudent() {
-		System.out.println("Enter Student's ID:");
+	private void assignProfessor() {
+		List<Professor> professorList= adminOperation.showProfessors();
+		System.out.println(String.format("%20s | %20s | %20s ", "ProfessorId", "Name", "Designation"));
+		for(Professor professor : professorList) {
+			System.out.println(String.format("%20s | %20s | %20s ", professor.getuId(), professor.getuName(), professor.getpDesignation()));
+		}
+		
+		
+		System.out.println("\n\n");
+		List<Course> courseList= adminOperation.viewCourses();
+		System.out.println(String.format("%20s | %20s", "CourseCode", "CourseName"));
+		for(Course course : courseList) {
+			System.out.println((String.format("%20s | %20s ", course.getcCode(), course.getcName())));
+		}
+		
+		System.out.println(("Enter Course Code:"));
+		String courseCode = scanner.next();
+		
+		System.out.println(("Enter Professor's User Id:"));
+		String userId = scanner.next();
+		
+		try {
+			
+			adminOperation.assignProfessor(courseCode, userId);
+		
+		}
+		catch(CourseNotInCatalogException  | UserNotFoundException e) {
+			
+			System.out.println(e.getMessage());
+		}
 	}
-
 	private void generateReportCard() {
 		System.out.println("Enter Details");
 	}
 
 	public void crsMainLogout() {
-		System.out.println("Inside crsMainLogout");
+		System.out.println("++++++ Logging Out... Returning to Main Menu ++++++\n\n\n");
 	}
 }

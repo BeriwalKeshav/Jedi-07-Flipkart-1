@@ -25,7 +25,7 @@ public interface ProfessorInterface {
 	 * @param grade
 	 * @return boolean
 	 */
-	public boolean addGrade(int studentRollNo,String courseCode,Grade grade) throws GradeAddFailedException;
+	public boolean addGrade(String studentRollNo,String courseCode,Grade grade) throws GradeAddFailedException;
 	
 	/**
 	 * @param proffId

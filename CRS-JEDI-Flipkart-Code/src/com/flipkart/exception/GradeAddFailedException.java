@@ -9,19 +9,19 @@ package com.flipkart.exception;
  */
 public class GradeAddFailedException extends Exception{
 	
-	private int sRollNo;
+	private String sRollNo;
 
 	/**
 	 * @param sRollNo
 	 */
-	public GradeAddFailedException(int sRollNo) {
+	public GradeAddFailedException(String sRollNo) {
 		this.sRollNo = sRollNo;
 	}
 
 	/**
 	 * @return the sRollNo
 	 */
-	public int getRollNo() {
+	public String getRollNo() {
 		return sRollNo;
 	}
 	

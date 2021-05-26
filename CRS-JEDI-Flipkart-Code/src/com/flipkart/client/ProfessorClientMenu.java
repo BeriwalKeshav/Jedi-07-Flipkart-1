@@ -8,8 +8,10 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.flipkart.bean.Course;
+import com.flipkart.bean.Grade;
 import com.flipkart.bean.Professor;
 import com.flipkart.bean.RegisteredCourse;
+import com.flipkart.exception.GradeAddFailedException;
 import com.flipkart.exception.UserNotFoundException;
 import com.flipkart.service.ProfessorInterface;
 import com.flipkart.service.ProfessorOperation;
@@ -106,23 +108,36 @@ public class ProfessorClientMenu {
 	 * @param proffId
 	 */
 	public void addGrade(String proffId) {
-		System.out.println("Inside addGrade");
 		
 		Scanner sc = new Scanner(System.in);
-		int studentId;
-		String grade,courseCode;
 		
-		System.out.println("++++++++++++++++++++++++++++++++");
-		System.out.println("++++++++ Add Grade Menu ++++++++");
-		System.out.println("Enter Student Id");
-		studentId = sc.nextInt();
-		System.out.println("Enter Course Code");
-		courseCode = sc.next();
-		System.out.println("Enter Grade");
-		grade = sc.next();
+		String grade,courseCode,studentId;
 		
-		System.out.println("Updated grade to " + grade + " of student " + studentId + " and course code " +  courseCode);
-		sc.close();
+		
+		
+		try{
+			
+			System.out.println("++++++++++++++++++++++++++++++++");
+			viewRegisteredStudents(proffId);
+			System.out.println("++++++++ Add Grade Menu ++++++++");
+			System.out.println("Enter Student Id");
+			studentId = sc.next();
+			System.out.println("Enter Course Code");
+			courseCode = sc.next();
+			System.out.println("Enter Grade");
+			grade = sc.next();
+			
+			boolean isUpdated = proffInterface.addGrade(studentId, courseCode, new Grade(grade));
+			if( isUpdated == true) {
+				return;
+			}else {
+				System.out.println("+++++++ Password Update Failed");
+			}
+		
+		} catch (GradeAddFailedException ex) {
+			System.out.println("++ User Not Found");
+		}
+		
 	}
 	
 	/**

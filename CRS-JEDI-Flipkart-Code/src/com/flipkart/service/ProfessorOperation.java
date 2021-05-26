@@ -24,9 +24,8 @@ public class ProfessorOperation implements ProfessorInterface{
 	ProfessorDAOInterface proffDaoOperation= new ProfessorDAOOperation();
 	
 	@Override
-	public boolean addGrade(int studentRollNo, String courseCode, Grade grade) throws GradeAddFailedException {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean addGrade(String studentRollNo, String courseCode, Grade grade) throws GradeAddFailedException {
+		return proffDaoOperation.addGrade(studentRollNo,courseCode,grade);
 	}
 
 	@Override

@@ -26,8 +26,29 @@ import com.flipkart.utils.DBUtil;
 public class ProfessorDAOOperation implements ProfessorDAOInterface{
 
 	@Override
-	public boolean addGrade(int studentRollNo, String courseCode, Grade grade) throws GradeAddFailedException {
-		// TODO Auto-generated method stub
+	public boolean addGrade(String studentRollNo, String courseCode, Grade grade) throws GradeAddFailedException {
+		Connection connection = DBUtil.getConnection();
+		try{
+			PreparedStatement preparedStatement = connection.prepareStatement(SQLQueriesConstanst.ADD_GRADE_FOR_STUDENT);
+			
+			preparedStatement.setString(1,grade.getGrade());
+			preparedStatement.setString(2,studentRollNo);
+			preparedStatement.setString(3,courseCode);
+			
+			int rows = preparedStatement.executeUpdate();
+			
+			if(rows > 0) {
+				System.out.println("Grade Updated for Student -> " + studentRollNo);
+				return true;
+			}
+			else{
+				throw new GradeAddFailedException(studentRollNo);
+			}
+			
+		}
+		catch(SQLException ex){
+			System.out.println("SQL Exception Thrown : "+ ex.getMessage());
+		}
 		return false;
 	}
 
@@ -54,6 +75,7 @@ public class ProfessorDAOOperation implements ProfessorDAOInterface{
 		
 		return registeredStudentsUnderProff;
 	}
+	
 
 	@Override
 	public List<Course> viewProfessorCourses(String proffId) {
@@ -79,6 +101,8 @@ public class ProfessorDAOOperation implements ProfessorDAOInterface{
 		
 		return coursesByProff;
 	}
+	
+	
 
 	@Override
 	public Professor getProffProfleById(String profId) throws UserNotFoundException {
