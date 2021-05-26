@@ -13,7 +13,7 @@ import com.flipkart.exception.GradeAddFailedException;
 import com.flipkart.exception.UserNotFoundException;
 
 /**
- * @author prafu
+ * @author JEDI-7
  *
  */
 public interface ProfessorInterface {

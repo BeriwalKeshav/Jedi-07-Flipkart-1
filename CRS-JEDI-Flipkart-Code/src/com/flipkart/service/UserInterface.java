@@ -5,6 +5,10 @@ package com.flipkart.service;
 
 import com.flipkart.exception.UserNotFoundException;
 
+/**
+ * @author JEDI-7
+ *
+ */
 public interface UserInterface {
 	
 

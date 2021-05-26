@@ -9,7 +9,10 @@ import com.flipkart.bean.Student;
 import com.flipkart.exception.StudentNotRegisteredException;
 import com.flipkart.exception.UserNameAlreadyInUseException;
 
-
+/**
+ * @author JEDI-7
+ *
+ */
 public interface StudentInterface{
 	
 	

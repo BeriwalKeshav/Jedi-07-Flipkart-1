@@ -6,14 +6,11 @@ import java.util.UUID;
 
 import com.flipkart.bean.Notification;
 
-//import com.flipkart.constant.ModeOfPayment;
-//import com.flipkart.constant.NotificationType;
 
-
-/*
- * @author JEDI-07
- * */
-
+/**
+ * @author JEDI-7
+ *
+ */
 public interface NotificationInterface {
 	
 	/**

@@ -14,7 +14,10 @@ import com.flipkart.exception.CourseNotRemovedException;
 import com.flipkart.exception.SeatNotAvailableException;
 
 
-
+/**
+ * @author JEDI-7
+ *
+ */
 public interface RegistrationInterface {
 	
 	/**
