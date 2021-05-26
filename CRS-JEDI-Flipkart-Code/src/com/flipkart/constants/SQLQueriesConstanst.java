@@ -14,6 +14,12 @@ public class SQLQueriesConstanst {
 	public static final String VIEW_AVAILABLE_COURSES = "select * from course where cCode not in  (select courseCode  from registered_courses where studentId = ?) and course.isOffered = ?";
 	public static final String GET_USER_ROLE = "SELECT role FROM user WHERE userName = ?";
 	public static final String UPDATE_USER_PASSWORD = "UPDATE user SET passwordHash = ? WHERE userName = ?";
+	public static final String GET_REGISTERED_STUDENTS_FOR_PROFF = "SELECT registered_courses.studentId , registered_courses.semester, registered_courses.courseCode FROM (course INNER JOIN registered_courses ON registered_courses.courseCode = course.cCode) WHERE course.instructor = ? ORDER BY course.cCode";
+	public static final String GET_PROFF_COURSES = "SELECT * FROM course WHERE instructor = ?";
+	public static final String GET_PROFF_DETAILS = "SELECT user.userId, user.userName, professor.department, professor.designation FROM (professor INNER JOIN user ON user.userName = professor.proffId ) WHERE professor.proffId = ?";
+	public static final String ADD_GRADE_FOR_STUDENT = "UPDATE registered_courses SET grade = ? WHERE studentId = ? AND courseCode = ?";
+	
+	
 	
 	public static final String ADD_COURSE="insert into registered_courses (studentId,semester,courseCode) values ( ? , ? , ?)";
 	public static final String DECREMENT_COURSE_SEATS="update course set courseSeats = courseSeats-1 where cCode = ? ";
@@ -31,5 +37,11 @@ public class SQLQueriesConstanst {
 	public static final String VIEW_COURSE_QUERY = "SELECT cCode, cName FROM course";
 	public static final String VIEW_PROFESSOR_QUERY = "SELECT department, designation FROM professor";
 	public static final String VIEW_PENDING_ADMISSION_QUERY = "SELECT userId, userName, branch FROM student JOIN user WHERE approved = 0";
+
+	public static final String GET_REGISTER_STATUS=" select approved from student where userId = ? ";
+	
+	public static final String ADD_STUDENT="insert into student (userId,branch,approved) values (?,?,?)";
+	public static final String GET_STUDENT_ID="select student.userId from user inner join student on student.userId = user.userName where user.userId = ? ";
+	public static final String IS_APPROVED="select approved from student where userId = ? ";
 
 }

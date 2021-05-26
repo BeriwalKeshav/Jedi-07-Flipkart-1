@@ -11,7 +11,7 @@ public class StudentNotRegisteredException extends Exception{
 
 	private String userName;
 	
-	public void StudentNotRegisteredException(String userName) {
+	public StudentNotRegisteredException(String userName) {
 		this.userName = userName;
 	}
 	

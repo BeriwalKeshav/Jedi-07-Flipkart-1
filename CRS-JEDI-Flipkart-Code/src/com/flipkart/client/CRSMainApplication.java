@@ -108,6 +108,8 @@ public class CRSMainApplication {
 					break;
 				case "PROFESSOR":
 					System.out.println("Professor logged in!");
+					ProfessorClientMenu professorMenu = new ProfessorClientMenu();
+					professorMenu.renderMenu(userName);
 					break;	
 				case "ADMIN":
 					System.out.println("Admin logged in!");
