@@ -1,0 +1,8 @@
+20:28:22,717  INFO CRSMainApplication,main:69 - ++++++++++++  CMS  +++++++++++++++
+20:28:22,722  INFO CRSMainApplication,main:70 - Menu for Course Management System:
+20:28:22,722  INFO CRSMainApplication,main:71 - 1. Login
+20:28:22,722  INFO CRSMainApplication,main:72 - 2. Student Registration
+20:28:22,722  INFO CRSMainApplication,main:73 - 3. Update password
+20:28:22,722  INFO CRSMainApplication,main:74 - 4. Exit
+20:28:22,722  INFO CRSMainApplication,main:75 - Enter user input
+20:28:27,648  INFO CRSMainApplication,main:88 - Enter User Id:
