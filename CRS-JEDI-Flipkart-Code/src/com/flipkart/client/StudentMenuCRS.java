@@ -1,6 +1,5 @@
 package com.flipkart.client;
 
-import com.flipkart.*;
 import java.util.*;
 import java.sql.SQLException;
 import com.flipkart.bean.Course;
@@ -11,6 +10,11 @@ import com.flipkart.exception.SeatNotAvailableException;
 import com.flipkart.service.RegistrationInterface;
 import com.flipkart.service.RegistrationOperation;
 
+/**
+ * @author JEDI-7
+ * Class To Display The Student Client Menu.
+ *
+ */
 public class StudentMenuCRS {
 
 	RegistrationInterface registrationinterface = new RegistrationOperation();
@@ -24,23 +28,21 @@ public class StudentMenuCRS {
 
 		boolean b = true;
 		while (b) {
-
-			System.out.println("+++++    Student Menu    ++++++++");
-			System.out.println("");
-			System.out.println("1. View Catalog");
-			System.out.println("2. Register for Courses ");
-			System.out.println("3. View Registered Courses");
-			System.out.println("4. Add Courses");
-			System.out.println("5. Drop Courses");
-			System.out.println("6. ViewReportCard");
-			System.out.println("7. Logout");
-//			Scanner sc= new Scanner(System.in); 
+			System.out.println("++++++++++++++++++++++++++++++++");
+			System.out.println("++++++++++ Student Menu ++++++++++");
+			System.out.println("++++++++++++++++++++++++++++++++");
+			System.out.println("1. Enter 1 To View Catalog Of Courses.");
+			System.out.println("2. Enter 2 To Register For Courses.");
+			System.out.println("3. Enter 3 To View Registered Courses.");
+			System.out.println("4. Enter 4 To Add Course.");
+			System.out.println("5. Enter 5 To Drop Course.");
+			System.out.println("6. Enter 6 To View Report Card");
+			System.out.println("7. Enter 7 To Logout From The System."); 
 
 			int c = sc.nextInt();
 			
 			switch(c) {
 				case 1:
-					
 					viewCatalog(studentId);
 					break;
 				case 2:
@@ -62,14 +64,20 @@ public class StudentMenuCRS {
 					b = false;
 					logout(studentId);
 					break;
-				default:
-					System.out.println("+++ Warning : Wrong Option +++");
+				default:{
+					System.out.println("+++++++++ Wrong Choice !!!!! +++++");
+					System.out.println("+++++++++ Please Enter The Valid One ++++++++");
+				}
 			}
 		}
 	}
 
+	/**
+	 * Method To View Catalog Of Courses.
+	 * @param studentId
+	 * @return List Of Available Courses 
+	 */
 	public List<Course> viewCatalog(String studentId) {
-//		System.out.println("Show Catalog ");
 		List<Course> course_avail = null;
 		try {
 			course_avail = registrationinterface.viewCourses(studentId);
@@ -90,6 +98,14 @@ public class StudentMenuCRS {
 		return course_avail;
 	}
 
+	/**
+	 * Method To Register For Courses.
+	 * @param studentId
+	 * @return List of Registered Courses
+	 * @throws Course Not In Catalog Exception.
+	 * @throws Seat Not Available Exception.
+	 * @throws Course Limit Crossed Exception. 
+	 **/
 	public void registerCourses(String studentId) {
 		if (if_registered > 0) {
 			System.out.println("Registration is already complete");
@@ -150,6 +166,11 @@ public class StudentMenuCRS {
 
 	}
 
+	/**
+	 * Method To View Registered Courses.
+	 * @param studentId
+	 * @return List of Registered Courses
+	 */
 	public List<Course> viewRegisteredCourses(String studentId) {
 		List<Course> registeredCourses=null;
 		try {
@@ -171,6 +192,14 @@ public class StudentMenuCRS {
 		}
 
 	}
+	
+	/**
+	 * Method To Add Course For Registration
+	 * @param studentId
+	 * @throws Course Not In Catalog Exception. 
+	 * @throws Seat Not Available Exception.
+	 * @throws Course Limit Crossed Exception. 
+	 */
 	public void addCourses(String studentId) {
 
 		if (if_registered == 0) {
@@ -180,7 +209,6 @@ public class StudentMenuCRS {
 
 		List<Course> courseAvail = viewCatalog(studentId);
 		if (courseAvail == null) {
-//			System.out.println("You cannot Add more courses");
 			return;
 		}
 		System.out.println("Enter Course Code");
@@ -192,7 +220,6 @@ public class StudentMenuCRS {
 				System.out.println("You have already registered for the course");
 		} catch (CourseNotInCatalogException | SeatNotAvailableException | CourseLimitCrossed | SQLException e) {
 			// TODO Auto-generated catch block
-//			e.printStackTrace();
 			System.out.println(e.getMessage());
 		}
 	}
@@ -222,7 +249,6 @@ public class StudentMenuCRS {
 		}
 	}
 
-//		System.out.println("Drop the course ");
 	public void viewReportCard(String studentId) {
 		System.out.println("Show ReportCard ");
 	}

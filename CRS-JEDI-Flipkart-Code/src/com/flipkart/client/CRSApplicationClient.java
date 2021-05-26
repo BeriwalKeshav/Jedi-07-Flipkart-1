@@ -7,14 +7,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-import com.flipkart.bean.Professor;
 import com.flipkart.bean.Student;
-import org.apache.log4j.Logger;
-
 import com.flipkart.constants.RolesConstant;
-import com.flipkart.dao.StudentDAOInterface;
-import com.flipkart.dao.StudentDAOOperation;
-import com.flipkart.exception.ProfessorAdditionFailedException;
 import com.flipkart.exception.StudentNotRegisteredException;
 import com.flipkart.exception.UserNameAlreadyInUseException;
 import com.flipkart.exception.UserNotFoundException;
@@ -24,21 +18,17 @@ import com.flipkart.service.UserInterface;
 import com.flipkart.service.UserOperation;
 
 /**
- * @author adityasuraj
- *
+ * @author JEDI-7
+ * This Class Is The Main Entry Point Of The Application.
  */
 public class CRSApplicationClient {
 	
-	private static Logger logger = Logger.getLogger(CRSApplicationClient.class);
-	UserInterface userInterface = UserOperation.getInstance();
-	
-
 	static boolean loggedIn = false;
-	
+	UserInterface userInterface = UserOperation.getInstance();
 
 	/**
 	 * @param args
-	 * @throws UserNotFoundException 
+	 * @throws User Not Found Exception .
 	 */
 	public static void main(String[] args) throws UserNotFoundException {
 		
@@ -65,10 +55,10 @@ public class CRSApplicationClient {
 					app.updatePassword();
 					break;
 				case 4:
-					logger.info("Exiting Application...");
+					System.out.println("\n+++++++ Exiting Application..... +++++++");
 					break;
 				default:
-					logger.info("Invalid Input");
+					System.out.println("+++++++ Please Enter The Valid Input +++++++");
 			}
 		}
 		sc.close();
@@ -79,21 +69,21 @@ public class CRSApplicationClient {
 	 * Method to display Main Menu
 	 */
 	public static void createMainMenu() {
-		logger.info("\n\n++++++++++++++++++++++++++++++++++");
-		logger.info("++++++++++++  CMS  +++++++++++++++");
-		logger.info("Menu for Course Management System:");
-		logger.info("1. Login");
-		logger.info("2. Student Registration");
-		logger.info("3. Update password");
-		logger.info("4. Exit");
-		logger.info("++++++++++++++++++++++++++++++++++\n\n");
+		System.out.println("\n++++++++++++++++++++++++++++++++++");
+		System.out.println("++++++++++++ Welcome To  Course Management System  +++++++++++++++");
+		System.out.println("Menu For Course Management System:");
+		System.out.println("1. Enter 1 To Login.");
+		System.out.println("2. Enter 2 For Student Registration.");
+		System.out.println("3. Enter 3 To Update Your Password.");
+		System.out.println("4. Enter 4 To Exit From The Menu.");
+		System.out.println("++++++++++++++++++++++++++++++++++\n\n");
 		
-		logger.info("Enter user input : ");
+		System.out.println("\n\n Enter user input : ");
 	}
 	
 	/**
-	 * Method to login User
-	 * @throws UserNotFoundException 
+	 * Method To Login User To The System
+	 * @throws User Not Found Exception. 
 	 */
 	public void loginUser() {
 		
@@ -101,21 +91,21 @@ public class CRSApplicationClient {
 		
 		Scanner sc = new Scanner(System.in);
 		
-		logger.info("Enter User Id:");
+		System.out.println("Enter User Id : ");
 		userName = sc.next();
-		logger.info("Enter Password:");
+		System.out.println("Enter Password : ");
 		password = sc.next();
 		
 		try {
 			
 			loggedIn = userInterface.verifyCredentials(userName, password);
 			
-			logger.debug("Login Status -> " +  loggedIn);
+			System.out.println("Login Status -> " +  loggedIn);
 			
 			role = userInterface.getUserRole(userName);
 			
 			if(loggedIn == false || role == null) {
-				logger.error("++ Login Failed Returning to Main Menu");
+				System.out.println("++++++ Login Failed Returning To Main Menu +++++");
 				return;
 			}
 			
@@ -123,32 +113,32 @@ public class CRSApplicationClient {
 			switch(RolesConstant.stringToName(role))
 			{	
 				case STUDENT:
-					logger.debug("Student logged in!");
+					System.out.println("\nStudent Logged In!");
 					StudentMenuCRS studentMenu=new StudentMenuCRS();
 					studentMenu.renderMenu(userName);
 					break;
 				case PROFESSOR:
-					logger.debug("Professor logged in!");
+					System.out.println("\nProfessor Logged In!");
 					ProfessorMenuCRS professorMenu = new ProfessorMenuCRS();
 					professorMenu.renderMenu(userName);
 					break;	
 				case ADMIN:
-					logger.debug("Admin logged in!");
+					System.out.println("\nAdmin Logged In!");
 					AdminMenuCRS adminMenu=new AdminMenuCRS();
 					adminMenu.renderMenu(userName);
 					break;
 				default:
-					logger.info("Invalid Input Returning to Main Menu");
+					System.out.println("\nInvalid Input Returning to Main Menu");
 			}
 		
 		} catch (UserNotFoundException ex) {
-			logger.error("Login Failed Returning to Main Menu");
+			System.out.println("\nLogin Failed Returning to Main Menu");
 		}
 			
 	}
 	
 	/**
-	 * Method to register student
+	 * Method In Which Students Are Registering Themselves.
 	 * @throws ParseException 
 	 */
 	public void registerStudent(){
@@ -199,37 +189,37 @@ public class CRSApplicationClient {
 			System.out.println(e.getMessage());
 		}
 		if(flag==1) {
-			System.out.println("Student registered successfully!");
+			System.out.println("Student Registered Successfully!");
 		}
 		else {
-			System.out.println("Student failed to register.");
+			System.out.println("Student Failed To Register.");
 		}
 	}
 	
 	/**
-	 * Method to update password of the User
+	 * Method To Update Password Of The User.
 	 */
 	public void updatePassword() {
 		String userName, newPassword, role = null;
 		
 		Scanner sc = new Scanner(System.in);
 		
-		logger.info("Enter User Id:");
+		System.out.println("Enter User Id : ");
 		userName = sc.next();
-		logger.info("Enter New Password:");
+		System.out.println("Enter New Password : ");
 		newPassword = sc.next();
 		
 		try {
 			
 			boolean isUpdated = userInterface.updatePassword(userName, newPassword);
 			if( isUpdated == true) {
-				logger.info("Password changed for User -> " + userName);
+				System.out.println("\nPassword changed for User -> " + userName);
 			}else {
-				logger.info("+++++++ Password Update Failed");
+				System.out.println("\n+++++++ Password Update Failed +++++++");
 			}
 		
 		} catch (UserNotFoundException ex) {
-			logger.error("User Not Found");
+			System.out.println("User Not Found.");
 		}
 	}
 
