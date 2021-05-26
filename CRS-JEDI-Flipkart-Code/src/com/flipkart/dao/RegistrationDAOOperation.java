@@ -151,7 +151,7 @@ public class RegistrationDAOOperation implements RegistrationDAOInterface{
  
 			while (rs.next()) {
 				availableCourseList.add(new Course(rs.getString("cCode"), rs.getString("cName"),
-						rs.getString("instructor"), rs.getBoolean("isoffered")));
+						rs.getString("instructor"), rs.getBoolean("isoffered"),rs.getInt("courseSeats")));
  
 			}
 			
@@ -238,7 +238,7 @@ public class RegistrationDAOOperation implements RegistrationDAOInterface{
 			preaparedstatement.setString(1, courseCode);
 			ResultSet rs = preaparedstatement.executeQuery();
 			while (rs.next()) {
-				return (rs.getInt("seats") > 0);
+				return (rs.getInt("courseSeats") > 0);
 			}
 
 		}

@@ -30,11 +30,12 @@ public class Course {
 	 * @param isOffered
 	 * @param profName
 	 */
-	public Course(String cCode, String cName, String profName, boolean isOffered) {
+	public Course(String cCode, String cName, String profName, boolean isOffered,int NoOfSeats) {
 		super();
 		this.cCode = cCode;
 		this.cName = cName;
 		this.isOffered = isOffered;
+		this.NoOfSeats=NoOfSeats;
 		ProfName = profName;
 	}
 

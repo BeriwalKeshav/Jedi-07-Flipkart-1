@@ -116,7 +116,7 @@ public class AdminClientMenu {
 		
 		System.out.println("Enter Course Name:");
 		String courseName = scanner.next();
-		Course course = new Course(courseCode, courseName, null, false);
+		Course course = new Course(courseCode, courseName, null, false,10);
 
 		try {
 			adminOperation.addCourse(course, courseList);
