@@ -3,10 +3,21 @@
  */
 package com.flipkart.client;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
+import com.flipkart.bean.Professor;
+import com.flipkart.bean.Student;
 import com.flipkart.constants.RolesConstant;
+import com.flipkart.dao.StudentDAOInterface;
+import com.flipkart.dao.StudentDAOOperation;
+import com.flipkart.exception.ProfessorAdditionFailedException;
+import com.flipkart.exception.StudentNotRegisteredException;
+import com.flipkart.exception.UserNameAlreadyInUseException;
 import com.flipkart.exception.UserNotFoundException;
+import com.flipkart.service.StudentInterface;
+import com.flipkart.service.StudentOperation;
 import com.flipkart.service.UserInterface;
 import com.flipkart.service.UserOperation;
 
@@ -130,9 +141,61 @@ public class CRSMainApplication {
 	
 	/**
 	 * Method to register student
+	 * @throws ParseException 
 	 */
-	public void registerStudent() {
-		System.out.println("Student has been registered.");
+	public void registerStudent(){
+		Scanner scanner = new Scanner(System.in);
+
+		Student student = new Student();
+		
+		System.out.println("Enter Student User ID:");
+		String studentID = scanner.next();
+		student.setuId(studentID);
+		
+		System.out.println("Enter Student User Name:");
+		String studentName = scanner.next();
+		student.setuName(studentName);
+
+		System.out.println("Enter Student Branch:");
+		String branch = scanner.next();
+		student.setsBranch(branch);
+		
+		System.out.println("Enter Student Roll Number:");
+		int rollno = scanner.nextInt();
+		student.setsRollNo(rollno);
+		
+		student.setApproved(false);
+		
+		System.out.println("Enter Student Password:");
+		String pwd = scanner.next();
+		student.setuPwd(pwd);
+		
+		try {
+			String pattern = "yyyy-MM-dd";
+			SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+			String date = simpleDateFormat.format(new Date());
+			Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(date);
+			student.setuCrDate(date1);
+		}catch(ParseException e){
+			System.out.println(e.getMessage());
+		}
+		
+		
+		StudentInterface studentOperation = StudentOperation.getInstance();
+		
+		int flag=0;
+		
+		try {
+			flag = studentOperation.addStudent(student);
+		} catch (StudentNotRegisteredException | UserNameAlreadyInUseException e) {
+			System.out.println(e.getMessage());
+		}
+		if(flag==1) {
+			System.out.println("Student registered successfully!");
+		}
+		else {
+			System.out.println("Student failed to register.");
+		}
 	}
 	
 	/**
