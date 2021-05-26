@@ -23,6 +23,7 @@ public interface NotificationInterface {
 	 * @param message: Message to be sent
 	 * @return notification id for the record added in the database
 	 */
+
 	public String sendNotification(String message,String studentId,String referenceId);
 	
 	/**

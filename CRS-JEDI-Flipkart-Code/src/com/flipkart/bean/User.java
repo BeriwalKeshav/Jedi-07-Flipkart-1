@@ -4,10 +4,9 @@
 package com.flipkart.bean;
 
 import java.util.Date;
-import java.util.UUID;
 
 /**
- * @author vibhorkansal
+ * @author JEDI-7
  *
  */
 public class User {

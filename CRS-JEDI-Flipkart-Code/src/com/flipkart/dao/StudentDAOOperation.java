@@ -14,6 +14,7 @@ import com.flipkart.bean.Student;
 //import com.flipkart.client.CRSApplication;
 import com.flipkart.constants.SQLQueriesConstanst;
 import com.flipkart.exception.StudentNotRegisteredException;
+import com.flipkart.exception.UserNameAlreadyInUseException;
 //import com.flipkart.service.StudentOperation;
 import com.flipkart.utils.DBUtil;
 
@@ -54,7 +55,7 @@ public class StudentDAOOperation implements StudentDAOInterface{
 	 * @throws StudentNotRegisteredException
 	 */
 	@Override
-	public boolean addStudent(Student student) throws StudentNotRegisteredException {
+	public boolean addStudent(Student student) throws StudentNotRegisteredException,UserNameAlreadyInUseException {
 		// TODO Auto-generated method stub
 		Connection connection=DBUtil.getConnection();
 		boolean added = false;
@@ -87,6 +88,11 @@ public class StudentDAOOperation implements StudentDAOInterface{
 			}
 			
 			
+			
+		}
+		catch(SQLException se) {
+			System.out.println(se.getMessage());
+			throw new UserNameAlreadyInUseException(student.getuName());
 		}
 		catch(Exception ex)
 		{

@@ -4,7 +4,7 @@
 package com.flipkart.bean;
 
 /**
- * @author vibhorkansal
+ * @author JEDI-7
  *
  */
 public class Student extends User {

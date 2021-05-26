@@ -189,7 +189,7 @@ public class RegistrationDAOOperation implements RegistrationDAOInterface{
 			
 			while (rs.next()) {
 				registeredCourseList.add(new Course(rs.getString("cCode"), rs.getString("cName"),
-						rs.getString("profName"), rs.getBoolean("isOffered"),rs.getInt("NoOfSeats")));
+						rs.getString("instructor"), rs.getBoolean("isOffered"),rs.getInt("courseSeats")));
 
 			}
 		} 
@@ -201,7 +201,7 @@ public class RegistrationDAOOperation implements RegistrationDAOInterface{
 		finally
 		{
 			stmt.close();
-			conn.close();
+//			conn.close();
 		}
 		
 		return registeredCourseList;

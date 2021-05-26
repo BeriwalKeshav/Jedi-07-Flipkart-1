@@ -4,7 +4,7 @@
 package com.flipkart.bean;
 
 /**
- * @author ankit
+ * @author JEDI-7
  *
  */
 public class ReportCard {

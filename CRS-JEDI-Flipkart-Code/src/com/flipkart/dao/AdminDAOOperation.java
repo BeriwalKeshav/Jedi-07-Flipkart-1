@@ -4,7 +4,6 @@
 package com.flipkart.dao;
 
 import java.sql.Connection;
-import java.util.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,7 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.flipkart.bean.Course;
+import com.flipkart.bean.Grade;
 import com.flipkart.bean.Professor;
+import com.flipkart.bean.RegisteredCourse;
 import com.flipkart.bean.Student;
 import com.flipkart.bean.User;
 import com.flipkart.constants.SQLQueriesConstanst;
@@ -93,7 +94,7 @@ public class AdminDAOOperation implements AdminDAOInterface {
 
 		statement = null;
 		try {
-			
+
 			String sql = SQLQueriesConstanst.ADD_USER_QUERY;
 			statement = connection.prepareStatement(sql);
 
@@ -163,6 +164,8 @@ public class AdminDAOOperation implements AdminDAOInterface {
 
 			statement.setString(1, course.getcCode());
 			statement.setString(2, course.getcName());
+			statement.setInt(3, 0);
+			statement.setInt(4, 0);
 
 			int row = statement.executeUpdate();
 
@@ -221,7 +224,8 @@ public class AdminDAOOperation implements AdminDAOInterface {
 			statement = connection.prepareStatement(sql);
 
 			statement.setString(1, professorId);
-			statement.setString(2, CourseCode);
+			statement.setString(3, CourseCode);
+			statement.setInt(2, 1);
 			int row = statement.executeUpdate();
 
 			System.out.println(row + " course assigned.");
@@ -255,8 +259,8 @@ public class AdminDAOOperation implements AdminDAOInterface {
 			ResultSet resultSet = statement.executeQuery();
 
 			while (resultSet.next()) {
-				
-				Course course = new Course(sql,sql);
+
+				Course course = new Course(sql, sql);
 				course.setcCode(resultSet.getString(1));
 				course.setcName(resultSet.getString(2));
 				courseList.add(course);
@@ -289,7 +293,7 @@ public class AdminDAOOperation implements AdminDAOInterface {
 
 			while (resultSet.next()) {
 
-				Professor professor = new Professor(sql,sql);
+				Professor professor = new Professor(sql, sql);
 				professor.setpDepartment(resultSet.getString(1));
 				professor.setpDesignation(resultSet.getString(2));
 				professorList.add(professor);
@@ -338,5 +342,34 @@ public class AdminDAOOperation implements AdminDAOInterface {
 		}
 
 		return userList;
+	}
+
+	/**
+	 *
+	 */
+	public List<RegisteredCourse> generateReportCard(String studentId) {
+
+		List<RegisteredCourse> registeredStudentsUnderProff = new ArrayList<RegisteredCourse>();
+
+		try {
+			PreparedStatement preparedStatement = connection
+					.prepareStatement(SQLQueriesConstanst.VIEW_REPORT_CARD);
+			
+			
+			preparedStatement.setString(1, studentId);
+			
+
+			ResultSet resultSet = preparedStatement.executeQuery();
+
+			while (resultSet.next()) {
+				registeredStudentsUnderProff.add(new RegisteredCourse(resultSet.getString("courseCode"),
+						resultSet.getString("studentId"), resultSet.getInt("semester"), new Grade(resultSet.getString("grade"))));
+			}
+
+		} catch (SQLException ex) {
+			System.out.println("SQL Exception Thrown : " + ex.getMessage());
+		}
+
+		return registeredStudentsUnderProff;
 	}
 }
