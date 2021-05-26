@@ -66,12 +66,15 @@ public class CRSMainApplication {
 	 * Method to display Main Menu
 	 */
 	public static void createMainMenu() {
+		logger.info("\n\n++++++++++++++++++++++++++++++++++");
 		logger.info("++++++++++++  CMS  +++++++++++++++");
 		logger.info("Menu for Course Management System:");
 		logger.info("1. Login");
 		logger.info("2. Student Registration");
 		logger.info("3. Update password");
 		logger.info("4. Exit");
+		logger.info("++++++++++++++++++++++++++++++++++\n\n");
+		
 		logger.info("Enter user input : ");
 	}
 	
@@ -94,12 +97,12 @@ public class CRSMainApplication {
 			
 			loggedIn = userInterface.verifyCredentials(userName, password);
 			
-			logger.info("Login Status -> " +  loggedIn);
+			logger.debug("Login Status -> " +  loggedIn);
 			
 			role = userInterface.getUserRole(userName);
 			
 			if(loggedIn == false || role == null) {
-				logger.info("++ Login Failed Returning to Main Menu");
+				logger.error("++ Login Failed Returning to Main Menu");
 				return;
 			}
 			
@@ -107,26 +110,26 @@ public class CRSMainApplication {
 			switch(RolesConstant.stringToName(role))
 			{	
 				case STUDENT:
-					logger.info("Student logged in!");
+					logger.debug("Student logged in!");
 					StudentClientMenu studentMenu=new StudentClientMenu();
 					studentMenu.renderMenu(userName);
 					break;
 				case PROFESSOR:
-					logger.info("Professor logged in!");
+					logger.debug("Professor logged in!");
 					ProfessorClientMenu professorMenu = new ProfessorClientMenu();
 					professorMenu.renderMenu(userName);
 					break;	
 				case ADMIN:
-					logger.info("Admin logged in!");
+					logger.debug("Admin logged in!");
 					AdminClientMenu adminMenu=new AdminClientMenu();
 					adminMenu.renderMenu(userName);
 					break;
 				default:
-					logger.info("Invalid Input");
+					logger.info("Invalid Input Returning to Main Menu");
 			}
 		
 		} catch (UserNotFoundException ex) {
-			logger.info("++ Login Failed Returning to Main Menu");
+			logger.error("Login Failed Returning to Main Menu");
 		}
 			
 	}
@@ -161,7 +164,7 @@ public class CRSMainApplication {
 			}
 		
 		} catch (UserNotFoundException ex) {
-			logger.info("++ User Not Found");
+			logger.error("User Not Found");
 		}
 	}
 
