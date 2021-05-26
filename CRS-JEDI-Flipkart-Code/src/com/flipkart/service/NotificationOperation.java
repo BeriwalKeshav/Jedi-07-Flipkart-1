@@ -91,6 +91,7 @@ public class NotificationOperation implements NotificationInterface{
 		return notifications;
 	}
 	
+	@Override
 	public String addPayment(String StudentId,int amount,boolean status,String paymentType) throws SQLException {
 		String referenceId = null;
 		try {
@@ -101,4 +102,28 @@ public class NotificationOperation implements NotificationInterface{
 		}
 		return referenceId;
 	}
+	
+	/**
+	 * @param StudentId
+	 * @return
+	 * @throws SQLException
+	 */
+	@Override
+	public String updatePayment(String StudentId,String Mode) throws SQLException{
+		String referenceId = null;
+		try {
+			referenceId = notificationDAOInterface.updatePayment(StudentId,Mode);
+		} 
+		catch(SQLException ex) {
+			throw ex;
+		}
+		return referenceId;
+	}
 }
+
+
+
+
+
+
+

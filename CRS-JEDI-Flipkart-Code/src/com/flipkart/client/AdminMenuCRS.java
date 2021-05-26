@@ -3,6 +3,7 @@
  */
 package com.flipkart.client;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -202,9 +203,20 @@ public class AdminMenuCRS {
 
 		try {
 			adminOperation.approveStudents(studentUserId, studentList);
-			//Add Payment Notification
+			
+			//payment
+			String refId = notificationInterface.addPayment(studentUserId, 1000, false, null);
+			
+			//Send Notification
+			String message = "Fee payment pending";
+			notificationInterface.sendNotification(message, studentUserId, refId);
+			
 		} catch (StudentNotFoundForApprovalException e) {
 			System.out.println(e.getMessage());
+		}
+		catch (SQLException e) 
+		{
+            System.out.println(e.getMessage());
 		}
 	}
 

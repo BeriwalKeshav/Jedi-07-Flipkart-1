@@ -368,7 +368,6 @@ public class StudentMenuCRS {
 				}
 				
 				ModeOfPayment mode = ModeOfPayment.getModeofPayment(sc.nextInt());
-				NotificationDAOInterface notificationDaoOperation = NotificationDAOOperation.getInstance();
 				NotificationInterface notificationInterface = NotificationOperation.getInstance();
 				
 				if(mode == null)
@@ -377,8 +376,8 @@ public class StudentMenuCRS {
 				{
 					try 
 					{
-						String referenceId = notificationDaoOperation.addPayment(studentId, fee, true, mode.toString());
-						String message = mode.toString() + " Payment";
+						String referenceId = notificationInterface.updatePayment(studentId,mode.toString());
+						String message = mode.toString() + " Payment done";
 						notificationInterface.sendNotification(message, studentId, referenceId);
 					}
 					catch (Exception e) 

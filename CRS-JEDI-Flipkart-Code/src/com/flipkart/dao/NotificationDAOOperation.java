@@ -137,6 +137,37 @@ public class NotificationDAOOperation implements NotificationDAOInterface{
 		}
 		return referenceId;
 	}
+	
+	/**
+	 * Perform Payment actions using SQL commands
+	 * @param studentId: Id of the student for which the payment is done
+	 * @return: reference id of the transaction
+	 * @throws SQLException
+	 */
+	@Override
+	public String updatePayment(String StudentId,String Mode) throws SQLException {
+		String referenceId;
+		Connection connection = DBUtil.getConnection();
+		
+		try {
+			PreparedStatement statement = connection.prepareStatement(SQLQueriesConstanst.GET_REFID_PAYMENT);
+			statement.setString(1,Mode);
+			statement.setString(2,StudentId);
+			statement.executeQuery();
+			ResultSet results = statement.getGeneratedKeys();
+			referenceId = results.getString(1);
+			
+			statement = connection.prepareStatement(SQLQueriesConstanst.UPDATE_PAYMENT);
+			statement.setString(1,StudentId);
+			statement.executeUpdate();		
+			
+			// Here, a check database for update
+		}
+		catch(SQLException ex) {
+			throw ex;
+		}
+		return referenceId;
+	}
 
 	@Override 
 	public List<Notification> getAllNotifications(String studentId) throws SQLException {
