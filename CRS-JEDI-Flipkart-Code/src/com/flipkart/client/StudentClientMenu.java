@@ -8,8 +8,12 @@ import com.flipkart.service.RegistrationInterface;
 import com.flipkart.service.RegistrationOperation;
 public class StudentClientMenu {
 	RegistrationInterface registrationinterface = new RegistrationOperation();
+	Scanner sc= new Scanner(System.in); 
+	private int if_registered;
 	public void renderMenu(String studentId)
 	{
+		
+		if_registered=getRegistrationStatus(studentId);
 	
 		boolean b = true;
 		while(b)
@@ -23,7 +27,7 @@ public class StudentClientMenu {
 			System.out.println("4. Drop Courses");
 			System.out.println("5. ViewReportCard");
 			System.out.println("6. Logout");
-			Scanner sc= new Scanner(System.in); 
+//			Scanner sc= new Scanner(System.in); 
 			
 			int c = sc.nextInt();
 			switch(c) {
@@ -79,6 +83,28 @@ public class StudentClientMenu {
 		return course_avail;
 	}
 	public void registerCourses(String studentId) {
+		if(if_registered>0) {
+			System.out.println("Registration is already complete");
+			return;
+		}
+		int course_count=0;
+		while(course_count<6) {
+			try {
+				List<Course>avail_course=viewCatalog(studentId);
+				if(avail_course==null) {
+					return;
+				}
+				System.out.println("Enter Course code for Course"+(course_count+1));
+				String courseCode=sc.next();
+				if(registrationinterface.addCourse(courseCode,studentId, avail_course)) {
+					
+				}
+				
+			}
+			catch{
+				
+			}
+		}
 		
 	}
 	public void addCourses(String studentId) {
@@ -92,6 +118,16 @@ public class StudentClientMenu {
 	}
 	public void logout(String studentId) {
 		System.out.println("Logout ");
+	}
+	public int getRegistrationStatus(String studentId) {
+		try {
+			return registrationinterface.getRegistrationStatus(studentId);
+		}
+		catch(SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return 0;
+			
 	}
 		
 }

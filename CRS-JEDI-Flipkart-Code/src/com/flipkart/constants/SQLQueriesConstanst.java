@@ -37,4 +37,10 @@ public class SQLQueriesConstanst {
 	public static final String VIEW_PROFESSOR_QUERY = "SELECT department, designation FROM professor";
 	public static final String VIEW_PENDING_ADMISSION_QUERY = "SELECT userId, userName, branch FROM student JOIN user WHERE approved = 0";
 
+	public static final String GET_REGISTER_STATUS=" select approved from student where userId = ? ";
+	
+	public static final String ADD_STUDENT="insert into student (userId,branch,approved) values (?,?,?)";
+	public static final String GET_STUDENT_ID="select student.userId from user inner join student on student.userId = user.userName where user.userId = ? ";
+	public static final String IS_APPROVED="select approved from student where userId = ? ";
+
 }

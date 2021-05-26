@@ -22,7 +22,7 @@ public interface RegistrationInterface {
 	 * @param courseList
 	 * @return boolean if Course added successfully
 	 */
-	public boolean addCourse(String cCode, int sRollNo, List<Course> courseList) throws CourseNotInCatalogException,SeatNotAvailableException;
+	public boolean addCourse(String cCode, String studentId, List<Course> courseList) throws CourseNotInCatalogException,SeatNotAvailableException;
 	
 	/**
 	 * @param cCode
@@ -61,12 +61,13 @@ public interface RegistrationInterface {
 	 * @param sRollNo
 	 * @return boolean whether Registration was approved successfully
 	 */
-	public boolean getRegistrationStatus(int sRollNo);
+	public int getRegistrationStatus(String studentId) throws SQLException;
 	
 	/**
 	 * @param sRollNo
 	 */
 	public void setRegistrationStatus(int sRollNo);
+
 	
 	
 }
