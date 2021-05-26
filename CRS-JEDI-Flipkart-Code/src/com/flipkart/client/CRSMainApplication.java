@@ -5,6 +5,7 @@ package com.flipkart.client;
 
 import java.util.*;
 
+import com.flipkart.constants.RolesConstant;
 import com.flipkart.exception.UserNotFoundException;
 import com.flipkart.service.UserInterface;
 import com.flipkart.service.UserOperation;
@@ -99,19 +100,20 @@ public class CRSMainApplication {
 				return;
 			}
 			
-			switch(role)
+			
+			switch(RolesConstant.stringToName(role))
 			{	
-				case "STUDENT":
+				case STUDENT:
 					System.out.println("Student logged in!");
 					StudentClientMenu studentMenu=new StudentClientMenu();
 					studentMenu.renderMenu(userName);
 					break;
-				case "PROFESSOR":
+				case PROFESSOR:
 					System.out.println("Professor logged in!");
 					ProfessorClientMenu professorMenu = new ProfessorClientMenu();
 					professorMenu.renderMenu(userName);
 					break;	
-				case "ADMIN":
+				case ADMIN:
 					System.out.println("Admin logged in!");
 					AdminClientMenu adminMenu=new AdminClientMenu();
 					adminMenu.renderMenu(userName);

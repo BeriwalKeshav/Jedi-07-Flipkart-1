@@ -48,4 +48,10 @@ public class SQLQueriesConstanst {
 	public static final String GET_SEATS = "select courseSeats from course where cCode = ?";
 	public static final String SET_REGISTRATION_STATUS="update student set approved = 1 where userId=?";
 
+	
+	public static final String INSERT_PAYMENT = "insert into payment(referenceId,studentId,amount,status,paymentType) values(?,?,?,?,?)";
+	public static final String INSERT_NOTIFICATION = "insert into notification(notificationId,message,studentId,referenceId) values(?,?,?,?)";
+	public static final String GET_REFERENCE_ID = "select * from notification where notificationId=?";
+	
+	
 }
