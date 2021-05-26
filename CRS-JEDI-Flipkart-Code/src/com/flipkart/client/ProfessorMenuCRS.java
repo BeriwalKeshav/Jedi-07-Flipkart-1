@@ -22,7 +22,7 @@ import com.flipkart.service.UserOperation;
  * @author prafu
  *
  */
-public class ProfessorClientMenu {
+public class ProfessorMenuCRS {
 	
 	/**
 	 * @param proffId

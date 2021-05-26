@@ -9,7 +9,7 @@ import com.flipkart.exception.CourseNotInCatalogException;
 import com.flipkart.exception.SeatNotAvailableException;
 import com.flipkart.service.RegistrationInterface;
 import com.flipkart.service.RegistrationOperation;
-public class StudentClientMenu {
+public class StudentMenuCRS {
 	RegistrationInterface registrationinterface = new RegistrationOperation();
 	Scanner sc= new Scanner(System.in); 
 	private int if_registered;

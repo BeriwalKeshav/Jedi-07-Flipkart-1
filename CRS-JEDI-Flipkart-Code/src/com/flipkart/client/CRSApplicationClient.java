@@ -13,7 +13,7 @@ import com.flipkart.service.UserOperation;
  * @author adityasuraj
  *
  */
-public class CRSMainApplication {
+public class CRSApplicationClient {
 	
 	UserInterface userInterface = new UserOperation();
 	static boolean loggedIn = false;
@@ -29,7 +29,7 @@ public class CRSMainApplication {
 		// TODO Auto-generated method stub
 		Scanner sc = new Scanner(System.in);
 		
-		CRSMainApplication app = new CRSMainApplication();
+		CRSApplicationClient app = new CRSApplicationClient();
 		
 		int userInput=0;
 		
@@ -103,17 +103,17 @@ public class CRSMainApplication {
 			{	
 				case "STUDENT":
 					System.out.println("Student logged in!");
-					StudentClientMenu studentMenu=new StudentClientMenu();
+					StudentMenuCRS studentMenu=new StudentMenuCRS();
 					studentMenu.renderMenu(userName);
 					break;
 				case "PROFESSOR":
 					System.out.println("Professor logged in!");
-					ProfessorClientMenu professorMenu = new ProfessorClientMenu();
+					ProfessorMenuCRS professorMenu = new ProfessorMenuCRS();
 					professorMenu.renderMenu(userName);
 					break;	
 				case "ADMIN":
 					System.out.println("Admin logged in!");
-					AdminClientMenu adminMenu=new AdminClientMenu();
+					AdminMenuCRS adminMenu=new AdminMenuCRS();
 					adminMenu.renderMenu(userName);
 					break;
 				default:

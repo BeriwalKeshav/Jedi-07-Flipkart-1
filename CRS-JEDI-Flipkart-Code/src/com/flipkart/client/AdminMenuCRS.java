@@ -4,23 +4,25 @@
 package com.flipkart.client;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 import com.flipkart.bean.Course;
 import com.flipkart.bean.Professor;
+import com.flipkart.bean.RegisteredCourse;
 import com.flipkart.bean.Student;
 import com.flipkart.exception.CourseAlreadyInCatalogException;
 import com.flipkart.exception.CourseNotInCatalogException;
 import com.flipkart.exception.CourseNotRemovedException;
 import com.flipkart.exception.ProfessorAdditionFailedException;
+import com.flipkart.exception.StudentNotFoundForApprovalException;
 import com.flipkart.exception.UserNotFoundException;
 import com.flipkart.exception.UserNameAlreadyInUseException;
 import com.flipkart.service.AdminInterface;
 import com.flipkart.service.AdminOperation;
-import com.flipkart.service.NotificationInterface;
 
-public class AdminClientMenu {
+public class AdminMenuCRS {
 
 	Scanner scanner = new Scanner(System.in);
 
@@ -113,9 +115,9 @@ public class AdminClientMenu {
 		System.out.println("Enter Course Code:");
 		String courseCode = scanner.next();
 
-		
+		scanner.nextLine();
 		System.out.println("Enter Course Name:");
-		String courseName = scanner.next();
+		String courseName = scanner.nextLine();
 		Course course = new Course(courseCode, courseName, null, false);
 
 		try {
@@ -144,9 +146,9 @@ public class AdminClientMenu {
 		if (pendingStudentsList.size() == 0) {
 			return pendingStudentsList;
 		}
-		System.out.println(String.format("%20s | %20s | %20s | %20s", "UserId", "StudentId", "Name"));
+		System.out.println(String.format("%20s | %20s " , "StudentId", "Name"));
 		for (Student student : pendingStudentsList) {
-			System.out.println(String.format("%20s | %20d | %20s | %20s", student.getuId(), student.getuName()));
+			System.out.println(String.format("%20s | %20s ", student.getuId(), student.getuName()));
 		}
 		return pendingStudentsList;
 	}
@@ -157,8 +159,13 @@ public class AdminClientMenu {
 			return;
 		}
 		System.out.println("Enter Student's ID:");
-		String studentUserIdApproval = scanner.next();
-
+		String studentUserId = scanner.next();
+		
+		try {
+			adminOperation.approveStudents(studentUserId, studentList);
+		} catch (StudentNotFoundForApprovalException e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 	
@@ -232,10 +239,25 @@ public class AdminClientMenu {
 		}
 	}
 	private void generateReportCard() {
-		System.out.println("Enter Details");
+		
+		
+		try {
+			List<RegisteredCourse> registeredCourses = new ArrayList<RegisteredCourse>();
+			
+			System.out.println("Enter StudentId");
+			String studentId=scanner.next();
+			registeredCourses = adminOperation.generateReportCard(studentId);
+			System.out.println(String.format("%12s %12s %12s %12s", "Course Code", "Student Id", "Semester", "Grade"));
+			for(RegisteredCourse rc: registeredCourses){
+				System.out.println(String.format("%12s %12s %12s %12s", rc.getcCode(), rc.getsstudentId(), rc.getSem(), rc.getGrade().getGrade()));
+			}
+		} catch (Exception ex) {
+			System.out.println(ex.getMessage());
+		}
+	
 	}
 
-	public void crsMainLogout() {
+	private void crsMainLogout() {
 		System.out.println("++++++ Logging Out... Returning to Main Menu ++++++\n\n\n");
 	}
 }

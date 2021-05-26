@@ -19,7 +19,7 @@ public interface NotificationInterface {
 	 * @param message: Message to be sent
 	 * @return notification id for the record added in the database
 	 */
-	public String sendNotification(String referenceId,int studentId,String message);
+	public String sendNotification(String referenceId,String studentId,String message);
 	
 	/**
 	 * Method to return UUID for a transaction
