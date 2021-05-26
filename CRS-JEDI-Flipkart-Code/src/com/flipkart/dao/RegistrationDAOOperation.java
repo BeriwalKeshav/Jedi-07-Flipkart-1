@@ -229,19 +229,89 @@ public class RegistrationDAOOperation implements RegistrationDAOInterface{
 	@Override
 	public boolean seatAvailable(String courseCode) throws SQLException {
 		// TODO Auto-generated method stub
-		return false;
+		
+	Connection conn = DBUtil.getConnection();
+		
+		try
+		{
+			PreparedStatement preaparedstatement = conn.prepareStatement(SQLQueriesConstanst.GET_SEATS);
+			preaparedstatement.setString(1, courseCode);
+			ResultSet rs = preaparedstatement.executeQuery();
+			while (rs.next()) {
+				return (rs.getInt("seats") > 0);
+			}
+
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		finally
+		{
+//			stmt.close();
+//			conn.close();
+		}
+		
+		return true;
 	}
 
 	@Override
 	public int numOfRegisteredCourses(String studentId) throws SQLException {
 		// TODO Auto-generated method stub
-		return 0;
+		Connection conn = DBUtil.getConnection();
+		int course_count=0;
+		try
+		{
+			stmt = conn.prepareStatement(SQLQueriesConstanst.NUM_OF_REGISTERED_COURSES);
+			stmt.setString(1, studentId);
+			ResultSet rs = stmt.executeQuery();
+			
+			while(rs.next())
+			{
+				course_count++;
+			}
+			return course_count;
+		}
+		catch(SQLException e)
+		{
+			System.out.println(e.getMessage());
+		}
+		catch(Exception e)
+		{
+			System.out.println(e.getMessage());
+		}
+		
+		return course_count;
 	}
 
 	@Override
 	public boolean isRegistered(String courseCode, String studentId) throws SQLException {
 		// TODO Auto-generated method stub
-		return false;
+		
+		Connection conn = DBUtil.getConnection();
+		
+		boolean check = false;
+		try
+		{
+			PreparedStatement preaparedstatement = conn.prepareStatement(SQLQueriesConstanst.IS_REGISTERED);
+			preaparedstatement.setString(1, courseCode);
+			preaparedstatement.setString(2, studentId);
+			ResultSet rs = preaparedstatement.executeQuery();
+			while(rs.next())
+			{
+				check = true;
+			}
+			return check;
+		}
+		catch(SQLException e)
+		{
+			System.out.println(e.getMessage());
+		}
+		catch(Exception e)
+		{
+			System.out.println(e.getMessage());
+		}
+		
+		return check;
 	}
 
 	@Override
@@ -268,7 +338,23 @@ public class RegistrationDAOOperation implements RegistrationDAOInterface{
 	@Override
 	public void setRegistrationStatus(String studentId) throws SQLException {
 		// TODO Auto-generated method stub
-		
+		Connection connection = DBUtil.getConnection();
+		try 
+		{
+			PreparedStatement preaparedstatement = connection.prepareStatement(SQLQueriesConstanst.SET_REGISTRATION_STATUS);
+			preaparedstatement.setString(1, studentId);
+			preaparedstatement.executeUpdate();
+		}
+		catch (SQLException e) 
+		{
+			System.out.println(e.getMessage());
+
+		} 
+		finally
+		{
+			stmt.close();
+//			conn.close();
+		}
 	}
 	
 	
