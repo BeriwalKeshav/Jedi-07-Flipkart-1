@@ -17,6 +17,7 @@ public class SQLQueriesConstanst {
 	public static final String GET_REGISTERED_STUDENTS_FOR_PROFF = "SELECT registered_courses.studentId , registered_courses.semester, registered_courses.courseCode FROM (course INNER JOIN registered_courses ON registered_courses.courseCode = course.cCode) WHERE course.instructor = ? ORDER BY course.cCode";
 	public static final String GET_PROFF_COURSES = "SELECT * FROM course WHERE instructor = ?";
 	public static final String GET_PROFF_DETAILS = "SELECT user.userId, user.userName, professor.department, professor.designation FROM (professor INNER JOIN user ON user.userName = professor.proffId ) WHERE professor.proffId = ?";
+	public static final String ADD_GRADE_FOR_STUDENT = "UPDATE registered_courses SET grade = ? WHERE studentId = ? AND courseCode = ?";
 	
 	
 	
