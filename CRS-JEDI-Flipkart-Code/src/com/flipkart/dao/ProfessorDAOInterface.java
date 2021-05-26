@@ -13,32 +13,35 @@ import com.flipkart.exception.GradeAddFailedException;
 import com.flipkart.exception.UserNotFoundException;
 
 /**
- * @author prafu
+ * @author JEDI-7
  *
  */
 public interface ProfessorDAOInterface {
 
 	/**
-	 * @param sRollNo
+	 * Method to Add grade
+	 * @param studentId
 	 * @param cCode
 	 * @param grade
-	 * @return boolean
 	 */
-	public boolean addGrade(String studentRollNo,String courseCode,Grade grade) throws GradeAddFailedException;
+	public boolean addGrade(String studentId,String courseCode,Grade grade) throws GradeAddFailedException;
 	
 	/**
+	 * Method to view registered students under a professor
 	 * @param proffId
 	 * @return List<RegisteredCourse>
 	 */
 	public List<RegisteredCourse> viewRegisteredStudents(String proffId);
 	
 	/**
+	 * Method to view courses offered by a professor
 	 * @param proffId
 	 * @return List<Course>
 	 */
 	public List<Course> viewProfessorCourses(String proffId);
 	
 	/**
+	 * Method to View Professor's Profile
 	 * @param profId
 	 * @return 
 	 */

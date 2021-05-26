@@ -9,6 +9,8 @@ import java.sql.Statement;
 import java.util.List;
 import java.util.UUID;
 
+import org.apache.log4j.Logger;
+
 import com.flipkart.utils.DBUtil;
 import com.flipkart.bean.Notification;
 import com.flipkart.constants.SQLQueriesConstanst;
@@ -26,8 +28,11 @@ public class NotificationDAOOperation implements NotificationDAOInterface{
 		
 	
 	private static volatile NotificationDAOOperation instance = null;
-		
-	
+	private static Logger logger = Logger.getLogger(NotificationDAOOperation.class);
+
+	/**
+	 * Default Constructor
+	 */
 	private NotificationDAOOperation()
 	{
 		
@@ -71,7 +76,7 @@ public class NotificationDAOOperation implements NotificationDAOInterface{
 			ps.executeUpdate();
 			ResultSet results = ps.getGeneratedKeys();
 						
-			System.out.println("Student with studentID" + StudentId + "has paid the fees!");
+			logger.info("Student with studentID" + StudentId + "has paid the fees!");
 		}
 		catch(SQLException ex) {
 			throw ex;

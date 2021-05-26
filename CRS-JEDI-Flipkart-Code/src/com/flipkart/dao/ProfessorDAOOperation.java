@@ -10,6 +10,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import com.flipkart.bean.Course;
 import com.flipkart.bean.Grade;
 import com.flipkart.bean.Professor;
@@ -27,7 +29,8 @@ import com.flipkart.utils.DBUtil;
 public class ProfessorDAOOperation implements ProfessorDAOInterface{
 	
 	private static volatile ProfessorDAOOperation instance = null;
-		
+	private static Logger logger = Logger.getLogger(ProfessorDAOOperation.class);
+	
 	private ProfessorDAOOperation()
 	{
 		
@@ -62,7 +65,7 @@ public class ProfessorDAOOperation implements ProfessorDAOInterface{
 			int rows = preparedStatement.executeUpdate();
 			
 			if(rows > 0) {
-				System.out.println("Grade Updated for Student -> " + studentRollNo);
+				logger.info("Grade Updated for Student -> " + studentRollNo);
 				return true;
 			}
 			else{
@@ -71,7 +74,7 @@ public class ProfessorDAOOperation implements ProfessorDAOInterface{
 			
 		}
 		catch(SQLException ex){
-			System.out.println("SQL Exception Thrown : "+ ex.getMessage());
+			logger.error("SQL Exception Thrown : "+ ex.getMessage());
 		}
 		return false;
 	}
@@ -94,7 +97,7 @@ public class ProfessorDAOOperation implements ProfessorDAOInterface{
 			
 		}
 		catch(SQLException ex){
-			System.out.println("SQL Exception Thrown : "+ ex.getMessage());
+			logger.error("SQL Exception Thrown : "+ ex.getMessage());
 		}
 		
 		return registeredStudentsUnderProff;
@@ -120,7 +123,7 @@ public class ProfessorDAOOperation implements ProfessorDAOInterface{
 			
 		}
 		catch(SQLException ex){
-			System.out.println("SQL Exception Thrown : "+ ex.getMessage());
+			logger.error("SQL Exception Thrown : "+ ex.getMessage());
 		}
 		
 		return coursesByProff;
@@ -148,7 +151,7 @@ public class ProfessorDAOOperation implements ProfessorDAOInterface{
 			
 		}
 		catch(SQLException ex){
-			System.out.println("SQL Exception Thrown : "+ ex.getMessage());
+			logger.error("SQL Exception Thrown : "+ ex.getMessage());
 		}
 		
 		return null;

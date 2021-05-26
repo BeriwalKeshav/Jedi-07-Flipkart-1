@@ -9,6 +9,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.log4j.Logger;
+
 import com.flipkart.bean.Course;
 import com.flipkart.bean.Grade;
 import com.flipkart.bean.RegisteredCourse;
@@ -27,6 +30,7 @@ import com.flipkart.utils.DBUtil;
 public class RegistrationDAOOperation implements RegistrationDAOInterface{
 	
 	private static volatile RegistrationDAOOperation instance=null;
+	private static Logger logger = Logger.getLogger(RegistrationDAOOperation.class);
 	private PreparedStatement stmt = null;
 	
 	StudentDAOInterface studentDaoInterface = StudentDAOOperation.getInstance();
@@ -81,7 +85,7 @@ public class RegistrationDAOOperation implements RegistrationDAOInterface{
 		}
 		catch (SQLException e) 
 		{
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		}
 		finally
 		{
@@ -125,7 +129,7 @@ public class RegistrationDAOOperation implements RegistrationDAOInterface{
 		}
 		catch(Exception e)
 		{
-			System.out.println("Exception found" + e.getMessage());
+			logger.error("Exception found" + e.getMessage());
 		}
 		finally
 		{
@@ -161,11 +165,11 @@ public class RegistrationDAOOperation implements RegistrationDAOInterface{
 		} 
 		catch (SQLException e) 
 		{
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		} 
 		catch (Exception e)
 		{
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		}
 		finally
 		{
@@ -197,7 +201,7 @@ public class RegistrationDAOOperation implements RegistrationDAOInterface{
 		} 
 		catch (SQLException e) 
 		{
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 
 		} 
 		finally
@@ -230,7 +234,7 @@ public class RegistrationDAOOperation implements RegistrationDAOInterface{
 			}
 
 		} catch (SQLException ex) {
-			System.out.println("SQL Exception Thrown : " + ex.getMessage());
+			logger.error("SQL Exception Thrown : " + ex.getMessage());
 		}
 
 		return registeredStudentsUnderProff;
@@ -251,12 +255,12 @@ public class RegistrationDAOOperation implements RegistrationDAOInterface{
 		}
 		catch(SQLException e)
 		{
-			System.out.println(e.getErrorCode());
-			System.out.println(e.getMessage());
+			logger.error(e.getErrorCode());
+			logger.error(e.getMessage());
 		}
 		catch(Exception e)
 		{
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		}
 		finally
 		{
@@ -284,7 +288,7 @@ public class RegistrationDAOOperation implements RegistrationDAOInterface{
 
 		}
 		catch (SQLException e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		finally
 		{
@@ -314,11 +318,11 @@ public class RegistrationDAOOperation implements RegistrationDAOInterface{
 		}
 		catch(SQLException e)
 		{
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		}
 		catch(Exception e)
 		{
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		}
 		
 		return course_count;
@@ -345,11 +349,11 @@ public class RegistrationDAOOperation implements RegistrationDAOInterface{
 		}
 		catch(SQLException e)
 		{
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		}
 		catch(Exception e)
 		{
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		}
 		
 		return check;
@@ -369,7 +373,7 @@ public class RegistrationDAOOperation implements RegistrationDAOInterface{
 			status=rs.getInt("approved");
 		} 
 		catch(SQLException e){
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		}
 		
 		return status;
@@ -388,7 +392,7 @@ public class RegistrationDAOOperation implements RegistrationDAOInterface{
 		}
 		catch (SQLException e) 
 		{
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 
 		} 
 		finally

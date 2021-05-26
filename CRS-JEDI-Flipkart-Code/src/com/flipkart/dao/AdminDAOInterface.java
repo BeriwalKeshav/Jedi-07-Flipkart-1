@@ -26,7 +26,8 @@ import com.flipkart.exception.UserNotFoundException;
 public interface AdminDAOInterface {
 
 	/**
-	 * @param professor
+	 * Method to Add Professor
+	 * @param professor : Professor to be Added
 	 * @throws ProfessorAdditionFailedException
 	 * @throws UserNameAlreadyInUseException
 	 */
@@ -34,34 +35,39 @@ public interface AdminDAOInterface {
 			throws ProfessorAdditionFailedException, UserNameAlreadyInUseException;
 
 	/**
-	 * @param user
+	 * Method to Add User
+	 * @param user : User to be Added
 	 * @throws UserCannotBeAddedException
 	 * @throws UserNameAlreadyInUseException
 	 */
 	public void addUser(User user) throws UserCannotBeAddedException, UserNameAlreadyInUseException;
 
-	/**
-	 * @param sRollNo
+	/** 
+	 * Method to Approve Student
+	 * @param studentId : Student to be added
 	 * @throws StudentNotFoundForApprovalException
 	 */
 	public void approveStudents(String studentId) throws StudentNotFoundForApprovalException;
 
 	/**
-	 * @param course
+	 * Method to Add Course
+	 * @param course : Course to be added
 	 * @throws CourseAlreadyInCatalogException
 	 */
 	public void addCourse(Course course) throws CourseAlreadyInCatalogException;
 
 	/**
-	 * @param CourseCode
+	 * Method To Delete Course
+	 * @param CourseCode : Course to be Deleted
 	 * @throws CourseNotRemovedException
 	 * @throws CourseNotInCatalogException
 	 */
 	public void deleteCourse(String CourseCode) throws CourseNotRemovedException, CourseNotInCatalogException;
 	
 	/**
-	 * @param CourseCode
-	 * @param professorId
+	 * Method to Assign a Professor to a Course
+	 * @param CourseCode : Course to be Assigned
+	 * @param professorId : Professor to Assign the Course
 	 * @throws CourseNotInCatalogException
 	 * @throws UserNotFoundException
 	 */
@@ -69,24 +75,27 @@ public interface AdminDAOInterface {
 			throws CourseNotInCatalogException, UserNotFoundException;
 
 	/**
-	 * @param catalogId
-	 * @return
+	 * Method to View Courses
+	 * @return List of Courses
 	 */
 	public List<Course> viewCourses();
 
 	/**
-	 * @return
+	 * Method to Show all the Professors
+	 * @return List of Professor
 	 */
 	public List<Professor> showProfessors();
 
 	/**
-	 * @return
+	 * Method to Show all the students pending Approval from Admin
+	 * @return List of such students pending Approval from Admin
 	 */
 	public List<Student> viewPendingStudents();
 
 	
 	/**
-	 * @return
+	 * Method to Generate Report Card
+	 * @return A list of Courses with Grades respectively
 	 */
 	public List<RegisteredCourse> generateReportCard(String studentId);
 }
