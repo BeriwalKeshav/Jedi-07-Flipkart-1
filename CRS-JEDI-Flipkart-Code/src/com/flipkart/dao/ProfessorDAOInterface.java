@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.flipkart.service;
+package com.flipkart.dao;
 
 import java.util.List;
 
@@ -16,9 +16,8 @@ import com.flipkart.exception.UserNotFoundException;
  * @author prafu
  *
  */
-public interface ProfessorInterface {
-	
-	
+public interface ProfessorDAOInterface {
+
 	/**
 	 * @param sRollNo
 	 * @param cCode
@@ -44,6 +43,5 @@ public interface ProfessorInterface {
 	 * @return 
 	 */
 	public Professor getProffProfleById(String profId) throws UserNotFoundException;
-	
 	
 }

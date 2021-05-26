@@ -4,7 +4,7 @@
 package com.flipkart.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
+import java.util.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -30,7 +30,7 @@ import com.flipkart.utils.DBUtil;
  * @author JEDI-7
  *
  */
-public class AdminDAOImpl implements AdminDAOInterface {
+public class AdminDAOOperation implements AdminDAOInterface {
 
 	private PreparedStatement statement = null;
 
@@ -93,14 +93,15 @@ public class AdminDAOImpl implements AdminDAOInterface {
 
 		statement = null;
 		try {
-
+			
 			String sql = SQLQueriesConstanst.ADD_USER_QUERY;
 			statement = connection.prepareStatement(sql);
 
 			statement.setString(1, user.getuId());
 			statement.setString(2, user.getuName());
 			statement.setString(3, user.getuPwd());
-			statement.setDate(4, (Date) user.getuCrDate());
+			statement.setObject(4, user.getuCrDate());
+			statement.setObject(5, "PROFESSOR");
 			int row = statement.executeUpdate();
 
 			System.out.println(row + " user added.");
@@ -254,8 +255,8 @@ public class AdminDAOImpl implements AdminDAOInterface {
 			ResultSet resultSet = statement.executeQuery();
 
 			while (resultSet.next()) {
-
-				Course course = new Course();
+				
+				Course course = new Course(sql,sql);
 				course.setcCode(resultSet.getString(1));
 				course.setcName(resultSet.getString(2));
 				courseList.add(course);
@@ -288,7 +289,7 @@ public class AdminDAOImpl implements AdminDAOInterface {
 
 			while (resultSet.next()) {
 
-				Professor professor = new Professor();
+				Professor professor = new Professor(sql,sql);
 				professor.setpDepartment(resultSet.getString(1));
 				professor.setpDesignation(resultSet.getString(2));
 				professorList.add(professor);
