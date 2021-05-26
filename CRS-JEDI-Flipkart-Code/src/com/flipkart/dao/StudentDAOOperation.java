@@ -10,6 +10,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.apache.log4j.Logger;
+
 import com.flipkart.bean.Student;
 //import com.flipkart.client.CRSApplication;
 import com.flipkart.constants.SQLQueriesConstanst;
@@ -27,7 +29,7 @@ import com.flipkart.utils.DBUtil;
 public class StudentDAOOperation implements StudentDAOInterface{
 
 	private static volatile StudentDAOOperation instance=null;
-	
+	private static Logger logger = Logger.getLogger(StudentDAOOperation.class);
 	/**
 	 * Default Constructor
 	 */
@@ -92,7 +94,7 @@ public class StudentDAOOperation implements StudentDAOInterface{
 			
 		}
 		catch(SQLException se) {
-			System.out.println(se.getMessage());
+			logger.error(se.getMessage());
 			throw new UserNameAlreadyInUseException(student.getuName());
 		}
 		catch(Exception ex)
@@ -133,7 +135,7 @@ public class StudentDAOOperation implements StudentDAOInterface{
 		}
 		catch(SQLException e)
 		{
-			System.out.println(e.getMessage());
+				logger.error(e.getMessage());
 		}
 		
 		return null;
@@ -161,7 +163,7 @@ public class StudentDAOOperation implements StudentDAOInterface{
 		}
 		catch(SQLException e)
 		{
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		}
 		
 		return false;

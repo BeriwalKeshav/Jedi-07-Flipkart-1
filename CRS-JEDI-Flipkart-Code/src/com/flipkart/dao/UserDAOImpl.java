@@ -8,6 +8,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.apache.log4j.Logger;
+
 import com.flipkart.constants.SQLQueriesConstanst;
 import com.flipkart.exception.UserNotFoundException;
 import com.flipkart.service.UserOperation;
@@ -21,7 +23,7 @@ public class UserDAOImpl implements UserDAOInterface{
 
 	
 	private static volatile UserDAOImpl instance = null;
-	
+	private static Logger logger = Logger.getLogger(UserDAOImpl.class);
 	
 	private UserDAOImpl()
 	{
@@ -55,7 +57,7 @@ public class UserDAOImpl implements UserDAOInterface{
 			ResultSet resultSet = preparedStatement.executeQuery();
 			
 			if(resultSet.next()) {
-				System.out.println("Current user is -> " + resultSet.getString("userName"));
+				logger.info("Current user is -> " + resultSet.getString("userName"));
 				return true;
 			}
 			else{
@@ -64,7 +66,7 @@ public class UserDAOImpl implements UserDAOInterface{
 			
 		}
 		catch(SQLException ex){
-			System.out.println("SQL Exception Thrown : "+ ex.getMessage());
+			logger.error("SQL Exception Thrown : "+ ex.getMessage());
 		}
 		return false;
 	}
@@ -83,7 +85,7 @@ public class UserDAOImpl implements UserDAOInterface{
 				
 				String role = resultSet.getString("role");
 				
-				System.out.println("User Role is -> " + role);
+				logger.info("User Role is -> " + role);
 				return role;
 			}
 			else{
@@ -92,7 +94,7 @@ public class UserDAOImpl implements UserDAOInterface{
 			
 		}
 		catch(SQLException ex){
-			System.out.println("SQL Exception Thrown : "+ ex.getMessage());
+			logger.error("SQL Exception Thrown : "+ ex.getMessage());
 		}
 		
 		return null;
@@ -110,7 +112,7 @@ public class UserDAOImpl implements UserDAOInterface{
 			int rows = preparedStatement.executeUpdate();
 			
 			if(rows > 0) {
-				System.out.println("Password updated for user -> " + userName);
+				logger.info("Password updated for user -> " + userName);
 				return true;
 			}
 			else{
@@ -119,7 +121,7 @@ public class UserDAOImpl implements UserDAOInterface{
 			
 		}
 		catch(SQLException ex){
-			System.out.println("SQL Exception Thrown : "+ ex.getMessage());
+			logger.error("SQL Exception Thrown : "+ ex.getMessage());
 		}
 		return false;
 	}
