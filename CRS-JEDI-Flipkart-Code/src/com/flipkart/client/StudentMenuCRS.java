@@ -7,6 +7,8 @@ import com.flipkart.bean.Course;
 import com.flipkart.constants.ModeOfPayment;
 import com.flipkart.dao.NotificationDAOInterface;
 import com.flipkart.dao.NotificationDAOOperation;
+import com.flipkart.bean.RegisteredCourse;
+import com.flipkart.bean.Notification;
 import com.flipkart.exception.CourseLimitCrossed;
 import com.flipkart.exception.CourseNotInCatalogException;
 import com.flipkart.exception.CourseNotRemovedException;
@@ -38,8 +40,9 @@ public class StudentMenuCRS {
 			System.out.println("4. Add Courses");
 			System.out.println("5. Drop Courses");
 			System.out.println("6. ViewReportCard");
-			System.out.println("7. Make Payment");
-			System.out.println("8. Logout");
+			System.out.println("7. Make Payment");			
+			System.out.println("8. View Notifications");
+			System.out.println("9. Logout");
 			System.out.println("*********************************");
 //			Scanner sc= new Scanner(System.in); 
 
@@ -67,8 +70,10 @@ public class StudentMenuCRS {
 					break;
 				case 7:
 					make_payment(studentId);
+				case 8: 
+					viewAllNotifications(studentId);
 					break;
-				case 8:
+				case 9:
 					b = false;
 					logout(studentId);
 					break;
@@ -159,6 +164,21 @@ public class StudentMenuCRS {
 		}
 
 	}
+	
+	public void viewAllNotifications(String StudentId) {
+		List<Notification> allNotifications = null; 
+		NotificationInterface notify = new NotificationOpearation();
+		try {
+			allNotifications = notify.getAllNotifications(StudentId);
+		}
+		catch (SQLException ex){
+			System.out.println("Some Error Occured!");
+		}
+		System.out.println("You have " + allNotifications.size() + " Notifications!\n");
+		for(Notification nf: allNotifications) {
+			System.out.println(nf.getNotifyId() + '\t' + nf.getMsg());
+		}
+	}
 
 	public List<Course> viewRegisteredCourses(String studentId) {
 		List<Course> registeredCourses=null;
@@ -234,7 +254,18 @@ public class StudentMenuCRS {
 
 //		System.out.println("Drop the course ");
 	public void viewReportCard(String studentId) {
-		System.out.println("Show ReportCard ");
+		try {
+			List<RegisteredCourse> registeredCourses = new ArrayList<RegisteredCourse>();
+			registeredCourses = registrationinterface.viewReportCard(studentId);
+			System.out.println("Student Username: "+studentId);
+			System.out.println(String.format("%12s %12s %12s", "Course Code", "Semester", "Grade"));
+			for(RegisteredCourse rc: registeredCourses){
+				System.out.println(String.format("%12s %12s %12s", rc.getcCode(), rc.getSem(), rc.getGrade().getGrade()));
+			}
+		} catch (Exception ex) {
+			System.out.println(ex.getMessage());
+		}
+	
 	}
 
 	public void logout(String studentId) {

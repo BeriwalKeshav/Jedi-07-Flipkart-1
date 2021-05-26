@@ -23,53 +23,69 @@ import com.flipkart.exception.UserNotFoundException;
 public interface AdminInterface {
 	
 	/**
+	 * Method to Add New Professor to the Database
 	 * @param professor
+	 * @throws ProfessorAdditionFailedException
+	 * @throws UserNameAlreadyInUseException
 	 */
 	public void addProfessor(Professor professor) throws ProfessorAdditionFailedException,UserNameAlreadyInUseException;	
 	
 	/**
-	 * @param sRollNo
-	 * @param studentList
+	 * Method to Approve new Students
+	 * @param studendId
+	 * @param studentList : list of Students
+	 * @throws CourseAlreadyInCatalogException
 	 */
 	public void approveStudents(String studendId, List<Student> studentList) throws StudentNotFoundForApprovalException;
 	
 	/**
-	 * @param course
-	 * @param courseList
+	 * Method to add new Course to the Database
+	 * @param course : bean of Course
+	 * @param courseList : list of courses
+	 * @throws CourseAlreadyInCatalogException
 	 */
 	public void addCourse(Course course, List<Course> courseList) throws CourseAlreadyInCatalogException;
 	
 	/**
+	 * Method to delete a Course from the Database
 	 * @param courseCode
-	 * @param courseList
+	 * @param courseList : list of courses
+	 * @throws CourseNotRemovedException
+	 * @throws CourseNotInCatalogException
 	 */
 	public void deleteCourse(String CourseCode, List<Course> courseList)throws CourseNotRemovedException,CourseNotInCatalogException;
 	
 	/**
-	 * @param cCode
+	 * Method to assign a professor to a course 
+	 * @param CourseCode
 	 * @param professorId
+	 * @throws CourseNotInCatalogException
+	 * @throws UserNotFoundException
 	 */
 	public void assignProfessor(String CourseCode, String professorId) throws CourseNotInCatalogException,UserNotFoundException;
 	
 	/**
-	 * @param catalogId
-	 * @return
+	 * Method to view all courses
+	 * @return List<Course> list of courses
 	 */
 	public List<Course> viewCourses();
 	
 	/**
-	 * @return
+	 * Method to view all Professor
+	 * @return List<Professor> list of all the professors
 	 */
 	public List<Professor> showProfessors();
 	
 	/**
-	 * @return
+	 * Method to view all pending Student
+	 * @return List<Student> : list of students
 	 */
 	public List<Student> viewPendingStudents();
 	
 	
 	/**
-	 * @return
+	 * Method to view all courses
+	 * @return List<RegisteredCourse> : list of Registered Courses
 	 */
 	public List<RegisteredCourse> generateReportCard(String studentId);	
 

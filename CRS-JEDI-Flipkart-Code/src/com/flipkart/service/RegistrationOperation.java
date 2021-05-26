@@ -85,9 +85,8 @@ public class RegistrationOperation implements RegistrationInterface{
 	}
 
 	@Override
-	public List<RegisteredCourse> viewReportCard(int sRollNo) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<RegisteredCourse> viewReportCard(String studentId) throws SQLException{
+		return registrationDAOInterface.viewReportCard(studentId);
 	}
 
 	@Override

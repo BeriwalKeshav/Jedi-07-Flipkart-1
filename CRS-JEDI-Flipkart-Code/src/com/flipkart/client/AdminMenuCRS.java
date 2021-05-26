@@ -7,6 +7,7 @@ package com.flipkart.client;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.UUID;
 
 import com.flipkart.bean.Course;
 import com.flipkart.bean.Professor;
@@ -174,6 +175,9 @@ public class AdminMenuCRS {
 
 		Professor professor = new Professor();
 		
+		String userId = UUID.randomUUID().toString();
+		professor.setuId(userId);
+		
 		System.out.println("Enter Professor User Name:");
 		String professorName = scanner.next();
 		professor.setuName(professorName);
@@ -185,10 +189,6 @@ public class AdminMenuCRS {
 		System.out.println("Enter Designation:");
 		String designation = scanner.next();
 		professor.setpDesignation(designation);
-
-		System.out.println("Enter Professor User Id:");
-		String userId = scanner.next();
-		professor.setuId(userId);
 
 		System.out.println("Enter Password:");
 		String password = scanner.next();
@@ -247,9 +247,10 @@ public class AdminMenuCRS {
 			System.out.println("Enter StudentId");
 			String studentId=scanner.next();
 			registeredCourses = adminOperation.generateReportCard(studentId);
-			System.out.println(String.format("%12s %12s %12s %12s", "Course Code", "Student Id", "Semester", "Grade"));
+			System.out.println("Student Username: "+studentId);
+			System.out.println(String.format("%12s %12s %12s", "Course Code", "Semester", "Grade"));
 			for(RegisteredCourse rc: registeredCourses){
-				System.out.println(String.format("%12s %12s %12s %12s", rc.getcCode(), rc.getsstudentId(), rc.getSem(), rc.getGrade().getGrade()));
+				System.out.println(String.format("%12s %12s %12s", rc.getcCode(), rc.getSem(), rc.getGrade().getGrade()));
 			}
 		} catch (Exception ex) {
 			System.out.println(ex.getMessage());

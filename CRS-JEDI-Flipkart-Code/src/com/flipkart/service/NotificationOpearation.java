@@ -4,9 +4,10 @@
 package com.flipkart.service;
 
 import java.sql.SQLException;
-
+import java.util.List;
 import java.util.UUID;
 
+import com.flipkart.bean.Notification;
 import com.flipkart.dao.NotificationDAOInterface;
 import com.flipkart.dao.NotificationDAOOperation;
 
@@ -76,6 +77,18 @@ public class NotificationOpearation implements NotificationInterface{
 			System.out.println("Error Occured :( " + ex.toString());
 		}
 		return referenceId;
+	}
+
+	@Override
+	public List<Notification> getAllNotifications(String StudentId) throws SQLException {
+		List<Notification> notifications = null;
+		try {
+			notifications = notificationDAOInterface.getAllNotifications(StudentId);
+		} 
+		catch(SQLException ex) {
+			throw ex;
+		}
+		return notifications;
 	}
 	
 }
