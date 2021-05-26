@@ -47,7 +47,8 @@ public class SQLQueriesConstanst {
 	public static final String IS_REGISTERED=" select courseCode from registered_courses where courseCode=? and studentId=? ";
 	public static final String GET_SEATS = "select courseSeats from course where cCode = ?";
 	public static final String SET_REGISTRATION_STATUS="update student set approved = 1 where userId=?";
-	public static final String VIEW_REGISTERED_COURSES="select * from course where cCode IN (select cCode from registered_courses where studentId =?)";
+	public static final String VIEW_REGISTERED_COURSES="select * from course where cCode IN (select courseCode from registered_courses where studentId =?)";
+//	public static final String VIEW_REGISTERED_COURSES="select cou from course where cCode IN (select courseCode from registered_courses where studentId =?)";
 
 	
 	public static final String INSERT_PAYMENT = "insert into payment(referenceId,studentId,amount,status,paymentType) values(?,?,?,?,?)";

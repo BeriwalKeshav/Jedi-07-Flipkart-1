@@ -25,15 +25,16 @@ public interface RegistrationInterface {
 	 * @throws CourseLimitCrossed 
 	 * @throws SQLException 
 	 */
-	public boolean addCourse(String cCode, String studentId, List<Course> courseList) throws CourseNotInCatalogException,SeatNotAvailableException, CourseLimitCrossed, SQLException;
+	public boolean addCourse(String cCode, String studentId, List<Course> courseList,int sem) throws CourseNotInCatalogException,SeatNotAvailableException, CourseLimitCrossed, SQLException;
 	
 	/**
 	 * @param cCode
 	 * @param sRollNo
 	 * @param registeredCourseList
 	 * @return boolean if Course deleted successfully
+	 * @throws SQLException 
 	 */
-	public boolean dropCourse(String cCode, int sRollNo, List<Course> registeredCourseList) throws CourseNotRemovedException;
+	public boolean dropCourse(String cCode,String studentId, List<Course> registeredCourseList,int sem) throws CourseNotRemovedException, SQLException;
 	
 	/**
 	 * @param sRollNo
