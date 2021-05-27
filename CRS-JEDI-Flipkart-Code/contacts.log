@@ -592,3 +592,6 @@
 11:03:14,502  INFO UserDAOOperation,main:88 - User Role is -> STUDENT
 11:06:20,096  INFO UserDAOOperation,main:60 - Current user is -> stud
 11:06:20,103  INFO UserDAOOperation,main:88 - User Role is -> STUDENT
+11:48:52,645  INFO UserDAOOperation,main:60 - Current user is -> Naman
+11:48:52,658  INFO UserDAOOperation,main:88 - User Role is -> STUDENT
+11:49:47,184 ERROR RegistrationDAOOperation,main:88 - Cannot add or update a child row: a foreign key constraint fails (`crs/registered_courses`, CONSTRAINT `course_code_constraint` FOREIGN KEY (`courseCode`) REFERENCES `course` (`cCode`) ON DELETE CASCADE ON UPDATE NO ACTION)

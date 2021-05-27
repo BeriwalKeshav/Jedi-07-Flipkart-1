@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: crs
 Target Host: localhost
 Target Database: crs
-Date: 26-05-2021 11:49:13 PM
+Date: 27-05-2021 10:43:10 AM
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -107,11 +107,11 @@ CREATE TABLE `student` (
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `userId` varchar(100) NOT NULL default '',
-  `userName` varchar(100) default NULL,
+  `userName` varchar(100) NOT NULL default '',
   `passwordHash` varchar(100) default NULL,
   `createDate` date default NULL,
   `role` varchar(100) default NULL,
-  PRIMARY KEY  (`userId`),
+  PRIMARY KEY  (`userName`),
   KEY `userName` (`userName`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -121,38 +121,35 @@ CREATE TABLE `user` (
 INSERT INTO `admin` VALUES ('admin');
 INSERT INTO `course` VALUES ('AB', 'Physics', '1', 'Raj', '5');
 INSERT INTO `course` VALUES ('BC', 'Chemsitry ', '1', 'Ram', '4');
-INSERT INTO `course` VALUES ('CA', 'Maths ', '1', 'Alex', '4');
+INSERT INTO `course` VALUES ('CA', 'Maths ', '1', 'Alex', '5');
 INSERT INTO `course` VALUES ('CD', 'Biology', '1', 'Kiran', '8');
 INSERT INTO `course` VALUES ('DE', 'Accounts', '1', 'Rajesh', '8');
 INSERT INTO `course` VALUES ('DF', 'Trigonometry', '1', 'Rajeev', '9');
 INSERT INTO `course` VALUES ('LF', 'Commerce', '1', 'Ranveer', '9');
-INSERT INTO `notification` VALUES ('arrarsdasfdsdsfsdf', 'hello test ', 'stud2', 'pay321');
-INSERT INTO `notification` VALUES ('ggggggggggggg', 'test 2', 'stud', 'pay123');
-INSERT INTO `payment` VALUES ('pay123', 'stud', '1234', '0', 'CARD');
-INSERT INTO `payment` VALUES ('pay321', 'stud2', '12', '1', 'CASH');
-INSERT INTO `professor` VALUES ('cse', 'ajdnasnd adasdasda', 'proff');
-INSERT INTO `professor` VALUES ('ECE', 'Associate', 'proff2');
-INSERT INTO `professor` VALUES ('CSE', 'assistant', 'proff3');
-INSERT INTO `registered_courses` VALUES ('stud', '1', 'CD', null);
-INSERT INTO `registered_courses` VALUES ('stud', '1', 'DE', null);
-INSERT INTO `registered_courses` VALUES ('stud', '1', 'LF', null);
-INSERT INTO `registered_courses` VALUES ('stud', '1', 'AB', null);
-INSERT INTO `registered_courses` VALUES ('stud3', '2', 'AB', null);
-INSERT INTO `registered_courses` VALUES ('stud3', '2', 'BC', null);
-INSERT INTO `registered_courses` VALUES ('stud3', '2', 'CA', null);
-INSERT INTO `registered_courses` VALUES ('stud3', '2', 'CD', null);
-INSERT INTO `registered_courses` VALUES ('stud3', '2', 'DE', null);
-INSERT INTO `registered_courses` VALUES ('stud3', '2', 'DF', null);
-INSERT INTO `registered_courses` VALUES ('stud', '1', 'BC', null);
-INSERT INTO `student` VALUES ('stud', 'CSE', '1');
-INSERT INTO `student` VALUES ('stud2', 'EE', '0');
-INSERT INTO `student` VALUES ('stud3', 'CSE', '1');
-INSERT INTO `student` VALUES ('stud4', 'CSE', '0');
-INSERT INTO `user` VALUES ('123', 'proff2', 'proff2', '2021-05-26', 'PROFESSOR');
-INSERT INTO `user` VALUES ('21feb725-3e17-4960-b495-990ceeadea1e', 'stud4', 'stud4', '2021-05-26', 'STUDENT');
-INSERT INTO `user` VALUES ('723d9d24-2c14-4d3c-83bd-0737d0166f5e', 'proff3', 'proff3', '2021-05-26', 'PROFESSOR');
-INSERT INTO `user` VALUES ('a381df18-bd60-11eb-8529-0242ac130003', 'admin', 'admin', '2021-05-18', 'ADMIN');
-INSERT INTO `user` VALUES ('c0a018a8-bd60-11eb-8529-0242ac130003', 'proff', 'proff', '2021-05-05', 'PROFESSOR');
-INSERT INTO `user` VALUES ('cdc397c6-bd60-11eb-8529-0242ac130003', 'stud', 'stud', '2021-05-04', 'STUDENT');
-INSERT INTO `user` VALUES ('ddbd34e8-bd60-11eb-8529-0242ac130003', 'stud2', 'stud2', '2021-05-13', 'STUDENT');
-INSERT INTO `user` VALUES ('stud3', 'stud3', 'stud3', '2021-05-26', 'STUDENT');
+INSERT INTO `professor` VALUES ('Mathematics', 'Senior', 'Alex');
+INSERT INTO `professor` VALUES ('BioSciences', 'Associate', 'Kiran');
+INSERT INTO `professor` VALUES ('CSE', 'Associate', 'Raj');
+INSERT INTO `professor` VALUES ('ECE', 'Visting', 'Rajeev');
+INSERT INTO `professor` VALUES ('Commerce', 'Assistant', 'Rajesh');
+INSERT INTO `professor` VALUES ('Chemical', 'Assistant', 'Ram');
+INSERT INTO `professor` VALUES ('Mathematics', 'Senior', 'Ranveer');
+INSERT INTO `student` VALUES ('Aditya', 'ECE', '0');
+INSERT INTO `student` VALUES ('Ankit', 'CSE', '0');
+INSERT INTO `student` VALUES ('Harsh', 'ECE', '0');
+INSERT INTO `student` VALUES ('Keshav', 'CSE', '0');
+INSERT INTO `student` VALUES ('Kunal', 'ECE', '0');
+INSERT INTO `student` VALUES ('Praful', 'CSE', '0');
+INSERT INTO `user` VALUES ('a2e2f2df-2486-4e00-9c7f-1b1f85a2b6da', 'Aditya', 'Aditya', '2021-05-27', 'STUDENT');
+INSERT INTO `user` VALUES ('21feb725-3e17-4960-b495-990ceeadea1e', 'admin', 'admin', '2021-05-26', 'ADMIN');
+INSERT INTO `user` VALUES ('9ade4d52-07e8-4a58-980a-0297493158d8', 'Alex', 'Alex', '2021-05-27', 'PROFESSOR');
+INSERT INTO `user` VALUES ('bcad48c5-2ac3-4915-8c6d-0a6f6301a023', 'Ankit', 'Ankit', '2021-05-27', 'STUDENT');
+INSERT INTO `user` VALUES ('b1e7c519-549b-4305-ac13-18fca931f31b', 'Harsh', 'Harsh', '2021-05-27', 'STUDENT');
+INSERT INTO `user` VALUES ('7bbaecc8-1fb8-4c73-a5c2-9e5d7d0866ee', 'Keshav', 'Keshav', '2021-05-27', 'STUDENT');
+INSERT INTO `user` VALUES ('234f20ec-9a93-4c73-bb3b-debc35bdc166', 'Kiran', 'Kiran', '2021-05-27', 'PROFESSOR');
+INSERT INTO `user` VALUES ('0c534356-2e96-49fc-acb5-3a161bae2f23', 'Kunal', 'Kunal', '2021-05-27', 'STUDENT');
+INSERT INTO `user` VALUES ('ab29cef3-171d-4022-beee-e0f74b79328c', 'Praful', 'Praful', '2021-05-27', 'STUDENT');
+INSERT INTO `user` VALUES ('1043a795-0976-4fc6-9363-a464d237c3d2', 'Raj', 'Raj', '2021-05-27', 'PROFESSOR');
+INSERT INTO `user` VALUES ('217628a3-f207-407e-a5ed-0306c38bb92b', 'Rajeev', 'Rajeev', '2021-05-27', 'PROFESSOR');
+INSERT INTO `user` VALUES ('bcbee203-9ef0-4b48-a0cc-58a7d7a291e5', 'Rajesh', 'Rajesh', '2021-05-27', 'PROFESSOR');
+INSERT INTO `user` VALUES ('65551603-a6e6-4e32-be95-ebb28b040430', 'Ram', 'Ram', '2021-05-27', 'PROFESSOR');
+INSERT INTO `user` VALUES ('875c6fbe-a5d8-4dae-bd4a-bef55f577b2e', 'Ranveer', 'Ranveer', '2021-05-27', 'PROFESSOR');
