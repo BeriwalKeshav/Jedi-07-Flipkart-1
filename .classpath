@@ -2,5 +2,6 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="CRS-JEDI-Flipkart-Code/src"/>
+	<classpathentry kind="lib" path="D:/DB/log4j-1.2.11.jar.zip"/>
 	<classpathentry kind="output" path="CRS-JEDI-Flipkart-Code/bin"/>
 </classpath>
