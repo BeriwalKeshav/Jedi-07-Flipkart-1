@@ -370,6 +370,36 @@ public class StudentMenuCRS {
 				}
 
 				ModeOfPayment mode = ModeOfPayment.getModeofPayment(sc.nextInt());
+				switch(mode) {
+				case CARD : 
+					System.out.println("Enter Card number:");
+					String cno = sc.next();
+					System.out.println("Enter Card expiry date:");
+					String expDate = sc.next();
+					System.out.println("Enter CVV:");
+					String cvv = sc.next();
+					break;
+				case NET_BANKING:
+					System.out.println("Enter UPI ID:");
+					String upiId = sc.next();
+					System.out.println("Enter password:");
+					String upiPwd = sc.next();
+					break;
+				case CASH :
+					break;
+				case CHEQUE :
+					System.out.println("Enter Bank Name:");
+					String bName = sc.next();
+					System.out.println("Enter Cheque Number:");
+					String chNum = sc.next();
+					break;
+				case SCHOLARSHIP :
+					System.out.println("Enter Scholarship ID:");
+					String scholarId = sc.next();
+					break;
+				default :
+					break;
+				}
 				NotificationInterface notificationInterface = NotificationOperation.getInstance();
 
 				if (mode == null)
