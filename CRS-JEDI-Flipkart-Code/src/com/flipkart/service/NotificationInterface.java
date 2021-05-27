@@ -32,7 +32,7 @@ public interface NotificationInterface {
 	
 	/**
 	 * @param StudentId
-	 * @return
+	 * @return List Of All Notifications
 	 * @throws SQLException
 	 */
 	public List<Notification> getAllNotifications(String StudentId) throws SQLException;
@@ -49,7 +49,7 @@ public interface NotificationInterface {
 	
 	/**
 	 * @param StudentId
-	 * @return
+	 * @return 
 	 * @throws SQLException
 	 */
 	public String updatePayment(String StudentId,String Mode) throws SQLException;

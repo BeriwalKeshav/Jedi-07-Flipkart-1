@@ -527,3 +527,68 @@
 =======
 >>>>>>> 9088537c4c69447ae077a97ea6fa76b1f5aa0aca
 >>>>>>> be4c9786ff37d2b0479b14bc39a83ec5d5062ee3
+08:48:59,406  INFO UserDAOImpl,main:60 - Current user is -> admin
+08:48:59,425  INFO UserDAOImpl,main:88 - User Role is -> ADMIN
+08:49:25,505  INFO AdminDAOOperation,main:362 - 2 students have pending-approval.
+08:49:51,809  INFO AdminDAOOperation,main:362 - 2 students have pending-approval.
+08:49:57,523  INFO AdminDAOOperation,main:165 - 1 student approved.
+08:49:57,525  INFO AdminDAOOperation,main:171 - Student with studentId: stud approved by admin.
+08:50:42,043  INFO AdminDAOOperation,main:362 - 1 students have pending-approval.
+08:50:59,186  INFO UserDAOImpl,main:60 - Current user is -> stud
+08:50:59,190  INFO UserDAOImpl,main:88 - User Role is -> STUDENT
+09:09:31,142  INFO UserDAOImpl,main:60 - Current user is -> admin
+09:09:31,152  INFO UserDAOImpl,main:88 - User Role is -> ADMIN
+09:09:44,595  INFO UserDAOImpl,main:60 - Current user is -> stud
+09:09:44,598  INFO UserDAOImpl,main:88 - User Role is -> STUDENT
+09:11:14,902  INFO UserDAOImpl,main:60 - Current user is -> proff
+09:11:14,905  INFO UserDAOImpl,main:88 - User Role is -> PROFESSOR
+09:31:04,110  INFO UserDAOOperation,main:60 - Current user is -> stud
+09:31:04,117  INFO UserDAOOperation,main:88 - User Role is -> STUDENT
+09:35:50,132  INFO UserDAOOperation,main:60 - Current user is -> admin
+09:35:50,136  INFO UserDAOOperation,main:88 - User Role is -> ADMIN
+09:35:53,687  INFO AdminDAOOperation,main:362 - 1 students have pending-approval.
+09:36:02,175  INFO AdminDAOOperation,main:362 - 1 students have pending-approval.
+09:36:05,487  INFO AdminDAOOperation,main:165 - 1 student approved.
+09:36:05,488  INFO AdminDAOOperation,main:171 - Student with studentId: stud3 approved by admin.
+10:08:06,536  INFO UserDAOOperation,main:60 - Current user is -> admin
+10:08:06,546  INFO UserDAOOperation,main:88 - User Role is -> ADMIN
+10:08:10,631  INFO AdminDAOOperation,main:362 - 1 students have pending-approval.
+10:08:18,720  INFO AdminDAOOperation,main:165 - 1 student approved.
+10:08:18,721  INFO AdminDAOOperation,main:171 - Student with studentId: stud approved by admin.
+10:12:47,896  INFO UserDAOOperation,main:60 - Current user is -> admin
+10:12:47,902  INFO UserDAOOperation,main:88 - User Role is -> ADMIN
+10:12:58,148  INFO AdminDAOOperation,main:362 - 0 students have pending-approval.
+10:13:38,152  INFO AdminDAOOperation,main:362 - 1 students have pending-approval.
+10:13:41,551  INFO AdminDAOOperation,main:165 - 1 student approved.
+10:13:41,552  INFO AdminDAOOperation,main:171 - Student with studentId: stud approved by admin.
+10:22:31,663  INFO UserDAOOperation,main:60 - Current user is -> admin
+10:22:31,669  INFO UserDAOOperation,main:88 - User Role is -> ADMIN
+10:22:37,908  INFO AdminDAOOperation,main:362 - 0 students have pending-approval.
+10:23:08,710  INFO AdminDAOOperation,main:362 - 1 students have pending-approval.
+10:23:14,949  INFO AdminDAOOperation,main:362 - 1 students have pending-approval.
+10:23:17,882  INFO AdminDAOOperation,main:165 - 1 student approved.
+10:23:17,883  INFO AdminDAOOperation,main:171 - Student with studentId: stud approved by admin.
+10:23:37,728  INFO UserDAOOperation,main:60 - Current user is -> stud
+10:23:37,735  INFO UserDAOOperation,main:88 - User Role is -> STUDENT
+10:26:10,123  INFO UserDAOOperation,main:60 - Current user is -> stud
+10:26:10,129  INFO UserDAOOperation,main:88 - User Role is -> STUDENT
+10:29:03,051  INFO UserDAOOperation,main:60 - Current user is -> stud
+10:29:03,058  INFO UserDAOOperation,main:88 - User Role is -> STUDENT
+10:33:15,728  INFO UserDAOOperation,main:60 - Current user is -> admin
+10:33:15,734  INFO UserDAOOperation,main:88 - User Role is -> ADMIN
+10:33:19,712  INFO AdminDAOOperation,main:362 - 1 students have pending-approval.
+10:33:22,199  INFO AdminDAOOperation,main:362 - 1 students have pending-approval.
+10:33:25,303  INFO AdminDAOOperation,main:165 - 1 student approved.
+10:33:25,305  INFO AdminDAOOperation,main:171 - Student with studentId: stud approved by admin.
+10:33:51,343  INFO UserDAOOperation,main:60 - Current user is -> stud
+10:33:51,350  INFO UserDAOOperation,main:88 - User Role is -> STUDENT
+10:36:17,677  INFO UserDAOOperation,main:60 - Current user is -> stud
+10:36:17,683  INFO UserDAOOperation,main:88 - User Role is -> STUDENT
+10:41:49,940  INFO UserDAOOperation,main:60 - Current user is -> stud
+10:41:49,949  INFO UserDAOOperation,main:88 - User Role is -> STUDENT
+10:59:30,383  INFO UserDAOOperation,main:60 - Current user is -> stud
+10:59:30,391  INFO UserDAOOperation,main:88 - User Role is -> STUDENT
+11:03:14,495  INFO UserDAOOperation,main:60 - Current user is -> stud
+11:03:14,502  INFO UserDAOOperation,main:88 - User Role is -> STUDENT
+11:06:20,096  INFO UserDAOOperation,main:60 - Current user is -> stud
+11:06:20,103  INFO UserDAOOperation,main:88 - User Role is -> STUDENT

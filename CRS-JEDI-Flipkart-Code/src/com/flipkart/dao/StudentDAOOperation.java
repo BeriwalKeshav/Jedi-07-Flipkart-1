@@ -63,7 +63,7 @@ public class StudentDAOOperation implements StudentDAOInterface{
 		boolean added = false;
 		try
 		{
-			//open db connection
+			//open DataBase Connection
 			PreparedStatement preparedStatement=connection.prepareStatement(SQLQueriesConstanst.ADD_USER_QUERY);
 			preparedStatement.setString(1, student.getuId());
 			preparedStatement.setString(2, student.getuName());
@@ -101,15 +101,6 @@ public class StudentDAOOperation implements StudentDAOInterface{
 		{
 			throw new StudentNotRegisteredException(student.getuName());
 		}
-		finally
-		{
-//			try {
-//				connection.close();
-//			} catch (SQLException e) {
-//				System.out.println(e.getMessage()+"SQL error");
-//				e.printStackTrace();
-//			}
-		}
 		return added;
 	}
 
@@ -120,7 +111,6 @@ public class StudentDAOOperation implements StudentDAOInterface{
 	 */
 	@Override
 	public String getStudentId(String userId) {
-		// TODO Auto-generated method stub
 		Connection connection=DBUtil.getConnection();
 		try {
 			PreparedStatement statement = connection.prepareStatement(SQLQueriesConstanst.GET_STUDENT_ID);

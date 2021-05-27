@@ -4,6 +4,7 @@
 package com.flipkart.service;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -57,7 +58,7 @@ public class NotificationOperation implements NotificationInterface{
 		String notificationId="";
 		try
 		{
-			notificationId=notificationDAOInterface.sendNotification(referenceId,studentId,message);
+			notificationId=notificationDAOInterface.sendNotification(message,studentId,referenceId);
 			
 		}
 		catch(SQLException ex)

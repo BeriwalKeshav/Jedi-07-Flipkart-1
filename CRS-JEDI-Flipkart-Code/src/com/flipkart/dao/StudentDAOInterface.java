@@ -3,8 +3,6 @@
  */
 package com.flipkart.dao;
 
-import java.sql.SQLException;
-
 import com.flipkart.bean.Student;
 import com.flipkart.exception.StudentNotRegisteredException;
 import com.flipkart.exception.UserNameAlreadyInUseException;
@@ -16,25 +14,25 @@ import com.flipkart.exception.UserNameAlreadyInUseException;
 public interface StudentDAOInterface {
 	
 	/**
-	 * Method to add student to database
+	 * Method To Add Student To Database
 	 * @param student: student object containing all the student fields
 	 * @throws StudentNotRegisteredException
-	 * @author UserNameAlreadyInUseException
+	 * @throws UserNameAlreadyInUseException
 	 * @return boolean true if student is added, else false
 	 */
 	public boolean addStudent(Student student) throws StudentNotRegisteredException,UserNameAlreadyInUseException;
 	
 	/**
-	 * Method to retrieve Student Id from User Id
+	 * Method To Retrieve Student Id From User Id
 	 * @param userId
 	 * @return Student Id
 	 */
 	public String getStudentId(String userId);
 	
 	/**
-	 * Method to check if Student is approved
+	 * Method To Check If Student Is Approved
 	 * @param studentId
-	 * @return boolean indicating if student is approved
+	 * @return boolean Indicating If Student Is Approved
 	 */
 	public boolean isApproved(String studentId);
 }

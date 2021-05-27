@@ -19,13 +19,13 @@ import com.flipkart.utils.DBUtil;
  * @author prafu
  *
  */
-public class UserDAOImpl implements UserDAOInterface{
+public class UserDAOOperation implements UserDAOInterface{
 
 	
-	private static volatile UserDAOImpl instance = null;
-	private static Logger logger = Logger.getLogger(UserDAOImpl.class);
+	private static volatile UserDAOOperation instance = null;
+	private static Logger logger = Logger.getLogger(UserDAOOperation.class);
 	
-	private UserDAOImpl()
+	private UserDAOOperation()
 	{
 		
 	}
@@ -34,11 +34,11 @@ public class UserDAOImpl implements UserDAOInterface{
 	 * Method to make UserDAOImpl Singleton
 	 * @return
 	 */
-	public static UserDAOImpl getInstance(){
+	public static UserDAOOperation getInstance(){
 		
 		if(instance == null){
-			synchronized(UserDAOImpl.class){
-				instance= new UserDAOImpl();
+			synchronized(UserDAOOperation.class){
+				instance= new UserDAOOperation();
 			}
 		}
 		return instance;

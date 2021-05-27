@@ -18,8 +18,7 @@ import com.flipkart.service.RegistrationInterface;
 import com.flipkart.service.RegistrationOperation;
 
 /**
- * @author JEDI-7
- * Class To Display The Student Client Menu.
+ * @author JEDI-7 Class To Display The Student Client Menu.
  *
  */
 public class StudentMenuCRS {
@@ -27,7 +26,7 @@ public class StudentMenuCRS {
 	RegistrationInterface registrationinterface = RegistrationOperation.getInstance();
 	Scanner sc = new Scanner(System.in);
 	private int if_registered;
-	private int sem=1;
+	private int sem = 1;
 
 	public void renderMenu(String studentId) {
 
@@ -35,55 +34,55 @@ public class StudentMenuCRS {
 
 		boolean b = true;
 		while (b) {
-			System.out.println("++++++++++++++++++++++++++++++++++");
-			System.out.println("++++++++++ Student Menu ++++++++++");
-			System.out.println("++++++++++++++++++++++++++++++++++");
+			System.out.println("\n\n+++++++++++++++++++++++++++++++++++++++++++++++++++");
+			System.out.println("+++++++++++++++++++ Student Menu ++++++++++++++++++");
+			System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++");
 			System.out.println("1. Enter 1 To View Catalog Of Courses.");
 			System.out.println("2. Enter 2 To Register For Courses.");
 			System.out.println("3. Enter 3 To View Registered Courses.");
 			System.out.println("4. Enter 4 To Add Course.");
 			System.out.println("5. Enter 5 To Drop Course.");
 			System.out.println("6. Enter 6 To View Report Card.");
-			System.out.println("7. Enter 7 To Pay Semester Fee.");			
+			System.out.println("7. Enter 7 To Pay Semester Fee.");
 			System.out.println("8. Enter 8 To View Total Notifications Until Today.");
-			System.out.println("9. Enter 9 To Logout From The System."); 
-			
+			System.out.println("9. Enter 9 To Logout From The System.");
+			System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++");
 			System.out.println("\nEnter User Input : ");
 			int c = sc.nextInt();
-			
-			switch(c) {
-				case 1:
-					viewCatalog(studentId);
-					break;
-				case 2:
-					registerCourses(studentId);
-					break;
-				case 3:
-					viewRegisteredCourses(studentId);
-					break;
-				case 4:
-					addCourses(studentId);
-					break;
-				case 5:
-					dropCourses(studentId);
-					break;
-				case 6:
-					viewReportCard(studentId);
-					break;
-				case 7:
-					make_payment(studentId);
-					break;
-				case 8: 
-					viewAllNotifications(studentId);
-					break;
-				case 9:
-					b = false;
-					logout(studentId);
-					break;
-				default:{
-					System.out.println("+++++++++ Wrong Choice !!!!! +++++");
-					System.out.println("+++++++++ Please Enter The Valid One ++++++++");
-				}
+
+			switch (c) {
+			case 1:
+				viewCatalog(studentId);
+				break;
+			case 2:
+				registerCourses(studentId);
+				break;
+			case 3:
+				viewRegisteredCourses(studentId);
+				break;
+			case 4:
+				addCourses(studentId);
+				break;
+			case 5:
+				dropCourses(studentId);
+				break;
+			case 6:
+				viewReportCard(studentId);
+				break;
+			case 7:
+				make_payment(studentId);
+				break;
+			case 8:
+				viewAllNotifications(studentId);
+				break;
+			case 9:
+				b = false;
+				logout(studentId);
+				break;
+			default: {
+				System.out.println("++++++++++++++ Wrong Choice !!!!! +++++++++++");
+				System.out.println("+++++++++ Please Enter The Valid One ++++++++");
+			}
 
 			}
 		}
@@ -91,8 +90,9 @@ public class StudentMenuCRS {
 
 	/**
 	 * Method To View Catalog Of Courses.
+	 * 
 	 * @param studentId
-	 * @return List Of Available Courses 
+	 * @return List Of Available Courses
 	 */
 	public List<Course> viewCatalog(String studentId) {
 		List<Course> course_avail = null;
@@ -117,11 +117,12 @@ public class StudentMenuCRS {
 
 	/**
 	 * Method To Register For Courses.
+	 * 
 	 * @param studentId
 	 * @return List of Registered Courses
 	 * @throws Course Not In Catalog Exception.
-	 * @throws Seat Not Available Exception.
-	 * @throws Course Limit Crossed Exception. 
+	 * @throws Seat   Not Available Exception.
+	 * @throws Course Limit Crossed Exception.
 	 **/
 	public void registerCourses(String studentId) {
 		if (if_registered > 0) {
@@ -129,7 +130,7 @@ public class StudentMenuCRS {
 			return;
 		}
 		System.out.println("Enter the semester for which you want to register!");
-		sem=sc.nextInt();
+		sem = sc.nextInt();
 		int course_count = 0;
 		System.out.println("Choose 4 Primaary Courses");
 		while (course_count < 4) {
@@ -140,7 +141,7 @@ public class StudentMenuCRS {
 				}
 				System.out.println("Enter Course code for Course " + (course_count + 1));
 				String courseCode = sc.next();
-				if (registrationinterface.addCourse(courseCode, studentId, avail_course,sem)) {
+				if (registrationinterface.addCourse(courseCode, studentId, avail_course, sem)) {
 					System.out.println("Course " + courseCode + " added Sucessfully");
 				} else {
 					System.out.println("Already Registerd for the course: " + courseCode);
@@ -153,7 +154,7 @@ public class StudentMenuCRS {
 			course_count++;
 		}
 		System.out.println("Choose 2 Optional Courses");
-		while(course_count<6) {
+		while (course_count < 6) {
 			try {
 				List<Course> avail_course = viewCatalog(studentId);
 				if (avail_course == null) {
@@ -161,7 +162,7 @@ public class StudentMenuCRS {
 				}
 				System.out.println("Enter Course code for Course " + (course_count + 1));
 				String courseCode = sc.next();
-				if (registrationinterface.addCourse(courseCode, studentId, avail_course,sem)) {
+				if (registrationinterface.addCourse(courseCode, studentId, avail_course, sem)) {
 					System.out.println("Course " + courseCode + " added Sucessfully");
 				} else {
 					System.out.println("Already Registerd for the course: " + courseCode);
@@ -182,59 +183,65 @@ public class StudentMenuCRS {
 		}
 
 	}
-	
+
 	/**
 	 * Method To View All Notifications
+	 * 
 	 * @param StudentId
 	 */
 	public void viewAllNotifications(String StudentId) {
-		List<Notification> allNotifications = null; 
+		List<Notification> allNotifications = null;
 
-		NotificationInterface notify =  NotificationOperation.getInstance();
+		NotificationInterface notify = NotificationOperation.getInstance();
 		try {
 			allNotifications = notify.getAllNotifications(StudentId);
+			System.out.println("You have " + allNotifications.size() + " Notifications!\n");
+			System.out.println(String.format("%30s | %30s | %30s | %30s", "Notification ID", "Message","Student ID","Reference ID"));
+			for (Notification nf : allNotifications) {
+				System.out.println(String.format("%40s | %40s | %40s | %40s", nf.getNotifyId(), nf.getMsg(),nf.getsId(),nf.getRefId()));
+			}
+		} catch (SQLException ex) {
+			System.out.println("Some Error Occured!"+" "+ex.getMessage());
+			System.out.println(ex);
 		}
-		catch (SQLException ex){
-			System.out.println("Some Error Occured!");
-		}
-		System.out.println("You have " + allNotifications.size() + " Notifications!\n");
-		for(Notification nf: allNotifications) {
-			System.out.println(nf.getNotifyId() + '\t' + nf.getMsg());
-		}
+
+		
 	}
 
 	/**
 	 * Method To View Registered Courses.
+	 * 
 	 * @param studentId
 	 * @return List of Registered Courses
 	 */
 	public List<Course> viewRegisteredCourses(String studentId) {
-		List<Course> registeredCourses=null;
+		List<Course> registeredCourses = null;
 		try {
 			registeredCourses = registrationinterface.viewRegisteredCourses(studentId);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		if(registeredCourses.isEmpty()) {
+		if (registeredCourses.isEmpty()) {
 			System.out.println("You have not yet registered for any Course");
 			return null;
-		}
-		else {
-			for(Course obj : registeredCourses) {
-				System.out.println("Course Code  : " + obj.getcCode() + "\nCourse Name : " + obj.getcName() + "\nProfessor : " + obj.getProfName());
+		} else {
+			for (Course obj : registeredCourses) {
+				System.out.println("Course Code  : " + obj.getcCode() + "\nCourse Name : " + obj.getcName()
+						+ "\nProfessor : " + obj.getProfName());
 			}
 			return registeredCourses;
 		}
 
 	}
-	
+
 	/**
 	 * Method To Add Course For Registration
+	 * 
 	 * @param studentId
-	 * @throws Course Not In Catalog Exception. 
-	 * @throws Seat Not Available Exception.
-	 * @throws Course Limit Crossed Exception. 
+	 * @throws Course Not In Catalog Exception.
+	 * @throws Seat   Not Available Exception.
+	 * @throws Course Limit Crossed Exception.
 	 */
 	public void addCourses(String studentId) {
 
@@ -250,7 +257,7 @@ public class StudentMenuCRS {
 		System.out.println("Enter Course Code");
 		String cCode = sc.next();
 		try {
-			if (registrationinterface.addCourse(cCode, studentId, courseAvail,sem))
+			if (registrationinterface.addCourse(cCode, studentId, courseAvail, sem))
 				System.out.println("Course has been added");
 			else
 				System.out.println("You have already registered for the course");
@@ -262,8 +269,9 @@ public class StudentMenuCRS {
 
 	/**
 	 * Method To Drop Course.
+	 * 
 	 * @param studentId
-	 * @throws Course Not Removed Exception.
+	 * @throws Course        Not Removed Exception.
 	 * @throws SQLException.
 	 */
 	public void dropCourses(String studentId) {
@@ -280,7 +288,7 @@ public class StudentMenuCRS {
 		String courseCode = sc.next();
 
 		try {
-			registrationinterface.dropCourse(courseCode, studentId, registeredCourseList,sem);
+			registrationinterface.dropCourse(courseCode, studentId, registeredCourseList, sem);
 			System.out.println("You have successfully dropped Course : " + courseCode);
 
 		} catch (CourseNotRemovedException e) {
@@ -293,31 +301,32 @@ public class StudentMenuCRS {
 
 	/**
 	 * Method To View Generate Report Card
+	 * 
 	 * @param studentId
 	 */
 	public void viewReportCard(String studentId) {
 		try {
 			List<RegisteredCourse> registeredCourses = new ArrayList<RegisteredCourse>();
 			registeredCourses = registrationinterface.viewReportCard(studentId);
-			System.out.println("Student Username: "+studentId);
-			System.out.println(String.format("%12s %12s %12s", "Course Code", "Semester", "Grade"));
-			for(RegisteredCourse rc: registeredCourses){
-				System.out.println(String.format("%12s %12s %12s", rc.getcCode(), rc.getSem(), rc.getGrade().getGrade()));
+			System.out.println("Student Username: " + studentId);
+			System.out.println(String.format("%30s %30s %30s", "Course Code", "Semester", "Grade"));
+			for (RegisteredCourse rc : registeredCourses) {
+				System.out
+						.println(String.format("%30s %30s %30s", rc.getcCode(), rc.getSem(), rc.getGrade().getGrade()));
 			}
 		} catch (Exception ex) {
 			System.out.println(ex.getMessage());
 		}
-	
-	}
 
-	
+	}
 
 	/**
 	 * Method To View Registration Status
+	 * 
 	 * @param studentId
 	 * @return student Id
-	 * @throws SQL Exception
-.	 */
+	 * @throws SQL Exception .
+	 */
 	public int getRegistrationStatus(String studentId) {
 		try {
 			return registrationinterface.getRegistrationStatus(studentId);
@@ -327,74 +336,66 @@ public class StudentMenuCRS {
 		return 0;
 
 	}
-	
+
 	/**
-	 * Make Payment For Selected Courses. Student is provided with an option to pay the fees and select the mode of payment.
+	 * Make Payment For Selected Courses. Student is provided with an option to pay
+	 * the fees and select the mode of payment.
+	 * 
 	 * @param studentId
 	 */
-	private void make_payment(String studentId)
-	{
-		
+	private void make_payment(String studentId) {
+
 		int fee = 0;
-		try
-		{
+		try {
 			fee = registrationinterface.calculateFee(studentId);
-		} 
-		catch (SQLException e) 
-		{
+		} catch (SQLException e) {
 
-            System.out.println(e.getMessage());
+			System.out.println(e.getMessage());
 		}
 
-		if(fee == 0)
-		{
+		if (fee == 0) {
 			System.out.println("You have no outstanding payment");
-		}
-		else
-		{
-			
+		} else {
+
 			System.out.println("Your total fee  = " + fee);
 			System.out.println("Want to continue Fee Payment(y/n)");
 			String ch = sc.next();
-			if(ch.equals("y"))
-			{
+			if (ch.equals("y")) {
 				System.out.println("Select Mode of Payment:");
-				
+
 				int index = 1;
-				for(ModeOfPayment mode : ModeOfPayment.values())
-				{
+				for (ModeOfPayment mode : ModeOfPayment.values()) {
 					System.out.println(index + ". " + mode);
 					index = index + 1;
 				}
-				
+
 				ModeOfPayment mode = ModeOfPayment.getModeofPayment(sc.nextInt());
 				NotificationInterface notificationInterface = NotificationOperation.getInstance();
-				
-				if(mode == null)
-					System.out.println("Invalid Input");
-				else
-				{
-					try 
-					{
-						String referenceId = notificationInterface.updatePayment(studentId,mode.toString());
-						String message = mode.toString() + " Payment done";
-						notificationInterface.sendNotification(message, studentId, referenceId);
-					}
-					catch (Exception e) 
-					{
 
-			            System.out.println(e.getMessage());
+				if (mode == null)
+					System.out.println("Invalid Input");
+				else {
+					try {
+						String referenceId = notificationInterface.updatePayment(studentId, mode.toString());
+						String message = mode.toString() + " Payment done";
+						System.out.println(message);
+						notificationInterface.sendNotification(message, studentId, referenceId);
+					} catch (Exception e) {
+
+						System.out.println(e.getMessage());
+						System.out.println(e);
 					}
 				}
-					
+
 			}
-			
+
 		}
-		
+
 	}
-	
+
 	/**
-	 * Method To 
+	 * Method To
+	 * 
 	 * @param studentId
 	 */
 	public void logout(String studentId) {
