@@ -55,6 +55,18 @@ public class RegistrationOperation implements RegistrationInterface{
 	public boolean addCourse(String cCode, String studentId, List<Course> courseList,int sem,int type)
 			throws CourseNotInCatalogException, SeatNotAvailableException,CourseLimitCrossed,SQLException {
 		// TODO Auto-generated method stub
+		boolean check=true;
+		for(Course course : courseList)
+		{
+			if(cCode.equalsIgnoreCase(course.getcCode())) 
+			{
+				check=false; 
+				break;
+			}
+		}
+		if(check) {
+			throw new CourseNotInCatalogException(cCode);
+		}
 		if(type==0) {
 			if (registrationDAOInterface.numOfRegisteredCourses(studentId) >= 4)
 			{	

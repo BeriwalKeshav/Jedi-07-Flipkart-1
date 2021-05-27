@@ -22,8 +22,10 @@ public class CourseLimitCrossed extends Exception {
 	 * Message returned when exception is thrown
 	 * @return Error Message
 	 * */
-	public String getMessgae() {
-		return "Course Registration Limit Exceeded";
+	@Override
+	public String getMessage() 
+	{
+		return "Course Limit Exceeded! Cannot add more courses.";
 	}
 
 }

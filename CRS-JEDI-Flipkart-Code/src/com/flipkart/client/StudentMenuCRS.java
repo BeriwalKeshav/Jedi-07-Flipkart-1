@@ -267,7 +267,7 @@ public class StudentMenuCRS {
 				System.out.println("\nCourse has been added");
 			else
 				System.out.println("You have already registered for the course");
-		} catch (CourseNotInCatalogException | SeatNotAvailableException | CourseLimitCrossed | SQLException e) {
+		} catch (CourseNotInCatalogException |  CourseLimitCrossed |SeatNotAvailableException | SQLException e) {
 			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		}
