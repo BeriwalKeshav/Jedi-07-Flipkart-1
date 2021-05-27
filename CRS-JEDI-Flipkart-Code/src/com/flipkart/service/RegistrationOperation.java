@@ -52,28 +52,45 @@ public class RegistrationOperation implements RegistrationInterface{
 	
 	
 	@Override
-	public boolean addCourse(String cCode, String studentId, List<Course> courseList,int sem)
+	public boolean addCourse(String cCode, String studentId, List<Course> courseList,int sem,int type)
 			throws CourseNotInCatalogException, SeatNotAvailableException,CourseLimitCrossed,SQLException {
 		// TODO Auto-generated method stub
-
-		if (registrationDAOInterface.numOfRegisteredCourses(studentId) >= 6)
-		{	
-			throw new CourseLimitCrossed(6);
+		if(type==0) {
+			if (registrationDAOInterface.numOfRegisteredCourses(studentId) >= 4)
+			{	
+				throw new CourseLimitCrossed(4);
+			}
+			else if (registrationDAOInterface.isRegistered(cCode, studentId)) 
+			{
+				return false;
+			} 
+			else if (!registrationDAOInterface.seatAvailable(cCode)) 
+			{
+				throw new SeatNotAvailableException(cCode);
+			} 
+//			else if(!StudentValidator.isValidCourseCode(courseCode, availableCourseList))
+//			{
+//				throw new CourseNotFoundException(courseCode);
+//			}
+			
+			return registrationDAOInterface.addCourse(studentId, sem,cCode);
 		}
-		else if (registrationDAOInterface.isRegistered(cCode, studentId)) 
-		{
-			return false;
-		} 
-		else if (!registrationDAOInterface.seatAvailable(cCode)) 
-		{
-			throw new SeatNotAvailableException(cCode);
-		} 
-//		else if(!StudentValidator.isValidCourseCode(courseCode, availableCourseList))
-//		{
-//			throw new CourseNotFoundException(courseCode);
-//		}
+		else {
+			if (registrationDAOInterface.numOfRegisteredCourses(studentId) >= 6)
+			{	
+				throw new CourseLimitCrossed(6);
+			}
+			else if (registrationDAOInterface.isRegistered(cCode, studentId)) 
+			{
+				return false;
+			} 
+			else if (!registrationDAOInterface.seatAvailable(cCode)) 
+			{
+				throw new SeatNotAvailableException(cCode);
+			} 
+			return true;
+		}
 		
-		return registrationDAOInterface.addCourse(studentId, sem,cCode);
 	}
 
 	@Override

@@ -31,7 +31,7 @@ public interface RegistrationInterface {
 	 * @throws SeatNotAvailableException 
 	 * @throws CourseLimitCrossed 
 	 */
-	public boolean addCourse(String cCode, String studentId, List<Course> courseList,int sem) throws CourseNotInCatalogException,SeatNotAvailableException, CourseLimitCrossed, SQLException;
+	public boolean addCourse(String cCode, String studentId, List<Course> courseList,int sem,int type) throws CourseNotInCatalogException,SeatNotAvailableException, CourseLimitCrossed, SQLException;
 	
 	/**
 	 * @param cCode : course code
