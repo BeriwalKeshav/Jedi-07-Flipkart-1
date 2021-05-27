@@ -109,7 +109,8 @@ public class StudentMenuCRS {
 		System.out.println("The Following Courses are available:");
 		System.out.println(String.format("%20s %20s %20s %20s", "COURSE CODE", "COURSE NAME", "INSTRUCTOR", "SEATS"));
 		for (Course obj : course_avail) {
-			System.out.println(String.format("%20s %20s %20s %20s",obj.getcCode(), obj.getcName(),obj.getProfName(),obj.getNoOfSeats()));
+			System.out.println(String.format("%20s %20s %20s %20s", obj.getcCode(), obj.getcName(), obj.getProfName(),
+					obj.getNoOfSeats()));
 		}
 		return course_avail;
 	}
@@ -140,8 +141,9 @@ public class StudentMenuCRS {
 				}
 				System.out.println("\nEnter Course code for Course " + (course_count + 1));
 				String courseCode = sc.next();
-				if (registrationinterface.addCourse(courseCode, studentId, avail_course,sem,0)) {
+				if (registrationinterface.addCourse(courseCode, studentId, avail_course, sem, 0)) {
 					System.out.println("\nCourse " + courseCode + " added Sucessfully");
+					course_count++;
 				} else {
 					System.out.println("Already Registerd for the course: " + courseCode);
 				}
@@ -150,10 +152,10 @@ public class StudentMenuCRS {
 				System.out.println(e.getMessage());
 
 			}
-			course_count++;
+
 		}
 		System.out.println("\nChoose 2 Optional Courses");
-		while(course_count<6) {
+		while (course_count < 6) {
 			try {
 				List<Course> avail_course = viewCatalog(studentId);
 				if (avail_course == null) {
@@ -161,8 +163,9 @@ public class StudentMenuCRS {
 				}
 				System.out.println("\nEnter Course code for Course " + (course_count + 1));
 				String courseCode = sc.next();
-				if (registrationinterface.addCourse(courseCode, studentId, avail_course,sem,1)) {
+				if (registrationinterface.addCourse(courseCode, studentId, avail_course, sem, 1)) {
 					System.out.println("\nCourse " + courseCode + " added Sucessfully");
+					course_count++;
 				} else {
 					System.out.println("\nAlready Registerd for the course: " + courseCode);
 				}
@@ -171,7 +174,7 @@ public class StudentMenuCRS {
 				System.out.println(e.getMessage());
 
 			}
-			course_count++;
+
 		}
 		System.out.println("\nStudent " + studentId + " registerd sucesssfully");
 		if_registered = 1;
@@ -195,16 +198,19 @@ public class StudentMenuCRS {
 		try {
 			allNotifications = notify.getAllNotifications(StudentId);
 			System.out.println("You have " + allNotifications.size() + " Notifications!\n");
-			System.out.println(String.format("%30s | %30s | %30s | %30s", "Notification ID", "Message","Student ID","Reference ID"));
-			for (Notification nf : allNotifications) {
-				System.out.println(String.format("%40s | %40s | %40s | %40s", nf.getNotifyId(), nf.getMsg(),nf.getsId(),nf.getRefId()));
+			if (allNotifications.size() > 0) {
+				System.out.println(String.format("%60s | %40s | %40s | %40s", "Notification ID", "Message",
+						"Student ID", "Reference ID"));
+				for (Notification nf : allNotifications) {
+					System.out.println(String.format("%60s | %40s | %40s | %40s", nf.getNotifyId(), nf.getMsg(),
+							nf.getsId(), nf.getRefId()));
+				}
 			}
 		} catch (SQLException ex) {
-			System.out.println("Some Error Occured!"+" "+ex.getMessage());
+			System.out.println("Some Error Occured!" + " " + ex.getMessage());
 			System.out.println(ex);
 		}
 
-		
 	}
 
 	/**
@@ -224,11 +230,10 @@ public class StudentMenuCRS {
 		if (registeredCourses.isEmpty()) {
 			System.out.println("You have not yet registered for any Course");
 			return null;
-		}
-		else {
+		} else {
 			System.out.println(String.format("%30s %30s %30s", "COURSE CODE", "COURSE NAME", "INSTRUCTOR"));
-			for(Course obj : registeredCourses) {
-				System.out.println(String.format("%30s %30s %30s",obj.getcCode(), obj.getcName(),obj.getProfName()));
+			for (Course obj : registeredCourses) {
+				System.out.println(String.format("%30s %30s %30s", obj.getcCode(), obj.getcName(), obj.getProfName()));
 
 			}
 			return registeredCourses;
@@ -258,7 +263,7 @@ public class StudentMenuCRS {
 		System.out.println("Enter Course Code");
 		String cCode = sc.next();
 		try {
-			if (registrationinterface.addCourse(cCode, studentId, courseAvail,sem,0))
+			if (registrationinterface.addCourse(cCode, studentId, courseAvail, sem, 0))
 				System.out.println("\nCourse has been added");
 			else
 				System.out.println("You have already registered for the course");
@@ -289,7 +294,7 @@ public class StudentMenuCRS {
 		String courseCode = sc.next();
 
 		try {
-			registrationinterface.dropCourse(courseCode, studentId, registeredCourseList,sem);
+			registrationinterface.dropCourse(courseCode, studentId, registeredCourseList, sem);
 			System.out.println("\nYou have successfully dropped Course : " + courseCode);
 
 		} catch (CourseNotRemovedException e) {
@@ -307,6 +312,10 @@ public class StudentMenuCRS {
 	 */
 	public void viewReportCard(String studentId) {
 		try {
+			if (if_registered <= 1) {
+				System.out.println("Registration is not approved");
+				return;
+			}
 			List<RegisteredCourse> registeredCourses = new ArrayList<RegisteredCourse>();
 			registeredCourses = registrationinterface.viewReportCard(studentId);
 			System.out.println("Student Username: " + studentId);
@@ -348,6 +357,10 @@ public class StudentMenuCRS {
 
 		int fee = 0;
 		try {
+			if (if_registered <= 1) {
+				System.out.println("Registration is not approved");
+				return;
+			}
 			fee = registrationinterface.calculateFee(studentId);
 		} catch (SQLException e) {
 
@@ -371,34 +384,46 @@ public class StudentMenuCRS {
 				}
 
 				ModeOfPayment mode = ModeOfPayment.getModeofPayment(sc.nextInt());
-				switch(mode) {
-				case CARD : 
-					System.out.println("Enter Card number:");
+				switch (mode) {
+				case CARD:
+					System.out.println("Enter Card Holder Name");
+					String cholderName = sc.next();
+					System.out.println("Enter 16 Digit Card Number :");
 					String cno = sc.next();
-					System.out.println("Enter Card expiry date:");
+					if(cno.length()!=16) {
+						System.out.println("Invalid Card Number !!! Please Pay Again !!!");
+						break;
+					}
+					System.out.println("Enter Card expiry date (mm/yyyy):");
 					String expDate = sc.next();
-					System.out.println("Enter CVV:");
+					System.out.println("Enter 3 Digit CVV:");
 					String cvv = sc.next();
+					if(cvv.length()!=3) {
+						System.out.println("Invalid CVV Number !!! Please Pay Again !!!");
+						break;
+					}
 					break;
 				case NET_BANKING:
 					System.out.println("Enter UPI ID:");
 					String upiId = sc.next();
-					System.out.println("Enter password:");
+					System.out.println("Enter UPI Pin:");
 					String upiPwd = sc.next();
 					break;
-				case CASH :
+				case CASH:
 					break;
-				case CHEQUE :
+				case CHEQUE:
 					System.out.println("Enter Bank Name:");
-					String bName = sc.next();
+					String bankName = sc.next();
+					System.out.println("Enter IFSC Code");
+					String ifsc = sc.next();
 					System.out.println("Enter Cheque Number:");
-					String chNum = sc.next();
+					String chequeNum = sc.next();
 					break;
-				case SCHOLARSHIP :
+				case SCHOLARSHIP:
 					System.out.println("Enter Scholarship ID:");
 					String scholarId = sc.next();
 					break;
-				default :
+				default:
 					break;
 				}
 				NotificationInterface notificationInterface = NotificationOperation.getInstance();
