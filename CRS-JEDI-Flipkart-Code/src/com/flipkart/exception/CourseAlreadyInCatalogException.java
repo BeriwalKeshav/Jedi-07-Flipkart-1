@@ -5,7 +5,7 @@ package com.flipkart.exception;
 
 /**
  * Course already in catalog exception
- * @author JEDI-07
+ * @author JEDI-7
  */
 public class CourseAlreadyInCatalogException extends Exception {
 	

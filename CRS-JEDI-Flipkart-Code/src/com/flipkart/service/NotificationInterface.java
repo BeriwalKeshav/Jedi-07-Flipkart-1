@@ -29,6 +29,32 @@ public interface NotificationInterface {
 	 * @return transaction id of the payment
 	 */
 	public String getReferenceId(String id); 
+	
+	/**
+	 * @param StudentId
+	 * @return List Of All Notifications
+	 * @throws SQLException
+	 */
 	public List<Notification> getAllNotifications(String StudentId) throws SQLException;
+	
+	/**
+	 * @param StudentId
+	 * @param amount
+	 * @param status
+	 * @param paymentType
+	 * @return
+	 * @throws SQLException
+	 */
 	public String addPayment(String StudentId,int amount,boolean status,String paymentType) throws SQLException;
+	
+	/**
+	 * @param StudentId
+	 * @return 
+	 * @throws SQLException
+	 */
+	public String updatePayment(String StudentId,String Mode) throws SQLException;
+	
+	
+	
+	
 }

@@ -19,7 +19,7 @@ public interface RegistrationDAOInterface {
 	 * @param semester
 	 * @param courseCode
 	 * @throws SQLException
-	 * @return boolean whether course got added successfully
+	 * @return boolean Whether Course Got Added Successfully
 	 */
 	public boolean addCourse(String studentId,int semester, String courseCode) throws SQLException;
 	
@@ -28,7 +28,7 @@ public interface RegistrationDAOInterface {
 	 * @param studentId
 	 * @param semester
 	 * @throws SQLException
-	 * @return boolean whether course got added successfully
+	 * @return boolean Whether Course Got Added Successfully
 	 */
 	public boolean dropCourse(String studentId,int semester, String courseCode) throws SQLException;
 	
@@ -47,7 +47,7 @@ public interface RegistrationDAOInterface {
 	 * Method to View list of Registered Courses
 	 * @param studentId
 	 * @throws SQLException 
-	 * @return list of Registered Courses
+	 * @return List Of Registered Courses
 	 */
 	public List<Course> viewRegisteredCourses(String studentId) throws SQLException;
 	
@@ -55,7 +55,7 @@ public interface RegistrationDAOInterface {
 	/**
 	 * Method to view report card of the student
 	 * @param studentId
-	 * @return Grade Card
+	 * @return Report Card
 	 * @throws SQLException 
 	 */
 	
@@ -83,7 +83,7 @@ public interface RegistrationDAOInterface {
 	 * Method to get the list of courses registered by the student
 	 * Number of registered courses for a student
 	 * @param studentId
-	 * @return Number of registered Courses
+	 * @return Number Of Registered Courses
 	 * @throws SQLException 
 	 */
 	public int numOfRegisteredCourses(String studentId) throws SQLException;
@@ -92,7 +92,7 @@ public interface RegistrationDAOInterface {
 	 * Method checks if the student is registered for that course
 	 * @param courseCode
 	 * @param studentId
-	 * @return Students registration status
+	 * @return Student Registration Status
 	 * @throws SQLException 
 	 */
 	public boolean isRegistered(String courseCode, String studentId) throws SQLException;

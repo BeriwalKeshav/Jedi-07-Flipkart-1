@@ -1,6 +1,6 @@
 package com.flipkart.service;
 
-import com.flipkart.dao.UserDAOImpl;
+import com.flipkart.dao.UserDAOOperation;
 import com.flipkart.dao.UserDAOInterface;
 import com.flipkart.exception.UserNotFoundException;
 
@@ -12,7 +12,7 @@ public class UserOperation implements UserInterface{
 	
 	private static volatile UserOperation instance=null;
 	
-	UserDAOInterface userDaoImpl = UserDAOImpl.getInstance();
+	UserDAOInterface userDaoImpl = UserDAOOperation.getInstance();
 	
 	private UserOperation()
 	{

@@ -11,7 +11,7 @@ import com.flipkart.bean.Professor;
 import com.flipkart.bean.RegisteredCourse;
 import com.flipkart.dao.ProfessorDAOInterface;
 import com.flipkart.dao.ProfessorDAOOperation;
-import com.flipkart.dao.UserDAOImpl;
+import com.flipkart.dao.UserDAOOperation;
 import com.flipkart.exception.GradeAddFailedException;
 import com.flipkart.exception.UserNotFoundException;
 

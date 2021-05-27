@@ -40,15 +40,16 @@ public class ProfessorMenuCRS {
 		
 		while(choice != 5) {
 			
-			System.out.println("\n\n++++++++++++++++++++++++++++++++");
-			System.out.println("++++++++ Professor Menu ++++++++");
-			System.out.println("++++++++++++++++++++++++++++++++");
+			System.out.println("\n\n++++++++++++++++++++++++++++++++++++++++");
+			System.out.println("++++++++++++ Professor Menu +++++++++++++");
+			System.out.println("+++++++++++++++++++++++++++++++++++++++++");
 			System.out.println("1. Enter 1 To Give Grade To Student.");
 			System.out.println("2. Enter 2 To View Registered Students.");
 			System.out.println("3. Enter 3 To View Professor Courses.");
 			System.out.println("4. Enter 4 To View Professor Details.");
 			System.out.println("5. Enter 5 To Logout From The System.");
-			
+			System.out.println("+++++++++++++++++++++++++++++++++++++++++");
+			System.out.println("\nEnter The User Input");
 			choice = sc.nextInt();
 			
 			switch(choice) {
@@ -68,7 +69,7 @@ public class ProfessorMenuCRS {
 					crsMainLogout();
 					break;
 				default: {
-					System.out.println("+++++++++ Wrong Choice !!!!! +++++");
+					System.out.println("++++++++++++++ Wrong Choice !!! ++++++++++++");
 					System.out.println("+++++++++ Please Enter The Valid One ++++++++");
 				}
 					
@@ -88,8 +89,8 @@ public class ProfessorMenuCRS {
 			
 			Professor proff = proffInterface.getProffProfleById(proffId);
 			
-			System.out.println(String.format("%15s %15s", "Designation", "Department"));
-			System.out.println(String.format("%15s %15s", proff.getpDesignation(), proff.getpDepartment()));
+			System.out.println(String.format("%30s %30s", "Designation", "Department"));
+			System.out.println(String.format("%30s %30s", proff.getpDesignation(), proff.getpDepartment()));
 		} catch (Exception ex) {
 			System.out.println("++++ Some Error Occurred Returning To Menu +++++");
 		}
@@ -106,9 +107,9 @@ public class ProfessorMenuCRS {
 			
 			myCourses = proffInterface.viewProfessorCourses(proffId);
 			
-			System.out.println(String.format("%20s %20s %20s %20s", "Course Code", "Course Name", "Professor Name", "Is Offered"));
+			System.out.println(String.format("%30s %30s %30s %30s", "Course Code", "Course Name", "Professor Name", "Is Offered"));
 			for(Course cr: myCourses){
-				System.out.println(String.format("%20s %20s %20s %20s", cr.getcCode(), cr.getcName(), cr.getProfName(), cr.isOffered()));
+				System.out.println(String.format("%30s %30s %30s %30s", cr.getcCode(), cr.getcName(), cr.getProfName(), cr.isOffered()));
 			}
 		} catch (Exception ex) {
 			System.out.println("++++++ Some Error Occurred Returning To Menu ++++++");
@@ -163,9 +164,9 @@ public class ProfessorMenuCRS {
 			
 			registeredCourses = proffInterface.viewRegisteredStudents(proffId);
 			
-			System.out.println(String.format("%12s %12s %12s", "Course Code", "Student Id", "Semester"));
+			System.out.println(String.format("%30s %30s %30s", "Course Code", "Student Id", "Semester"));
 			for(RegisteredCourse rc: registeredCourses){
-				System.out.println(String.format("%12s %12s %12s", rc.getcCode(), rc.getsstudentId(), rc.getSem()));
+				System.out.println(String.format("%30s %30s %30s", rc.getcCode(), rc.getsstudentId(), rc.getSem()));
 			}
 		} catch (Exception ex) {
 			System.out.println("\n++++++ Some Error Occurred Returning To Menu ++++++");
@@ -173,7 +174,7 @@ public class ProfessorMenuCRS {
 	}
 	
 	/**
-	 * 
+	 * Method For Returning To The Main Menu.
 	 */
 	public void crsMainLogout() {
 		System.out.println("\n++++++ Logging Out... Returning to Main Menu ++++++\n\n");

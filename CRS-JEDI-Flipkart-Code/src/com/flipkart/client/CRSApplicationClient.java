@@ -69,16 +69,16 @@ public class CRSApplicationClient {
 	 * Method to display Main Menu
 	 */
 	public static void createMainMenu() {
-		System.out.println("\n++++++++++++++++++++++++++++++++++");
+		System.out.println("\n++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 		System.out.println("++++++++++++ Welcome To  Course Management System  +++++++++++++++");
 		System.out.println("Menu For Course Management System:");
 		System.out.println("1. Enter 1 To Login.");
 		System.out.println("2. Enter 2 For Student Registration.");
 		System.out.println("3. Enter 3 To Update Your Password.");
 		System.out.println("4. Enter 4 To Exit From The Menu.");
-		System.out.println("++++++++++++++++++++++++++++++++++\n\n");
+		System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n");
 		
-		System.out.println("\n\n Enter user input : ");
+		System.out.println("Enter user input : ");
 	}
 	
 	/**

@@ -3,6 +3,7 @@
  */
 package com.flipkart.client;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -43,9 +44,9 @@ public class AdminMenuCRS {
 		int choice = -1;
 
 		while (choice != 9) {
-			System.out.println("\n\n++++++++++++++++++++++++++++++++");
-			System.out.println("++++++++++ Admin Menu ++++++++++");
-			System.out.println("++++++++++++++++++++++++++++++++");
+			System.out.println("\n\n+++++++++++++++++++++++++++++++++++++++++++++++");
+			System.out.println("++++++++++++++++++ Admin Menu ++++++++++++++++++");
+			System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++");
 			System.out.println("1. Enter 1 To View Course In Catalogue.");
 			System.out.println("2. Enter 2 To Add Course To Catalogue.");
 			System.out.println("3. Enter 3 To Delete Course From Catalogue.");
@@ -55,8 +56,9 @@ public class AdminMenuCRS {
 			System.out.println("7. Enter 7 To Assign Course To Professor.");
 			System.out.println("8. Enter 8 To Generate Report Card.");
 			System.out.println("9. Enter 9 To Logout From The System.");
-			System.out.println("++++++++++++++++++++++++++++++++");
+			System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++");
 			System.out.println();
+			System.out.println("Enter The User Input.");
 			choice = scanner.nextInt();
 			System.out.println(choice);
 
@@ -117,10 +119,10 @@ public class AdminMenuCRS {
 			System.out.println("No course in the catalogue!");
 			return courseList;
 		}
-		System.out.println(String.format("%20s | %20s | %20s", "COURSE CODE", "COURSE NAME", "INSTRUCTOR"));
+		System.out.println(String.format("%30s | %30s | %30s", "COURSE CODE", "COURSE NAME", "INSTRUCTOR"));
 		for (Course course : courseList) {
 			System.out.println(
-					String.format("%20s | %20s | %20s", course.getcCode(), course.getcName(), course.getProfName()));
+					String.format("%30s | %30s | %30s", course.getcCode(), course.getcName(), course.getProfName()));
 		}
 		return courseList;
 	}
@@ -202,9 +204,20 @@ public class AdminMenuCRS {
 
 		try {
 			adminOperation.approveStudents(studentUserId, studentList);
-			//Add Payment Notification
+			
+			//payment
+			String refId = notificationInterface.addPayment(studentUserId, 1000, false, null);
+			System.out.println(refId + "Done ");
+			//Send Notification
+			String message = "Fee payment pending";
+			notificationInterface.sendNotification(message, studentUserId, refId);
+			
 		} catch (StudentNotFoundForApprovalException e) {
 			System.out.println(e.getMessage());
+		}
+		catch (SQLException e) 
+		{
+            System.out.println(e.getMessage());
 		}
 	}
 
@@ -258,17 +271,17 @@ public class AdminMenuCRS {
 	 */
 	private void assignProfessor() {
 		List<Professor> professorList = adminOperation.showProfessors();
-		System.out.println(String.format("%20s | %20s | %20s ", "ProfessorId",  "Designation", "Department"));
+		System.out.println(String.format("%30s | %30s | %30s ", "ProfessorId",  "Designation", "Department"));
 		for (Professor professor : professorList) {
-			System.out.println(String.format("%20s | %20s | %20s ", professor.getuName(),
+			System.out.println(String.format("%30s | %30s | %30s ", professor.getuName(),
 					professor.getpDesignation(),professor.getpDepartment()));
 		}
 
 		System.out.println("\n\n");
 		List<Course> courseList = adminOperation.viewCourses();
-		System.out.println(String.format("%20s | %20s | %20s", "CourseCode", "CourseName", "Instructor"));
+		System.out.println(String.format("%30s | %30s | %30s", "CourseCode", "CourseName", "Instructor"));
 		for (Course course : courseList) {
-			System.out.println((String.format("%20s | %20s | %20s", course.getcCode(), course.getcName(),course.getProfName())));
+			System.out.println((String.format("%30s | %30s | %30s", course.getcCode(), course.getcName(),course.getProfName())));
 		}
 
 		System.out.println(("Enter Course Code:"));
@@ -300,10 +313,10 @@ public class AdminMenuCRS {
 			registeredCourses = adminOperation.generateReportCard(studentId);
 
 			System.out.println("Student Username: " + studentId);
-			System.out.println(String.format("%12s %12s %12s", "Course Code", "Semester", "Grade"));
+			System.out.println(String.format("%30s %30s %30s", "Course Code", "Semester", "Grade"));
 			for (RegisteredCourse rc : registeredCourses) {
 				System.out
-						.println(String.format("%12s %12s %12s", rc.getcCode(), rc.getSem(), rc.getGrade().getGrade()));
+						.println(String.format("%30s %30s %30s", rc.getcCode(), rc.getSem(), rc.getGrade().getGrade()));
 			}
 		} catch (Exception ex) {
 			System.out.println(ex.getMessage());
@@ -312,7 +325,7 @@ public class AdminMenuCRS {
 	}
 
 	/**
-	 * Method Of Returning To The Main Menu.
+	 * Method For Returning To The Main Menu.
 	 */
 	private void crsMainLogout() {
 		System.out.println("++++++++ Logging Out...... Returning to Main Menu ++++++\n\n\n");

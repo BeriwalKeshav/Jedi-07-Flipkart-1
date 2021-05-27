@@ -52,6 +52,8 @@ public class SQLQueriesConstanst {
 
 	
 	public static final String INSERT_PAYMENT = "insert into payment(referenceId,studentId,amount,status,paymentType) values(?,?,?,?,?)";
+	public static final String UPDATE_PAYMENT = "update payment set status = 1, paymentType = ? where status = 0 and studentId = ?";
+	public static final String GET_REFID_PAYMENT = "select referenceId from payment where status = 0 and studentId = ?";
 	public static final String INSERT_NOTIFICATION = "insert into notification(notificationId,message,studentId,referenceId) values(?,?,?,?)";
 	public static final String GET_REFERENCE_ID = "select * from notification where notificationId=?";
 	public static final String GET_ALL_NOTIFICATIONS = "select * from notification where studentId=?";
