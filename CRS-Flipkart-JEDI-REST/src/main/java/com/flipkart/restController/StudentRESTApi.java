@@ -7,14 +7,11 @@ import java.sql.SQLException;
 import java.util.List;
 
 import javax.validation.constraints.NotNull;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 
 import com.flipkart.service.RegistrationInterface;
 import com.flipkart.service.RegistrationOperation;
@@ -53,10 +50,10 @@ public class StudentRESTApi {
 		return null;
 		
 	}
-	
+	/*
 	@POST
 	@Path("/viewAvailableCourses2")
-	@Consumes(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response viewCourse2(String studentId, List<String> courseList) {
 		
@@ -64,6 +61,6 @@ public class StudentRESTApi {
 		return Response.status(201).entity("Your total fee  = "+ studentId + courseList).build();
 		
 	}
-	
+	*/
 	
 }

@@ -145,7 +145,7 @@ public class ProfessorMenuCRS {
 			if( isUpdated == true) {
 				return;
 			}else {
-				System.out.println("\n+++++++ Password Update Failed ++++++");
+				System.out.println("\n+++++++ Grade Updation Failed ++++++");
 			}
 		
 		} catch (GradeAddFailedException ex) {
