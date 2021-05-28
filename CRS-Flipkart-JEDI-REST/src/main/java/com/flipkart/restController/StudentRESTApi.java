@@ -3,24 +3,19 @@
  */
 package com.flipkart.restController;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.validation.constraints.NotNull;
-<<<<<<< HEAD
-import javax.ws.rs.GET;
-=======
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
-import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
->>>>>>> e796387d7f988295fd40d317e66180c1412906f6
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import com.flipkart.service.NotificationInterface;
 import com.flipkart.service.NotificationOperation;
@@ -61,12 +56,6 @@ public class StudentRESTApi {
 			return registrationInterface.viewCourses(studentId);
 		
 	}
-<<<<<<< HEAD
-	/*
-	@POST
-	@Path("/viewAvailableCourses2")
-	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-=======
 	
 	
 	/**
@@ -204,7 +193,6 @@ public class StudentRESTApi {
 	 */
 	@PUT
 	@Path("/addCourse")
->>>>>>> e796387d7f988295fd40d317e66180c1412906f6
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response  addCourse(
 			@NotNull
@@ -297,24 +285,6 @@ public class StudentRESTApi {
 			}
 
 	}
-<<<<<<< HEAD
-	*/
-=======
-	
-//	@POST
-//	@Path("/viewAvailableCourses2")
-//	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-//	@Produces(MediaType.APPLICATION_JSON)
-//	public Response viewCourse2(
-//			 @FormParam("studentId") String studentId,
-//			 @FormParam("courseList") List<String> courseList
-//			 ) {
-//		
-//		System.out.println(studentId + courseList);
-//		return Response.status(201).entity("Your total fee  = "+ studentId  + courseList).build();
-//		
-//	}
-	
->>>>>>> e796387d7f988295fd40d317e66180c1412906f6
+
 	
 }
