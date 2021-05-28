@@ -23,7 +23,7 @@ public interface NotificationDAOInterface {
 	 * @return notification id for the notification added in the database
 	 * @throws SQLException
 	 */
-	public String sendNotification(String message,String studentId,String referenceId) throws SQLException;
+	public String sendNotification(String message,String studentId,String referenceId)  throws SQLException;
 	
 	/**
 	 * @param notificationId
@@ -54,6 +54,6 @@ public interface NotificationDAOInterface {
 	 * @return list of notifications
 	 * @throws SQLException
 	 */
-	public List<Notification> getAllNotifications(String studentId) throws SQLException;
+	public List<Notification> getAllNotifications(String studentId)  throws SQLException;
 	
 }

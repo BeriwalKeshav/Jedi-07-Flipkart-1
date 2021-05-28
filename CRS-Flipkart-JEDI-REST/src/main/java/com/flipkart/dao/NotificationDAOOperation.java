@@ -159,7 +159,7 @@ public class NotificationDAOOperation implements NotificationDAOInterface {
 	}
 
 	@Override
-	public List<Notification> getAllNotifications(String studentId) throws SQLException {
+	public List<Notification> getAllNotifications(String studentId)  throws SQLException {
 		// TODO Auto-generated method stub
 		List<Notification> allnotifications = new ArrayList<Notification>();
 		Connection connection = DBUtil.getConnection();

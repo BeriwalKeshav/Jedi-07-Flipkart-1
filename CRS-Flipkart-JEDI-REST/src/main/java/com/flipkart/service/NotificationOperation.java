@@ -81,13 +81,13 @@ public class NotificationOperation implements NotificationInterface{
 	}
 
 	@Override
-	public List<Notification> getAllNotifications(String StudentId) throws SQLException {
+	public List<Notification> getAllNotifications(String StudentId) {
 		List<Notification> notifications = null;
 		try {
 			notifications = notificationDAOInterface.getAllNotifications(StudentId);
 		} 
 		catch(SQLException ex) {
-			throw ex;
+			System.out.println("Error Occured :( " + ex.toString());
 		}
 		return notifications;
 	}

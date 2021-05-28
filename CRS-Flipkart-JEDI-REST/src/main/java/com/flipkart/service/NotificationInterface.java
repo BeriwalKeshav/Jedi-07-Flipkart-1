@@ -35,7 +35,7 @@ public interface NotificationInterface {
 	 * @return List Of All Notifications
 	 * @throws SQLException
 	 */
-	public List<Notification> getAllNotifications(String StudentId) throws SQLException;
+	public List<Notification> getAllNotifications(String StudentId);
 	
 	/**
 	 * @param StudentId
