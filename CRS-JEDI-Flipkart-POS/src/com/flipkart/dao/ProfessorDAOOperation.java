@@ -92,7 +92,7 @@ public class ProfessorDAOOperation implements ProfessorDAOInterface{
 			ResultSet resultSet = preparedStatement.executeQuery();
 			
 			while(resultSet.next()) {
-				registeredStudentsUnderProff.add(new RegisteredCourse(resultSet.getString("courseCode"),resultSet.getString("studentId"),resultSet.getInt("semester"),null));
+				registeredStudentsUnderProff.add(new RegisteredCourse(resultSet.getString("courseCode"),resultSet.getString("studentId"),resultSet.getInt("semester"),new Grade(resultSet.getString("grade"))));
 			}
 			
 		}

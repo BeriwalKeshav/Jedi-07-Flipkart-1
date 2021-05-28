@@ -76,7 +76,6 @@ public class ProfessorRESTApi {
 	 * @param grade
 	 * @return
 	 */
-	/*
 	@POST
 	@Path("/addGrade")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -95,25 +94,8 @@ public class ProfessorRESTApi {
 
 	}
 	
-	*/
 	
-	
-	@POST
-	@Path("/addGrade")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response addGrade(@NotNull @QueryParam("studentId") String studentId,
-			@NotNull @QueryParam("courseCode") String courseCode, @NotNull @QueryParam("profId") String profId,Grade grade) {
-
-		try {
-			if (professorInterface.addGrade(studentId, courseCode, grade))
-				return Response.status(200).entity("Grade updated for student: " + studentId).build();
-			else
-				return Response.status(500).entity(" Grade Updation Failed, Please Try Again ! ").build();
-		} catch (Exception ex) {
-			return Response.status(500).entity("User Not Found, Please Try Again ! ").build();
-		}
-
-	}
+//	}
 	/**
 	 * @param profId
 	 * @return
