@@ -129,11 +129,8 @@ public class ProfessorRESTApi {
 			Professor prof = professorInterface.getProffProfleById(profId);
 			map.put("Department",prof.getpDepartment());
 	        map.put("Designation",prof.getpDesignation());
-//	        System.out.println(map);
 			return map;
 		} catch (Exception ex) {
-			System.out.println(ex);
-			System.out.println(ex.getMessage());
 			return null;
 		}
 		

@@ -1,5 +1,6 @@
 package com.flipkart.utils;
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,8 +20,9 @@ public class DBUtil {
         else {
             try {
             	Properties prop = new Properties();
-                InputStream inputStream = DBUtil.class.getClassLoader().getResourceAsStream("./config.properties");
-                prop.load(inputStream);
+//                InputStream inputStream = DBUtil.class.getClassLoader().getResourceAsStream("./config.properties");
+            	InputStream inputStream=new FileInputStream("C:\\Users\\Administrator\\Desktop\\Jedi-07-Flipkart\\CRS-JEDI-Flipkart-Dropwizard\\src\\main\\java\\config.properties");
+            	prop.load(inputStream);
                 String driver = prop.getProperty("driver");
                 String url = prop.getProperty("url");
                 String user = prop.getProperty("user");
