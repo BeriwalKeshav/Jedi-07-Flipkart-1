@@ -146,11 +146,13 @@ public class ProfessorDAOOperation implements ProfessorDAOInterface{
 			if(resultSet.next()) {
 				return new Professor(resultSet.getString("department"),resultSet.getString("designation"));
 			}else {
+				System.out.println("Profesor Not Found");
 				throw new UserNotFoundException(profId);
 			}
 			
 		}
 		catch(SQLException ex){
+			System.out.println(ex.getMessage());
 			logger.error("SQL Exception Thrown : "+ ex.getMessage());
 		}
 		
